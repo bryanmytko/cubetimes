@@ -7692,3 +7692,5 @@ legend {
 .affix {
   position: fixed;
 }
+
+.best { background: #e67a00 !important; color: #fff }
