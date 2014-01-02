@@ -1,3 +1,5 @@
 Formats exported data from JNetCube for Rubik's cube times.
 
 Simply export files from JNetCube to public/times directory.
+
+Working demo: http://cubetimes.herokuapp.com
