@@ -1,1 +1,8 @@
-OH, hi.
+<div class="well">
+  <h1>Rubik's Cube Times</h1>
+  <table class="table table-striped table-bordered table-hover">
+    <% @timesArray.each do |t| %>
+    <%= raw t %>
+    <% end %>
+  </table>
+</div>
