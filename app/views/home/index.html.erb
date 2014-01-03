@@ -1,3 +1,6 @@
+<% flash.each do |name, msg| %>
+  <%= content_tag :div, msg, class: name %>
+<% end %>
 <div class="well">
   <h1>Rubik's Cube Times</h1>
   <ul class="list-group">
@@ -10,6 +13,14 @@
     <%= raw t %>
     <% end %>
   </table>
+</div>
+<div class="well">
+  <h2>Import Session</h2>
+  <%= form_for @session do |f| %>
+  <%= f.file_field :session_file, :accept => 'text' %>
+  <br />
+  <%= f.submit "Import Session!", :class => 'btn btn-primary btn-sm' %>
+  <% end %>
 </div>
 <div class="well">
   <p>&copy;2014 Bryan Mytko <a href="https://github.com/bryanmytko/cubetimes">Fork me on Github?</a>
