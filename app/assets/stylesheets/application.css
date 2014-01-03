@@ -7694,3 +7694,15 @@ legend {
 }
 
 .best { background: #e67a00 !important; color: #fff }
+.notice { background: #f00;
+color: #fff;
+padding: 12px;
+margin: 12px;
+border-radius: 4px
+}
+.alert { background: #3ACF3A;
+color: #fff;
+padding: 12px;
+margin: 12px;
+border-radius: 4px
+}
