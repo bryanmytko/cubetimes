@@ -29,54 +29,27 @@ var running = false,
 start = null,
 control = null;
 
-$('#timer_button').click(function(){
+function doTimer(){
   running = (running) ? false : true;
   start = new Date().getTime();
-  if(running) timer();
-  else $timeout.cancel(control);
+  if(running) interval = setInterval(timer,10);
+  else clearInterval(interval);
+}
+
+$('body').keyup(function(e){
+	if(e.keyCode == 32) doTimer();
+});
+
+$('#timer_button').click(function(){
+  doTimer();
+  $(this).blur();
 })
 
-function start_timer(){
-  console.log('timer started...')
-}
-
-function end_timer(){
-  console.log('timer stopped...')
-}
-
-time = {
-  s: 0.00,
-  ms: 0.00
-}
-
-console.log(time.s)
-console.log(time.ms)
-
 var timer = function(){
-   var t = new Date().getTime() - start;
-   var elapsed = Math.floor(t / 10) / 100;
-   if(Math.round(elapsed) == elapsed) elapsed += '.0';
-   time.s = elapsed;
-   console.log(time.s)
-   timer();
+	var t = new Date().getTime() - start;
+	var elapsed = Math.floor(t / 10) / 100;
+	//if(elapsed%10 == 0) elapsed += '.0';
+	$('.timer').html(elapsed.toFixed(2));
 }
-
-/*$scope.switch = function(){
-angular.element('body').removeClass('ready');
- start = new Date().getTime();
- if(!running){
-   console.log('starting!');
-   running = true;
-   timer();
- } 
- else{
-   console.log('ended.');
-   $timeout.cancel(control);
-   running = false;
- }
-}*/
-   
-   
-   
    
 });
