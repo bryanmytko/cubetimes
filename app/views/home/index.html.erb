@@ -1,8 +1,4 @@
-<% flash.each do |name, msg| %>
-  <%= content_tag :div, msg, class: name %>
-<% end %>
 <div class="well">
-  <h1>Rubik's Cube Times</h1>
   <ul class="list-group">
     <li class="list-group-item">Best Time: <%= @best_time %></li>
     <li class="list-group-item">Best Average: <%= @best_average %></li>
@@ -16,12 +12,10 @@
 </div>
 <div class="well">
   <h2>Import Session</h2>
+  <p>You can upload files exported from JNetCube</p>
   <%= form_for @session do |f| %>
   <%= f.file_field :session_file, :accept => 'text' %>
   <br />
   <%= f.submit "Import Session!", :class => 'btn btn-primary btn-sm' %>
   <% end %>
-</div>
-<div class="well">
-  <p>&copy;2014 Bryan Mytko <a href="https://github.com/bryanmytko/cubetimes">Fork me on Github?</a>
 </div>

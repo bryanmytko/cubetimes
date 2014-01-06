@@ -4382,7 +4382,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
 .nav-tabs > li.active > a:focus {
   color: #ffffff;
   cursor: default;
-  background-color: #2a9fd6;
+  background-color: #222;
   border: 1px solid #282828;
   border-bottom-color: transparent;
 }
