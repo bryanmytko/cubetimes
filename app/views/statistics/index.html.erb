@@ -1,0 +1,23 @@
+
+  <div class="well">
+    <ul class="list-group">
+      <li class="list-group-item">Best Time: <%= @best_time %></li>
+      <li class="list-group-item">Best Average: <%= @best_average %></li>
+    </ul>
+    <table class="table table-striped table-bordered table-hover">
+      <tr><th>Date</th><th>Average</th><th colspan="12">Times</th></tr>
+      <% @timesArray.each do |t| %>
+      <%= raw t %>
+      <% end %>
+    </table>
+  </div>
+  <div class="well">
+    <h2>Import Session</h2>
+    <p>You can upload files exported from JNetCube</p>
+    <%= form_for @session do |f| %>
+    <%= f.file_field :session_file, :accept => 'text' %>
+    <br />
+    <%= f.submit "Import Session!", :class => 'btn btn-primary btn-sm' %>
+    <% end %>
+  </div>
+
