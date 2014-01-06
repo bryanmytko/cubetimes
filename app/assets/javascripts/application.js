@@ -15,8 +15,8 @@
 //= require turbolinks
 //= require_tree .
 
-
-$(function() {
+//turbolinks fix 
+$(document).on('page:load', function() {
   
 /* Tab controls */
 $('.notice,.alert').delay(500).fadeIn('normal', function() {
@@ -25,6 +25,10 @@ $('.notice,.alert').delay(500).fadeIn('normal', function() {
 });
 
 /* Timer */
+
+/* @TODO isMobile, fullscreen touch, remove mobile 300ms touch lag, etc. */
+/* @TODO Display times per session. Create this view area. Detect when session is over. Export functionality. Build database for times 1. import writes to db, 2. sessions write to db. */
+
 var running = false,
 start = null,
 control = null;
@@ -48,7 +52,6 @@ $('#timer_button').click(function(){
 var timer = function(){
 	var t = new Date().getTime() - start;
 	var elapsed = Math.floor(t / 10) / 100;
-	//if(elapsed%10 == 0) elapsed += '.0';
 	$('.timer').html(elapsed.toFixed(2));
 }
    
