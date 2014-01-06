@@ -7,8 +7,20 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-<%= yield %>
-
+<% flash.each do |name, msg| %>
+  <%= content_tag :div, msg, class: name %>
+<% end %>
+<div id="mainContainer" class="well">
+  <h1>Rubik's Cube Times:</h1>
+  <ul class="nav nav-tabs" style="margin-bottom: 15px;">
+    <li <%= is_active "/" %>><a href="/" data-toggle="tab">Timer</a></li>
+    <li <%= is_active "statistics" %>><a href="/statistics" data-toggle="tab">Statistics</a></li>
+    <li <%= is_active "profile" %>><a href="/profile" data-toggle="tab">Profile</a></li>
+  </ul>
+  <%= yield %>
+</div>
+<div class="well">
+  <p>&copy;2014 Bryan Mytko <a href="https://github.com/bryanmytko/cubetimes">Fork me on Github?</a>
+</div>
 </body>
 </html>
