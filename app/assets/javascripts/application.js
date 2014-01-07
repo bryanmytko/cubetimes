@@ -15,44 +15,47 @@
 //= require turbolinks
 //= require_tree .
 
-//turbolinks fix 
-$(document).on('page:load', function() {
+var ready = function(){
   
-/* Tab controls */
-$('.notice,.alert').delay(500).fadeIn('normal', function() {
-  $(this).delay(1500).fadeOut();
-  $('.notice,.alert').hover().fadeOut();
-});
+	/* Tab controls */
+	$('.notice,.alert').delay(500).fadeIn('normal', function() {
+		$(this).delay(1500).fadeOut();
+		$('.notice,.alert').hover().fadeOut();
+	});
 
-/* Timer */
+	/* Timer */
 
-/* @TODO isMobile, fullscreen touch, remove mobile 300ms touch lag, etc. */
-/* @TODO Display times per session. Create this view area. Detect when session is over. Export functionality. Build database for times 1. import writes to db, 2. sessions write to db. */
+	/* @TODO isMobile, fullscreen touch, remove mobile 300ms touch lag, etc. */
+	/* @TODO Display times per session. Create this view area. Detect when session is over. Export functionality. Build database for times 1. import writes to db, 2. sessions write to db. */
 
-var running = false,
-start = null,
-control = null;
+	var running = false,
+	start = null,
+	control = null;
 
-function doTimer(){
-  running = (running) ? false : true;
-  start = new Date().getTime();
-  if(running) interval = setInterval(timer,10);
-  else clearInterval(interval);
-}
+	function doTimer(){
+		running = (running) ? false : true;
+		start = new Date().getTime();
+		if(running) interval = setInterval(timer,10);
+		else clearInterval(interval);
+	}
 
-$('body').keyup(function(e){
-	if(e.keyCode == 32) doTimer();
-});
+	$('body').keyup(function(e){
+		if(e.keyCode == 32) doTimer();
+	});
 
-$('#timer_button').click(function(){
-  doTimer();
-  $(this).blur();
-})
+	$('#timer_button').click(function(){
+		doTimer();
+		$(this).blur();
+	})
 
-var timer = function(){
-	var t = new Date().getTime() - start;
-	var elapsed = Math.floor(t / 10) / 100;
-	$('.timer').html(elapsed.toFixed(2));
-}
+	var timer = function(){
+		var t = new Date().getTime() - start;
+		var elapsed = Math.floor(t / 10) / 100;
+		$('.timer').html(elapsed.toFixed(2));
+	}
    
-});
+}
+
+//turbolinks fix 
+$(document).ready(ready);
+$(document).on('page:load', ready);
