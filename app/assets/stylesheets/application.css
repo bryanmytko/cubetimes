@@ -7708,3 +7708,10 @@ border-radius: 4px
 }
 
 p.timer { font-size: 140px; font-weight: 900; color: #fff }
+
+#timerSection { width: 50%; min-width: 300px; float: left } 
+#timerTimes { float: left }
+#timerTimes ul { list-style-type: none; float: left }
+#timerTimes ul li { color: #fff; font-size: 1.3em }
+.avg-12 { color: #fff }
+
