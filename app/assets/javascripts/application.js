@@ -26,18 +26,51 @@ var ready = function(){
 	/* Timer */
 
 	/* @TODO isMobile, fullscreen touch, remove mobile 300ms touch lag, etc. */
-	/* @TODO Display times per session. Create this view area. Detect when session is over. Export functionality. Build database for times 1. import writes to db, 2. sessions write to db. */
+	/* @TODO Display times per session. Create this view area. Detect when session is over. Export functionality. Build database for times 1. import writes to db, 2. sessions write to db (via AJAX) */
 
 	var running = false,
 	start = null,
-	control = null;
+	control = null,
+  AVG_AMT = 12;
+  
+  function addTime(){
+    var t = $('.timer').html();
+    var list = $('#timerTimes ul');
+    list.prepend('<li>' + t + ' <a href="#" class="delete">[x]</a></li>');
+    checkTimes();
+  }
+  
+  function checkTimes(){
+    var times = $('#timerTimes ul li');
+    var avgDisplay = $('.avg-12 span');
+    var sum = 0;
+    if(times.length >= AVG_AMT){
+      $('#timerTimes ul li:lt(' + AVG_AMT + ')').each(function(){
+        sum += parseFloat($(this).html());
+        console.log(sum)
+      });
+      avgDisplay.html((sum / AVG_AMT).toFixed(2));
+    } else {
+      avgDisplay.html('--');
+    } 
+  }
 
 	function doTimer(){
 		running = (running) ? false : true;
 		start = new Date().getTime();
-		if(running) interval = setInterval(timer,10);
-		else clearInterval(interval);
+		if(running){
+      interval = setInterval(timer,10);
+    } else {
+      clearInterval(interval);
+      addTime();
+    }
 	}
+  
+  $(document).on('click','a.delete',function(event){
+    event.preventDefault();
+    $(this).parent().remove();
+    checkTimes();
+  });
 
 	$('body').keyup(function(e){
 		if(e.keyCode == 32) doTimer();
