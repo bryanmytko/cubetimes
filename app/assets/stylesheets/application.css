@@ -483,6 +483,7 @@ h1,
 h2,
 .h2 {
   font-size: 30px;
+  color: #d67200;
 }
 
 h3,
@@ -7709,9 +7710,10 @@ border-radius: 4px
 
 p.timer { font-size: 140px; font-weight: 900; color: #fff }
 
-#timerSection { width: 50%; min-width: 300px; float: left } 
-#timerTimes { float: left }
+#timerSection { width: 600px; float: left } 
+#timerTimes { width: 100px; float: left }
 #timerTimes ul { list-style-type: none; float: left }
 #timerTimes ul li { color: #fff; font-size: 1.3em }
 .avg-12 { color: #fff }
 
+.scrambleContainer { font-size: 1.4em; margin: 0 0 .9em 0 }
