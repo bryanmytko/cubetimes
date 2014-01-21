@@ -26,17 +26,29 @@ var ready = function(){
 	/* Timer */
 
 	/* @TODO isMobile, fullscreen touch, remove mobile 300ms touch lag, etc. */
-	/* @TODO Display times per session. Create this view area. Detect when session is over. Export functionality. Build database for times 1. import writes to db, 2. sessions write to db (via AJAX) */
+	/* @TODO  Export functionality. Build database for times 1. import writes to db, 2. sessions write to db (via AJAX) */
 
 	var running = false,
 	start = null,
 	control = null,
-  AVG_AMT = 12;
+  AVG_AMT = 12,
+  SCRAMBLE_MOVES = 25;
+
+	function init(){
+	  generateScramble(SCRAMBLE_MOVES);
+	}
+
+  function generateScramble(n){
+    s = new scramble;
+    result = s.get_random_moves(n);
+    $('#timerSection div.scrambleContainer>span.scramble').html(result);
+  }
   
   function addTime(){
     var t = $('.timer').html();
     var list = $('#timerTimes ul');
     list.prepend('<li>' + t + ' <a href="#" class="delete">[x]</a></li>');
+    generateScramble(SCRAMBLE_MOVES);
     checkTimes();
   }
   
@@ -86,6 +98,8 @@ var ready = function(){
 		var elapsed = Math.floor(t / 10) / 100;
 		$('.timer').html(elapsed.toFixed(2));
 	}
+
+  init();
    
 }
 
