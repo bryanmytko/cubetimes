@@ -7710,8 +7710,8 @@ border-radius: 4px
 
 p.timer { font-size: 140px; font-weight: 900; color: #fff }
 
-#timerSection { width: 600px; float: left } 
-#timerTimes { width: 100px; float: left }
+#timerSection { width: 680px; float: left } 
+#timerTimes { width: 200px; float: left }
 #timerTimes ul { list-style-type: none; float: left }
 #timerTimes ul li { color: #fff; font-size: 1.3em }
 .avg-12 { color: #fff }

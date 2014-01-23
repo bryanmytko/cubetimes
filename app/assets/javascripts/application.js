@@ -26,7 +26,7 @@ var ready = function(){
 	/* Timer */
 
 	/* @TODO isMobile, fullscreen touch, remove mobile 300ms touch lag, etc. */
-	/* @TODO  Export functionality. Build database for times 1. import writes to db, 2. sessions write to db (via AJAX) */
+	/* @TODO  Export functionality. Build database for times 1. import writes to db, 2. sessions write to db (via AJAX)     */
 
 	var running = false,
 	start = null,
@@ -47,6 +47,8 @@ var ready = function(){
   function addTime(){
     var t = $('.timer').html();
     var list = $('#timerTimes ul');
+    var list_items = $('#timerTimes ul li');
+    if(list_items.length > AVG_AMT) list_items.last().remove();
     list.prepend('<li>' + t + ' <a href="#" class="delete">[x]</a></li>');
     generateScramble(SCRAMBLE_MOVES);
     checkTimes();
@@ -59,7 +61,6 @@ var ready = function(){
     if(times.length >= AVG_AMT){
       $('#timerTimes ul li:lt(' + AVG_AMT + ')').each(function(){
         sum += parseFloat($(this).html());
-        console.log(sum)
       });
       avgDisplay.html((sum / AVG_AMT).toFixed(2));
     } else {
@@ -83,9 +84,28 @@ var ready = function(){
     $(this).parent().remove();
     checkTimes();
   });
+  
+	$('body').keydown(function(e){
+    if(e.keyCode == 32){
+      e.preventDefault();
+      if(!running){
+    		$('#timer_button').css({
+          'background-color' : '#2a9fd6',
+          'border-color' : '#FFFFFF'
+        });
+      }
+    }
+	});
 
 	$('body').keyup(function(e){
-		if(e.keyCode == 32) doTimer();
+		if(e.keyCode == 32){
+      e.preventDefault();
+      doTimer();
+  		$('#timer_button').css({
+        'background-color' : '#ff8800',
+        'border-color' : '#ff8800'
+      });
+    }
 	});
 
 	$('#timer_button').click(function(){
