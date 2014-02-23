@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.mobile
 //= require turbolinks
 //= require_tree .
 
@@ -107,6 +108,15 @@ var ready = function(){
       });
     }
 	});
+
+  $('.well.mat').tap(function(e){
+    $(this).css({'background':'#151515'});
+    doTimer();
+  });
+
+  $('.well.mat').taphold(function(e){
+    $(this).css({'background':'#244C0C'});
+  });
 
 	$('#timer_button').click(function(){
 		doTimer();
