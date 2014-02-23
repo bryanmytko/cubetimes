@@ -8,12 +8,15 @@
  * You're free to add application-wide styles to this file and they'll appear at the top of the
  * compiled file, but it's generally better to create a new file per style scope.
  *
+ *= require jquery.mobile
  *= require_self
  *= require_tree .
  */
 
 
 @import url("//fonts.googleapis.com/css?family=Droid+Sans:400,700");
+
+body .ui-body-c, body .ui-overlay-c { text-shadow:0 0 0; }
 
 /*! normalize.css v2.1.3 | MIT License | git.io/normalize */
 
@@ -52,6 +55,7 @@ html {
   font-family: sans-serif;
   -webkit-text-size-adjust: 100%;
       -ms-text-size-adjust: 100%;
+  color: #888 !important;
 }
 
 body {
@@ -2558,7 +2562,7 @@ fieldset[disabled] .btn-warning:active,
 .btn-warning.disabled.active,
 .btn-warning[disabled].active,
 fieldset[disabled] .btn-warning.active {
-  background-color: #ff8800;
+  background-color: #ff8800 !important;
   border-color: #ff8800;
 }
 
@@ -7716,4 +7720,4 @@ p.timer { font-size: 140px; font-weight: 900; color: #fff }
 #timerTimes ul li { color: #fff; font-size: 1.3em }
 .avg-12 { color: #fff }
 
-.scrambleContainer { font-size: 1.4em; margin: 0 0 .9em 0 }
+.scrambleContainer { font-size: 1.4em; margin: 0 0 .9em 0; color: #888 }
