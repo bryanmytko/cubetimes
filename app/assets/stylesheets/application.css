@@ -8,7 +8,6 @@
  * You're free to add application-wide styles to this file and they'll appear at the top of the
  * compiled file, but it's generally better to create a new file per style scope.
  *
- *= require jquery.mobile
  *= require_self
  *= require_tree .
  */
@@ -7721,3 +7720,15 @@ p.timer { font-size: 140px; font-weight: 900; color: #fff }
 .avg-12 { color: #fff }
 
 .scrambleContainer { font-size: 1.4em; margin: 0 0 .9em 0; color: #888 }
+
+#footer { height: 64px }
+#footer p { float: right }
+#footer ul { list-style-type: none; float: left; margin: 0; padding: 0 }
+#footer ul li { margin-right: 12px; display: block; float: left }
+#footer ul li a { display: block; width: 24px; height: 24px; background: url(social.png) 0 0 no-repeat }
+#footer ul li a.pinterest { background-position: -24px 0 }
+#footer ul li a.twitter { background-position: -48px 0 }
+#footer ul li a.googleplus { background-position: -72px 0 }
+
+
+

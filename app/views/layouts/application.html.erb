@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Cubetimes</title>
+  <title>Rubik's Cube Timer</title>
+  <meta name="description" content="A simple online timer for speedsolving Rubik's cubes and other mechanical puzzles.">
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
@@ -19,8 +20,13 @@
   </ul>
   <%= yield %>
 </div>
-<div class="well">
-  <p>&copy;2014 Bryan Mytko <a href="https://github.com/bryanmytko/cubetimes">Fork me on Github?</a>
+<div id="footer" class="well group">
+  <p>&copy;2014 <a href="mailto:bryanmytko@gmail.com">Bryan Mytko</a></p>
+  <ul class="group">
+    <li><a class="facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://rubikscubetimer.com/"></a></li>
+    <li><a class="twitter" href="https://twitter.com/home?status=Need%20an%20online%20Rubik's%20Cube%20timer?%20http://rubikscubetimer.com"></a></li>
+    <li><a class="googleplus" href="https://plus.google.com/share?url=http://rubikscubetimer.com"></a></li>
+    <li><a class="pinterest" href="https://pinterest.com/pin/create/button/?url=http://rubikscubetimer.com&media=&description="></a></li>
 </div>
 </body>
 </html>
