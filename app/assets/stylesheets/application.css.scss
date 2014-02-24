@@ -7725,7 +7725,10 @@ p.timer { font-size: 140px; font-weight: 900; color: #fff }
 #footer p { float: right }
 #footer ul { list-style-type: none; float: left; margin: 0; padding: 0 }
 #footer ul li { margin-right: 12px; display: block; float: left }
-#footer ul li a { display: block; width: 24px; height: 24px; background-image: url("/images/social.png"); background-position: 0 0 }
+#footer ul li a { display: block; width: 24px; height: 24px; background-image: image-url("social.png"); background-position: 0 0 }
 #footer ul li a.pinterest { background-position: -24px 0 }
 #footer ul li a.twitter { background-position: -48px 0 }
 #footer ul li a.googleplus { background-position: -72px 0 }
+
+
+
