@@ -129,7 +129,7 @@ var ready = function(){
       interval = setInterval(timer,10);
     } else {
       clearInterval(interval);
-      addTime();
+      if(confirm('Would you like to accept this time?')) addTime();
     }
 	}
   
