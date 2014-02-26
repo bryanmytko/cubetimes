@@ -19,14 +19,21 @@
 <% flash.each do |name, msg| %>
   <%= content_tag :div, msg, class: name %>
 <% end %>
-<div id="mainContainer" class="well">
-  <h1>Rubik's Cube Timer</h1>
-  <ul class="nav nav-tabs" style="margin-bottom: 15px;">
-    <li <%= is_active "/" %>><a href="/" data-toggle="tab">Timer</a></li>
-    <li <%= is_active "statistics" %>><a href="/statistics" data-toggle="tab">Statistics</a></li>
-    <li <%= is_active "profile" %>><a href="/profile" data-toggle="tab">Profile</a></li>
-  </ul>
-  <%= yield %>
+<header class="well">
+  <p><a href="/profile">Login</a> | <a href="/profile">Signup</a></p>
+</header>
+<div id="mainContainer">
+  <div class="clearfix">
+		<h1>Rubik's Cube Timer</h1>
+  </div>
+  <div class="content">
+		<ul class="nav nav-tabs">
+			<li <%= is_active "/" %>><a href="/" data-toggle="tab">Timer</a></li>
+			<li <%= is_active "statistics" %>><a href="/statistics" data-toggle="tab">Statistics</a></li>
+			<li <%= is_active "profile" %>><a href="/profile" data-toggle="tab">Profile</a></li>
+		</ul>
+    <%= yield %>
+  </div>
 </div>
 <div id="footer" class="well group">
   <p>&copy;2014 <a href="mailto:bryanmytko@gmail.com">Bryan Mytko</a></p>
