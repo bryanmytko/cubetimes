@@ -31,12 +31,42 @@ var ready = function(){
 	var running = false,
 	start = null,
 	control = null,
+  total_cubes = 0,
+  cube_count = 0,
   AVG_AMT = 12,
   SCRAMBLE_MOVES = 25;
+
+  var all_times = new Array();
 
 	function init(){
 	  generateScramble(SCRAMBLE_MOVES);
 	}
+
+	Array.prototype.max = function() {
+		var max = this[0];
+		var len = this.length;
+		for (var i = 1; i < len; i++) if (this[i] > max) max = this[i];
+		return max;
+	}
+
+	Array.prototype.min = function() {
+		var min = this[0];
+		var len = this.length;
+		for (var i = 1; i < len; i++) if (this[i] < min) min = this[i];
+		return min;
+	}
+
+	Array.prototype.remove = function() {
+			var what, a = arguments, L = a.length, ax;
+			while (L && this.length) {
+					what = a[--L];
+					while ((ax = this.indexOf(what)) !== -1) {
+							this.splice(ax, 1);
+              break;
+					}
+			}
+			return this;
+	};
 
   function generateScramble(n){
     s = new scramble;
@@ -45,27 +75,51 @@ var ready = function(){
   }
   
   function addTime(){
+    total_cubes += 1;
+    cube_count = (cube_count < AVG_AMT) ? cube_count + 1 : 1;
     var t = $('.timer').html();
     var list = $('#timerTimes ul');
     var list_items = $('#timerTimes ul li');
-//    if(list_items.length > AVG_AMT) list_items.last().remove();
-    list.prepend('<li>' + t + ' <a href="#" class="delete">[x]</a></li>');
+    var delete_button = '<a href="#" class="delete">[x]</a>';
+    all_times.push(parseFloat(t));
+    list.children('li.time-' + cube_count).children('span').html(t);
+    $('.cubes-amt').children('span').html(total_cubes);
     generateScramble(SCRAMBLE_MOVES);
-    checkTimes();
+    updateStats();
   }
   
-  function checkTimes(){
+  function updateStats(){
     var times = $('#timerTimes ul li');
     var avgDisplay = $('.avg-12 span');
-    var sum = 0;
-    if(times.length >= AVG_AMT){
-      $('#timerTimes ul li:lt(' + AVG_AMT + ')').each(function(){
-        sum += parseFloat($(this).html());
+    updateSessionAvg();
+    updateTotalAvg();
+    $('.fastest').children('span').html(all_times.min());
+    $('.slowest').children('span').html(all_times.max());
+  }
+
+  function updateSessionAvg(){
+    var times = $('#timerTimes ul li');
+    var session_times = new Array();
+    var times_total = 0;
+    if(total_cubes >= AVG_AMT){
+      $.each(times,function(){
+        session_times.push(parseFloat($(this).children('span').html()));
       });
-      avgDisplay.html((sum / AVG_AMT).toFixed(2));
-    } else {
-      avgDisplay.html('--');
-    } 
+      session_times.remove(session_times.min());
+      session_times.remove(session_times.max());
+      for(var i=0;i<session_times.length;i++){
+        times_total += session_times[i]
+      }
+      $('.avg-session').children('span').html((times_total/AVG_AMT).toFixed(2));
+    }
+  }
+
+  function updateTotalAvg(){
+    var tmp_total = 0;
+	  for(var i=0;i<all_times.length;i++){
+			tmp_total += all_times[i];
+		}
+    $('.avg-all').children('span').html((tmp_total/total_cubes).toFixed(2));
   }
 
 	function doTimer(){
