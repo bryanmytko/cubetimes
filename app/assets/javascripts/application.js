@@ -110,7 +110,7 @@ var ready = function(){
       for(var i=0;i<session_times.length;i++){
         times_total += session_times[i]
       }
-      $('.avg-session').children('span').html((times_total/AVG_AMT).toFixed(2));
+      $('.avg-session').children('span').html((times_total/(AVG_AMT-2)).toFixed(2));
     }
   }
 
