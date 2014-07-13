@@ -28,6 +28,7 @@ GEM
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
     arel (5.0.1.20140414130214)
+    bcrypt-ruby (3.0.1)
     builder (3.2.2)
     celluloid (0.15.2)
       timers (~> 1.1.0)
@@ -162,6 +163,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bcrypt-ruby (~> 3.0.0)
   coffee-rails (~> 4.0.0)
   guard-rspec
   jbuilder (~> 1.2)
