@@ -4,13 +4,18 @@ source 'https://rubygems.org'
 gem 'rails'
 
 # Use sqlite3 as the database for Active Record
-group :development, :test do
-  gem 'sqlite3'
-end
+#group :development, :test do
+#  gem 'sqlite3'
+#end
 
-group :production do
+#group :production do
   gem 'pg'
-  gem 'rails_12factor'
+#  gem 'rails_12factor'
+#end
+
+group :development, :test do
+  gem 'rspec-rails', '~> 3.0.0'
+  gem 'guard-rspec', require: false
 end
 
 # Use SCSS for stylesheets
