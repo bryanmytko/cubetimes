@@ -18,6 +18,8 @@ group :development, :test do
   gem 'guard-rspec', require: false
 end
 
+gem 'bcrypt-ruby', '~> 3.0.0', require: "bcrypt"
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 
