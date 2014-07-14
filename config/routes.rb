@@ -5,7 +5,9 @@ Cubetimes::Application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'timer#index'
 
-  get 'login' => 'login#index'
+  get 'login' => 'sessions#new'
+  post 'login' => 'sessions#create'
+  get 'logout' => 'sessions#destroy'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
