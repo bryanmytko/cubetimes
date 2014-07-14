@@ -1,5 +1,5 @@
 require "rails_helper"
 
-describe LoginController do
+describe SessionsController do
   it 'finally has a test'
 end
