@@ -1,9 +1,8 @@
 class StatisticsController < ApplicationController
   include ParserConcern
-  
   def index
     @timesArray ||= Array.new
-    @session = Session.new  
+    @session = Session.new
     times_path = File.join Rails.root, 'public', 'times'
     if File.directory?(times_path)
       @timesArray = parse_dir times_path
@@ -13,7 +12,6 @@ class StatisticsController < ApplicationController
       @best_average = '--'
     end
     @best_time = @@best_time
-    @best_average = @@best_average  
+    @best_average = @@best_average
   end
-  
 end
