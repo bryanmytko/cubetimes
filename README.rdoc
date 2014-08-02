@@ -4,7 +4,6 @@ Simply export files from JNetCube to public/times directory.
 
 Demo: http://cubetimes.herokuapp.com
 
-<pre>
   ______.........--=T=--.........______                     
        .             |:|                                      
        :-. //           /""""""-.          LIVE FREE OR DIE HARD
@@ -13,6 +12,5 @@ Demo: http://cubetimes.herokuapp.com
          ': :'     `-.     _:._     '"""" :                         
            ::          '--=:____:.___....-"                          
                                O"       O"                          
-</pre>
 
 Copyright (C) 2014 Bryan Mytko
