@@ -11,6 +11,7 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'simplecov'
   gem 'faker'
+  gem 'debugger'
 end
 
 gem 'bcrypt'
