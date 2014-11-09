@@ -7728,23 +7728,6 @@ h1 { background: image-url("logo.png") 0 0 no-repeat; height: 70px; padding: 15p
 
 p.timer { line-height: 1.2em; font-size: 140px; font-weight: 900; color: #1a1a1a; background: #a6a6a6; border-radius: 10px; text-align: center; width: 100% }
 
-<<<<<<< HEAD
-#timer_button { 
-width: 100%;
-padding: 20px 0;
-font-size: 32px;
-border: 0;
-background: #973778;
-/*background: -moz-linear-gradient(top, rgba(0,192,176,1) 0%, rgba(0,103,99,1) 100%); /* FF3.6+ */
-/*background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,192,176,1)), color-stop(100%,rgba(0,103,99,1))); /* Chrome,Safari4+ */
-/*background: -webkit-linear-gradient(top, rgba(0,192,176,1) 0%,rgba(0,103,99,1) 100%); /* Chrome10+,Safari5.1+ */
-/*background: -o-linear-gradient(top, rgba(0,192,176,1) 0%,rgba(0,103,99,1) 100%); /* Opera 11.10+ */
-/*background: -ms-linear-gradient(top, rgba(0,192,176,1) 0%,rgba(0,103,99,1) 100%); /* IE10+ */
-/*background: linear-gradient(to bottom, rgba(0,192,176,1) 0%,rgba(0,103,99,1) 100%); /* W3C */
-/*filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00c0b0', endColorstr='#006763',GradientType=0 ); /* IE6-9 */ }
-
-#timerSection { } 
-=======
 #timer_button {
   width: 100%;
   padding: 20px 0;
@@ -7754,7 +7737,6 @@ background: #973778;
   background: linear-gradient(to bottom, rgba(0,192,0,1) 0%,rgba(0,97,0,1) 100%)
 }
 #timerSection { }
->>>>>>> develop
 #timerTimes { }
 #timerTimes ul { list-style-type: none; margin: 0; padding: 0 }
 #timerTimes ul li { color: #fff; font-size: 1.3em; display: block; float: left; width: 68px; text-align: center; height: 66px; font-size: 14px; color: #888 }
