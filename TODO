@@ -1,10 +1,12 @@
-1. Database modeling for users
-2. Databse modeling for times (session id, date, times, cube type)
-3. Frontend to display session data, change session length, end sessions, etc.
-4. User profiles
-5. User linking "friending"
-6. Statistics page to instead pull from db
-7. File upload to save to db instead of hard text file
-8. Clean up front end & responsive elements
-9. Scramble Algorithm
-10. Cube types selection
+Update to PG locally
+
+Database modeling for users
+Databse modeling for times (session id, date, times, cube type)
+Frontend to display session data, change session length, end sessions, etc.
+User profiles
+User linking "friending"
+Statistics page to instead pull from db
+File upload to save to db instead of hard text file
+Clean up front end & responsive elements
+Scramble Algorithm
+Cube types selection

@@ -1,8 +1,8 @@
 source 'https://rubygems.org'
 
-# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails'
+ruby '2.0.0'
 
+<<<<<<< HEAD
 gem 'pg'
 
 group :development, :test do
@@ -24,9 +24,54 @@ gem 'uglifier', '>= 1.3.0'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
+=======
+gem 'rails', '4.1.4'
 
-# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 1.2'
+gem 'pg'
 
-# jQuery stuff
+# Auth
+gem 'devise'
+gem 'httparty'
+>>>>>>> develop
+
+# Required for seeding the database
+gem 'factory_girl_rails'
+gem 'faker'
+
+# Front end
 gem 'jquery-rails'
+<<<<<<< HEAD
+=======
+gem 'sass'
+gem 'bootstrap-sass', '~> 3.2.0'
+gem 'sass-rails', '~> 4.0.2' #, github: 'rails/sass-rails'
+gem 'font-awesome-rails'
+gem 'uglifier'
+gem 'turbolinks'
+
+group :production do
+  gem 'heroku-deflater'
+  gem 'rails_12factor'
+end
+
+group :development do
+  gem 'spring'
+end
+
+group :development, :test do
+  gem 'guard-bundler'
+  gem 'guard-rspec'
+  gem 'rspec-rails'
+  gem 'rspec-collection_matchers'
+end
+
+group :development, :test, :integration, :staging do
+  gem 'byebug'
+end
+
+group :test do
+  gem 'webmock'
+  gem 'spork', '> 0.9.0.rc'
+  gem 'guard-spork'
+end
+>>>>>>> develop
