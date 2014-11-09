@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # SQLite version 3.x
 #   gem install sqlite3
 #
@@ -43,3 +44,31 @@ proudction:
   encoding: unicode
   database: cubetimes
   pool: 5
+=======
+development:
+  adapter: postgresql
+  encoding: utf8
+  database: cubetimes_development
+  pool: 100
+  timeout: 5000
+  password:
+  host:
+
+test:
+  adapter: postgresql
+  encoding: utf8
+  database: cubetimes_test
+  pool: 5
+  timeout: 5000
+  password:
+  host:
+
+production:
+  adapter: sqlite3
+  encoding: utf8
+  database: cubetimes
+  pool: 5
+  timeout: 5000
+  password:
+  host:
+>>>>>>> develop
