@@ -1,18 +1,11 @@
 <div class="well mat clearfix">
   <div id="timerTimes">
     <ul class="clearfix">
-      <li class="time-1">1st<span></span></li>
-      <li class="time-2">2nd<span></span></li>
-      <li class="time-3">3rd<span></span></li>
-      <li class="time-4">4th<span></span></li>
-      <li class="time-5">5th<span></span></li>
-      <li class="time-6">6th<span></span></li>
-      <li class="time-7">7th<span></span></li>
-      <li class="time-8">8th<span></span></li>
-      <li class="time-9">9th<span></span></li>
-      <li class="time-10">10th<span></span></li>
-      <li class="time-11">11th<span></span></li>
-      <li class="time-12">12th<span></span></li>
+    <% (1..12).each do |n| %>
+      <%=
+        "<li class=\"time-#{n}\"><span>#{n.ordinalize}</span></li>".html_safe
+      %>
+    <% end %>
     </ul>
   </div>
   <div id="timerSection">
@@ -20,17 +13,19 @@
     <div class="scrambleContainer">
       <span class="scramble"></span>
     </div>
-    <button id="timer_button" type="button" class="btn btn-warning">Press spacebar or tap hold the screen to start!</button>
+    <button id="timer_button" type="button" class="btn btn-warning">
+      Press spacebar or tap hold the screen to start!
+    </button>
   </div>
 </div>
 <div id="statistics-container" class="clearfix">
-	<div id="statistics-left">
-	<p class="cubes-amt">Cubes Solved: <span>--</span></p>
-	<p class="avg-session">Session Average: <span>--</span></p>
-	<p class="avg-all">Current Average: <span>--</span></p>
-	</div>
-	<div id="statistics-right">
-	<p class="fastest">Fastest Time: <span>--</span></p>
-	<p class="slowest">Slowest Time: <span>--</span></p>
-	</div>
+  <div id="statistics-left">
+  <p class="cubes-amt">Cubes Solved: <span>--</span></p>
+  <p class="avg-session">Session Average: <span>--</span></p>
+  <p class="avg-all">Current Average: <span>--</span></p>
+  </div>
+  <div id="statistics-right">
+  <p class="fastest">Fastest Time: <span>--</span></p>
+  <p class="slowest">Slowest Time: <span>--</span></p>
+  </div>
 </div>

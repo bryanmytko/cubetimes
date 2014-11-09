@@ -16,21 +16,21 @@
 //= require_tree .
 
 var ready = function(){
-  
-	/* Tab controls */
-	$('.notice,.alert').delay(500).fadeIn('normal', function() {
-		$(this).delay(1500).fadeOut();
-		$('.notice,.alert').hover().fadeOut();
-	});
 
-	/* Timer */
+  /* Tab controls */
+  $('.notice,.alert').delay(500).fadeIn('normal', function() {
+    $(this).delay(1500).fadeOut();
+    $('.notice,.alert').hover().fadeOut();
+  });
 
-	/* @TODO isMobile, fullscreen touch, remove mobile 300ms touch lag, etc. */
-	/* @TODO  Export functionality. Build database for times 1. import writes to db, 2. sessions write to db (via AJAX)     */
+  /* Timer */
 
-	var running = false,
-	start = null,
-	control = null,
+  /* @TODO isMobile, fullscreen touch, remove mobile 300ms touch lag, etc. */
+  /* @TODO  Export functionality. Build database for times 1. import writes to db, 2. sessions write to db (via AJAX)     */
+
+  var running = false,
+  start = null,
+  control = null,
   total_cubes = 0,
   cube_count = 0,
   AVG_AMT = 12,
@@ -38,42 +38,42 @@ var ready = function(){
 
   var all_times = new Array();
 
-	function init(){
-	  generateScramble(SCRAMBLE_MOVES);
-	}
+  function init(){
+    generateScramble(SCRAMBLE_MOVES);
+  }
 
-	Array.prototype.max = function() {
-		var max = this[0];
-		var len = this.length;
-		for (var i = 1; i < len; i++) if (this[i] > max) max = this[i];
-		return max;
-	}
+  Array.prototype.max = function() {
+    var max = this[0];
+    var len = this.length;
+    for (var i = 1; i < len; i++) if (this[i] > max) max = this[i];
+    return max;
+  }
 
-	Array.prototype.min = function() {
-		var min = this[0];
-		var len = this.length;
-		for (var i = 1; i < len; i++) if (this[i] < min) min = this[i];
-		return min;
-	}
+  Array.prototype.min = function() {
+    var min = this[0];
+    var len = this.length;
+    for (var i = 1; i < len; i++) if (this[i] < min) min = this[i];
+    return min;
+  }
 
-	Array.prototype.remove = function() {
-			var what, a = arguments, L = a.length, ax;
-			while (L && this.length) {
-					what = a[--L];
-					while ((ax = this.indexOf(what)) !== -1) {
-							this.splice(ax, 1);
+  Array.prototype.remove = function() {
+      var what, a = arguments, L = a.length, ax;
+      while (L && this.length) {
+          what = a[--L];
+          while ((ax = this.indexOf(what)) !== -1) {
+              this.splice(ax, 1);
               break;
-					}
-			}
-			return this;
-	};
+          }
+      }
+      return this;
+  };
 
   function generateScramble(n){
     s = new scramble;
     result = s.get_random_moves(n);
     $('#timerSection div.scrambleContainer>span.scramble').html(result);
   }
-  
+
   function addTime(){
     total_cubes += 1;
     cube_count = (cube_count < AVG_AMT) ? cube_count + 1 : 1;
@@ -87,7 +87,7 @@ var ready = function(){
     generateScramble(SCRAMBLE_MOVES);
     updateStats();
   }
-  
+
   function updateStats(){
     var times = $('#timerTimes ul li');
     var avgDisplay = $('.avg-12 span');
@@ -116,67 +116,67 @@ var ready = function(){
 
   function updateTotalAvg(){
     var tmp_total = 0;
-	  for(var i=0;i<all_times.length;i++){
-			tmp_total += all_times[i];
-		}
+    for(var i=0;i<all_times.length;i++){
+      tmp_total += all_times[i];
+    }
     $('.avg-all').children('span').html((tmp_total/total_cubes).toFixed(2));
   }
 
-	function doTimer(){
-		running = (running) ? false : true;
-		start = new Date().getTime();
-		if(running){
+  function doTimer(){
+    running = (running) ? false : true;
+    start = new Date().getTime();
+    if(running){
       interval = setInterval(timer,10);
     } else {
       clearInterval(interval);
       if(confirm('Would you like to accept this time?')) addTime();
     }
-	}
-  
+  }
+
   $(document).on('click','a.delete',function(event){
     event.preventDefault();
     $(this).parent().remove();
     checkTimes();
   });
-  
-	$('body').keydown(function(e){
+
+  $('body').keydown(function(e){
     if(e.keyCode == 32){
       e.preventDefault();
       if(!running){
-    		$('#timer_button').css({
+        $('#timer_button').css({
           'background-color' : '#2a9fd6',
           'border-color' : '#FFFFFF'
         });
       }
     }
-	});
+  });
 
-	$('body').keyup(function(e){
-		if(e.keyCode == 32){
+  $('body').keyup(function(e){
+    if(e.keyCode == 32){
       e.preventDefault();
       doTimer();
-  		$('#timer_button').css({
+      $('#timer_button').css({
         'background-color' : '#ff8800',
         'border-color' : '#ff8800'
       });
     }
-	});
+  });
 
-	$('#timer_button').click(function(){
-		doTimer();
-		$(this).blur();
-	})
+  $('#timer_button').click(function(){
+    doTimer();
+    $(this).blur();
+  })
 
-	var timer = function(){
-		var t = new Date().getTime() - start;
-		var elapsed = Math.floor(t / 10) / 100;
-		$('.timer').html(elapsed.toFixed(2));
-	}
+  var timer = function(){
+    var t = new Date().getTime() - start;
+    var elapsed = Math.floor(t / 10) / 100;
+    $('.timer').html(elapsed.toFixed(2));
+  }
 
   init();
-   
+
 }
 
-//turbolinks fix 
+//turbolinks fix
 $(document).ready(ready);
 $(document).on('page:load', ready);

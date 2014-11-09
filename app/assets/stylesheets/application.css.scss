@@ -7726,21 +7726,15 @@ h1 { background: image-url("logo.png") 0 0 no-repeat; height: 70px; padding: 15p
 
 p.timer { line-height: 1.2em; font-size: 140px; font-weight: 900; color: #1a1a1a; background: #a6a6a6; border-radius: 10px; text-align: center; width: 100% }
 
-#timer_button { 
-width: 100%;
-padding: 20px 0;
-font-size: 32px;
-border: 0;
-background: rgb(0,192,176); /* Old browsers */
-background: -moz-linear-gradient(top, rgba(0,192,176,1) 0%, rgba(0,103,99,1) 100%); /* FF3.6+ */
-background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,192,176,1)), color-stop(100%,rgba(0,103,99,1))); /* Chrome,Safari4+ */
-background: -webkit-linear-gradient(top, rgba(0,192,176,1) 0%,rgba(0,103,99,1) 100%); /* Chrome10+,Safari5.1+ */
-background: -o-linear-gradient(top, rgba(0,192,176,1) 0%,rgba(0,103,99,1) 100%); /* Opera 11.10+ */
-background: -ms-linear-gradient(top, rgba(0,192,176,1) 0%,rgba(0,103,99,1) 100%); /* IE10+ */
-background: linear-gradient(to bottom, rgba(0,192,176,1) 0%,rgba(0,103,99,1) 100%); /* W3C */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00c0b0', endColorstr='#006763',GradientType=0 ); /* IE6-9 */ }
-
-#timerSection { } 
+#timer_button {
+  width: 100%;
+  padding: 20px 0;
+  font-size: 32px;
+  border: 0;
+  background: rgb(0,192,176); /* Old browsers */
+  background: linear-gradient(to bottom, rgba(0,192,0,1) 0%,rgba(0,97,0,1) 100%)
+}
+#timerSection { }
 #timerTimes { }
 #timerTimes ul { list-style-type: none; margin: 0; padding: 0 }
 #timerTimes ul li { color: #fff; font-size: 1.3em; display: block; float: left; width: 68px; text-align: center; height: 66px; font-size: 14px; color: #888 }
@@ -7752,6 +7746,52 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00c0b0', end
 #statistics-container #statistics-left { float: left }
 #statistics-container #statistics-right { float: right }
 
+/* User sign in and sign forms. */
+.border-form-div {
+  max-width: 500px;
+  padding: 19px 29px 29px;
+  margin: 0 auto 20px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+  -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+  box-shadow: 0 1px 2px rgba(0,0,0,.05);
+}
+
+.border-form-div h2 {
+  margin-bottom: 20px
+}
+
+.border-form-div label {
+  font-size: 16px;
+  font-weight: 100;
+}
+
+.border-form-div .form-signin-heading,
+.border-form-div .checkbox {
+  margin-bottom: 10px;
+}
+.border-form-div input[type="text"],
+.border-form-div input[type="email"],
+.border-form-div input[type="password"] {
+  width: 100%;
+  color: #000;
+  font-weight: 100;
+  border: none;
+  border-radius: 8px;
+  font-size: 22px;
+  height: auto;
+  margin-bottom: 15px;
+  padding: 12px;
+}
+
+.border-form-div input[type="submit"] {
+  margin: 20px 0;
+}
+
+input:focus {outline: none;}
+
 #footer { height: 64px; width: 900px; margin: 0 auto; border: 1px solid #262626; background: #1a1a1a }
 #footer p { float: right }
 #footer ul { list-style-type: none; float: left; margin: 0; padding: 0 }
@@ -7760,6 +7800,3 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00c0b0', end
 #footer ul li a.pinterest { background-position: -24px 0 }
 #footer ul li a.twitter { background-position: -48px 0 }
 #footer ul li a.googleplus { background-position: -72px 0 }
-
-
-
