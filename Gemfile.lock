@@ -42,6 +42,13 @@ GEM
     childprocess (0.5.5)
       ffi (~> 1.0, >= 1.0.11)
     coderay (1.1.0)
+    coffee-rails (4.1.0)
+      coffee-script (>= 2.2.0)
+      railties (>= 4.0.0, < 5.0)
+    coffee-script (2.3.0)
+      coffee-script-source
+      execjs
+    coffee-script-source (1.8.0)
     columnize (0.8.9)
     crack (0.4.2)
       safe_yaml (~> 1.0.0)
@@ -67,7 +74,7 @@ GEM
     font-awesome-rails (4.2.0.0)
       railties (>= 3.2, < 5.0)
     formatador (0.2.5)
-    guard (2.8.1)
+    guard (2.8.2)
       formatador (>= 0.2.4)
       listen (~> 2.7)
       lumberjack (~> 1.0)
@@ -193,6 +200,8 @@ GEM
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
+    turbolinks (2.5.1)
+      coffee-rails
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
     uglifier (2.5.3)
@@ -200,7 +209,7 @@ GEM
       json (>= 1.8.0)
     warden (1.2.3)
       rack (>= 1.0)
-    webmock (1.20.3)
+    webmock (1.20.4)
       addressable (>= 2.3.6)
       crack (>= 0.3.2)
 
@@ -229,5 +238,6 @@ DEPENDENCIES
   sass-rails (~> 4.0.2)
   spork (> 0.9.0.rc)
   spring
+  turbolinks
   uglifier
   webmock
