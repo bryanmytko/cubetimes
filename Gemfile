@@ -1,30 +1,8 @@
+
 source 'https://rubygems.org'
 
 ruby '2.0.0'
 
-<<<<<<< HEAD
-gem 'pg'
-
-group :development, :test do
-  gem 'rspec-rails', '~> 3.0.1'
-  gem 'guard-rspec'
-  gem 'factory_girl_rails'
-  gem 'simplecov'
-  gem 'faker'
-  gem 'debugger'
-end
-
-gem 'bcrypt'
-
-# Use SCSS for stylesheets
-gem 'sass-rails', '~> 4.0.0'
-
-# Use Uglifier as compressor for JavaScript assets
-gem 'uglifier', '>= 1.3.0'
-
-# Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem 'turbolinks'
-=======
 gem 'rails', '4.1.4'
 
 gem 'pg'
@@ -32,7 +10,6 @@ gem 'pg'
 # Auth
 gem 'devise'
 gem 'httparty'
->>>>>>> develop
 
 # Required for seeding the database
 gem 'factory_girl_rails'
@@ -40,8 +17,6 @@ gem 'faker'
 
 # Front end
 gem 'jquery-rails'
-<<<<<<< HEAD
-=======
 gem 'sass'
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'sass-rails', '~> 4.0.2' #, github: 'rails/sass-rails'
@@ -74,4 +49,3 @@ group :test do
   gem 'spork', '> 0.9.0.rc'
   gem 'guard-spork'
 end
->>>>>>> develop
