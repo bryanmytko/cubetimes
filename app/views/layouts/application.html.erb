@@ -2,47 +2,55 @@
 <html>
 <head>
   <title>Rubik's Cube Timer</title>
-  <meta name="description" content="A simple online timer for speedsolving Rubik's cubes and other mechanical puzzles.">
-<meta name="viewport" content="width=device-width">
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+
+  <meta name="description" content="A simple online timer for
+  speedsolving Rubik's cubes and other mechanical puzzles.">
+  <meta name="viewport" content="width=device-width">
+
+  <%= stylesheet_link_tag "application",
+    media: "all", "data-turbolinks-track" => true %>
+
+  <%= javascript_include_tag "application",
+    "data-turbolinks-track" => true %>
+
   <%= csrf_meta_tags %>
-	<script>
-		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-		ga('create', 'UA-48436108-1', 'rubikscubetimer.com');
-		ga('send', 'pageview');
-	</script>
+
 </head>
 <body>
 <% flash.each do |name, msg| %>
   <%= content_tag :div, msg, class: name %>
 <% end %>
 <header class="well">
-  <p><a href="/profile">Login</a> | <a href="/profile">Signup</a></p>
+  <p>
+    <a href="<%= new_user_session_path %>">Login</a> |
+    <a href="<%= new_user_registration_path %>">Signup</a>
+  </p>
 </header>
 <div id="mainContainer">
   <div class="clearfix">
-		<h1>Rubik's Cube Timer</h1>
+    <h1>Rubik's Cube Timer</h1>
   </div>
   <div class="content">
-		<ul class="nav nav-tabs">
-			<li <%= is_active "/" %>><a href="/" data-toggle="tab">Timer</a></li>
-			<li <%= is_active "statistics" %>><a href="/statistics" data-toggle="tab">Statistics</a></li>
-			<li <%= is_active "profile" %>><a href="/profile" data-toggle="tab">Profile</a></li>
-		</ul>
+    <ul class="nav nav-tabs">
+      <li <%= is_active "/" %>>
+        <a href="/" data-toggle="tab">
+          Timer
+        </a>
+      </li>
+      <li <%= is_active "statistics" %>>
+        <a href="/statistics" data-toggle="tab">
+          Statistics
+        </a>
+      </li>
+      <li <%= is_active "profile" %>>
+        <a href="/profile" data-toggle="tab">
+          Profile
+        </a>
+      </li>
+    </ul>
     <%= yield %>
   </div>
 </div>
-<div id="footer" class="well group">
-  <p>&copy;2014 <a href="mailto:bryanmytko@gmail.com">Bryan Mytko</a></p>
-  <ul class="group">
-    <li><a class="facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://rubikscubetimer.com/"></a></li>
-    <li><a class="twitter" href="https://twitter.com/home?status=Need%20an%20online%20Rubik's%20Cube%20timer?%20http://rubikscubetimer.com"></a></li>
-    <li><a class="googleplus" href="https://plus.google.com/share?url=http://rubikscubetimer.com"></a></li>
-    <li><a class="pinterest" href="https://pinterest.com/pin/create/button/?url=http://rubikscubetimer.com&media=&description="></a></li>
-</div>
+<%= render 'layouts/footer' %>
 </body>
 </html>
