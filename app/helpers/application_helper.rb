@@ -5,7 +5,4 @@ module ApplicationHelper
     if current_path == '/' && request.fullpath == '/' then return 'class=active' end
     return 'class=active' unless current_path[1] != path
   end
-  def current_user
-    @current_user ||= User.find(session[:user_id]) if session[:user_id]
-  end
 end
