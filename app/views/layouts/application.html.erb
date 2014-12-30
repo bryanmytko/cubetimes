@@ -21,8 +21,10 @@
   <%= content_tag :div, msg, class: name %>
 <% end %>
 <header class="well">
-<% if current_user %>
-  <p><a href="/logout">Logout</a>
+<% if user_signed_in? %>
+  <p>
+    <%= link_to "Logout", destroy_user_session_path, method: :delete %>
+  </p>
 <% else %>
   <p>
     <a href="<%= new_user_session_path %>">Login</a> |
