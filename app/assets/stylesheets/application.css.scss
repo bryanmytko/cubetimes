@@ -7720,6 +7720,9 @@ header.well p { margin: 0 12px 0 0; font-size: 12px }
 
 h1 { background: image-url("logo.png") 0 0 no-repeat; height: 70px; padding: 15px 0 0 80px; float: right }
 
+h1 a,
+h1 a:hover { color: #fff; text-decoration: none }
+
 #mainContainer { width: 900px; margin: 0 auto }
 .content { margin-top: -24px }
 .content ul  { margin-bottom: 0; border: 0 }
