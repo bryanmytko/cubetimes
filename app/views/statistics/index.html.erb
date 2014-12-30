@@ -1,6 +1,5 @@
 <div class="well mat">
   <h2>Statistics</h2>
-  <% if current_user %>
     <ul class="list-group">
       <li class="list-group-item">Best Time: <%= @best_time %></li>
       <li class="list-group-item">Best Average: <%= @best_average %></li>
@@ -20,7 +19,5 @@
     <br />
     <%= f.submit "Import Session!", :class => 'btn btn-primary btn-sm' %>
     <% end %>
-  <%else%>
-    <p>Coming soon.</p>
-  <%end%>
+  </div>
 </div>
