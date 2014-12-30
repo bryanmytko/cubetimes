@@ -1,6 +1,10 @@
 class StatisticsController < ApplicationController
   include ParserConcern
+
+  before_filter :authenticate_user!
+
   def index
+    # OOF. Refactor!
     @timesArray ||= Array.new
     @session = Session.new
     times_path = File.join Rails.root, 'public', 'times'
