@@ -34,8 +34,6 @@ group :development do
 end
 
 group :development, :test do
-  gem 'guard-bundler'
-  gem 'guard-rspec'
   gem 'rspec-rails'
   gem 'rspec-collection_matchers'
 end
