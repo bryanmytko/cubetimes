@@ -7729,13 +7729,14 @@ h1 { background: image-url("logo.png") 0 0 no-repeat; height: 70px; padding: 15p
 p.timer { line-height: 1.2em; font-size: 140px; font-weight: 900; color: #1a1a1a; background: #a6a6a6; border-radius: 10px; text-align: center; width: 100% }
 
 #timer_button {
+  color: #000;
   width: 100%;
   padding: 20px 0;
   font-size: 32px;
   border: 0;
-  background: rgb(0,192,176); /* Old browsers */
-  background: linear-gradient(to bottom, rgba(0,192,0,1) 0%,rgba(0,97,0,1) 100%)
+  background: #f5fb02;
 }
+
 #timerSection { }
 #timerTimes { }
 #timerTimes ul { list-style-type: none; margin: 0; padding: 0 }
