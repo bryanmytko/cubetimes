@@ -7,4 +7,6 @@ Cubetimes::Application.routes.draw do
   resources :statistics,      only: [:index]
   resources :profile,         only: [:index]
   resources :cubing_sessions, only: [:create]
+
+  post "jnet_import", to: "cubing_sessions#jnet_import"
 end
