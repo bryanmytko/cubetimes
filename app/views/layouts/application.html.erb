@@ -2,7 +2,6 @@
 <html>
 <head>
   <title>Rubik's Cube Timer</title>
-
   <meta name="description" content="A simple online timer for
   speedsolving Rubik's cubes and other mechanical puzzles.">
   <meta name="viewport" content="width=device-width">
@@ -14,42 +13,37 @@
     "data-turbolinks-track" => true %>
 
   <%= csrf_meta_tags %>
-
 </head>
 <body>
 <% flash.each do |name, msg| %>
   <%= content_tag :div, msg, class: name %>
 <% end %>
 <header class="well">
-<% if current_user %>
-  <p><a href="/logout">Logout</a>
+<% if user_signed_in? %>
+  <p>
+    <%= link_to "Logout", destroy_user_session_path, method: :delete %>
+  </p>
 <% else %>
   <p>
-    <a href="<%= new_user_session_path %>">Login</a> |
-    <a href="<%= new_user_registration_path %>">Signup</a>
+    <%= link_to "Login",  new_user_session_path %> |
+    <%= link_to "Signup", new_user_registration_path %>
   </p>
 <% end %>
 </header>
 <div id="mainContainer">
   <div class="clearfix">
-    <h1>Rubik's Cube Timer</h1>
+    <h1><%= link_to "Rubik's Cube Timer", root_path %></h1>
   </div>
   <div class="content">
     <ul class="nav nav-tabs">
       <li <%= is_active "/" %>>
-        <a href="/" data-toggle="tab">
-          Timer
-        </a>
+        <a href="/" data-toggle="tab">Timer</a>
       </li>
       <li <%= is_active "statistics" %>>
-        <a href="/statistics" data-toggle="tab">
-          Statistics
-        </a>
+        <a href="/statistics" data-toggle="tab">Statistics</a>
       </li>
       <li <%= is_active "profile" %>>
-        <a href="/profile" data-toggle="tab">
-          Profile
-        </a>
+        <a href="/profile" data-toggle="tab">Profile</a>
       </li>
     </ul>
     <%= yield %>

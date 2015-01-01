@@ -1,6 +1,9 @@
 module ParserConcern
   extend ActiveSupport::Concern
 
+  # I didn't know what I was doing when I wrote this.
+  # This will be fun to refactor!
+
   @@best_time = 99999
   @@best_average = 99999
 
@@ -14,13 +17,13 @@ module ParserConcern
     end
     output
   end
-  
+
   def parse_file f, times_path
     best = 99999
     file_data = ''
     single_file = File.open(File.join times_path, f)
-    File.open(single_file,'r') do || 
-      string = ''    
+    File.open(single_file,'r') do ||
+      string = ''
       single_file.each do |line|
         if line =~ /JNetCube Session Statistics/
           line = line.split('----- JNetCube Session Statistics for ')
