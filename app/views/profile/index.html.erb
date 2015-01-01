@@ -1,8 +1,4 @@
 <div class="well mat">
   <h2>Profile</h2>
-  <% if current_user %>
-    <p>Hello, <%= current_user.user_name %>
-  <% else %>
-    <p>You're not logged in.</p>
-  <% end %>
+  <p>Hello, <%= current_user.email %>
 </div>
