@@ -14,7 +14,7 @@
   <div class="well">
     <h2>Import Session</h2>
     <p>You can upload files exported from JNetCube</p>
-    <%= form_for :cubing_session, url: cubing_sessions_path do |f| %>
+    <%= form_for :cubing_session, url: jnet_import_path do |f| %>
     <%= f.file_field :session_file, :accept => 'text' %>
     <br />
     <%= f.submit "Import Session!", :class => 'btn btn-primary btn-sm' %>
