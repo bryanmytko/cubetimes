@@ -1,12 +1,12 @@
 ----- JNetCube Session Statistics for Wed Jan 08 17:37:08 EST 2014 -----
 
-Cubes Solved: 12 
-Total Pops: 0 
+Cubes Solved: 12
+Total Pops: 0
 Average: 19.79
 
 Fastest Time: 15.74
 Slowest Time: 25.25
-Standard Deviation: 02.88 
+Standard Deviation: 02.88
 
 Individual Times:
 1)          16.60          L' B' R2 L B D L2 R' U' L' U L' B F' U R D2 F D R2 B L' B2 L' F2
