@@ -21,7 +21,7 @@ class CubingSessionsController < ApplicationController
   end
 
   def upload_valid?
-    whitelist.include? params[:cubing_session][:session_file].content_type
+    whitelist.include? session_file.content_type
   end
 
   def whitelist
@@ -32,8 +32,12 @@ class CubingSessionsController < ApplicationController
     current_user.cubing_session
   end
 
+  def session_file
+    params[:cubing_session][:session_file]
+  end
+
   def cubing_session
-    current_user_cubing_session.jnet_import(params[:cubing_session])
+    current_user_cubing_session.jnet_import(session_file)
   end
 
   def upload_success
