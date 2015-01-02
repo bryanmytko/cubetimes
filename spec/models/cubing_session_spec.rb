@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe CubingSession, :type => :model do
   describe "a valid cubing session" do
@@ -19,18 +19,22 @@ RSpec.describe CubingSession, :type => :model do
   end
 
   describe "a jnet imported session" do
-    before(:each) do
-      allow(File).to receive(:read).and_return(jnet_object)
+
+    before(:all) do
+      @file_factory = FactoryGirl.create(:jnet_file)
+      @cubing_session = CubingSession.jnet_import(@file_factory.file)
     end
 
-    it "should read a JNET object" do
-      expect(jnet_object).to_not be_nil
-    end
-
-    # @TODO should write some tests for the concern itself soon
     it "should create a cubing session from jnet data" do
-      expect(CubingSession.jnet_import(jnet_object))
-        .to_not be_nil
+      expect(@cubing_session).to_not be_nil
+    end
+
+    it "should contain 12 times" do
+      expect(@cubing_session.times.size).to eq(12)
+    end
+
+    it "should contain 12 times" do
+      expect(@cubing_session.times.size).to eq(12)
     end
   end
 end
