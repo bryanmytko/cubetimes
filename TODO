@@ -1,12 +1,11 @@
-Update to PG locally
-
-Database modeling for users
-Databse modeling for times (session id, date, times, cube type)
+√ Update to PG locally
+√ Database modeling for users
+√ Databse modeling for times (session id, date, times)
 Frontend to display session data, change session length, end sessions, etc.
 User profiles
 User linking "friending"
-Statistics page to instead pull from db
-File upload to save to db instead of hard text file
+√ Statistics page to instead pull from db
+√ File upload to save to db instead of hard text file
 Clean up front end & responsive elements
-Scramble Algorithm
-Cube types selection
+Scramble Algorithm - is this ok?!
+Cube types selection, add different cube types for cubing sessions?
