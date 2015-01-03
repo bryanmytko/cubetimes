@@ -12,6 +12,10 @@ RSpec.describe CubingSession, :type => :model do
       expect(cubing_session.origin).to eq("JNetCube")
     end
 
+    it "should have a puzzle type" do
+      expect(cubing_session.puzzle_type).to eq("3x3")
+    end
+
     it "should have 12 times" do
       bad_session = CubingSession.new(times: [1,2,3])
       expect(bad_session.errors).to_not be_nil
