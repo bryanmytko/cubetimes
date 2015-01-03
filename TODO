@@ -1,11 +1,19 @@
+v0.0.3
+
 √ Update to PG locally
 √ Database modeling for users
 √ Databse modeling for times (session id, date, times)
-Frontend to display session data, change session length, end sessions, etc.
-User profiles
-User linking "friending"
+√ Frontend to display session data, change session length, end sessions, etc.
 √ Statistics page to instead pull from db
 √ File upload to save to db instead of hard text file
+
+Save times from timer! (seems late for this, but import first made sense)
+User profiles
+User linking "friending"
 Clean up front end & responsive elements
 Scramble Algorithm - is this ok?!
+
 Cube types selection, add different cube types for cubing sessions?
+  - Add drop down for display on stats page
+  - Add drop down for selection on timer
+  - Does JNetCube track puzzle type? If so, parse this during upload.
