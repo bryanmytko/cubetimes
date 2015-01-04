@@ -9,6 +9,9 @@ v0.0.3
 
 Save times from timer! (seems late for this, but import first made sense)
 User profiles
+  - Add specs
+  - Add Faker gem
+
 User linking "friending"
 Clean up front end & responsive elements
 Scramble Algorithm - is this ok?!
