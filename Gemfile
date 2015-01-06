@@ -11,10 +11,6 @@ gem "pg"
 gem "devise"
 gem "httparty"
 
-# Required for seeding the database
-gem "factory_girl_rails"
-gem "faker"
-
 # Front end
 gem "jquery-rails"
 gem "sass"
@@ -36,6 +32,7 @@ end
 group :development, :test do
   gem "rspec-rails"
   gem "rspec-collection_matchers"
+  gem "factory_girl_rails"
   gem "faker"
 end
 
