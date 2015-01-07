@@ -44,4 +44,5 @@ group :test do
   gem "webmock"
   gem "spork", "> 0.9.0.rc"
   gem "guard-spork"
+  gem "capybara"
 end
