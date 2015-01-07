@@ -8,12 +8,18 @@ v0.0.3
 √ File upload to save to db instead of hard text file
 
 Save times from timer! (seems late for this, but import first made sense)
+
+Statistics
+  - Highlight best times. This used to work. Was it Rails or JS?
+
 User profiles
   - Add required fields
   - Add specs (model, controller)
 
 User linking "friending"
+
 Clean up front end & responsive elements
+
 Scramble Algorithm - is this ok?!
 
 Cube types selection, add different cube types for cubing sessions?
