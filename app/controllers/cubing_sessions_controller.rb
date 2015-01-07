@@ -3,7 +3,7 @@ class CubingSessionsController < ApplicationController
   end
 
   def jnet_import
-    if upload_valid?
+    if params[:cubing_session] && upload_valid?
       import_jnet_data
     else
       upload_error "Sorry, you can only upload text files!"
