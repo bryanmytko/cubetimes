@@ -1,4 +1,4 @@
-module ParserConcern
+module Parser
   extend ActiveSupport::Concern
 
   # I didn't know what I was doing when I wrote this.
