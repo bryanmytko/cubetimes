@@ -1,5 +1,5 @@
 class StatisticsController < ApplicationController
-  include ParserConcern
+  include Parser
 
   before_filter :authenticate_user!
 
