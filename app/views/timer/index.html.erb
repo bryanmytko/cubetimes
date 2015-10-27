@@ -1,9 +1,11 @@
 <div class="well mat clearfix">
   <div id="timerTimes">
     <ul class="clearfix">
-    <% (1..12).each do |n| %>
+    <% (1..TimerController::SESSION_SIZE).each do |n| %>
       <%=
-        "<li class=\"time-#{n}\"><span>#{n.ordinalize}</span></li>".html_safe
+        "<li class=\"time-#{n}\">
+          <span>#{n.ordinalize}</span>
+        </li>".html_safe
       %>
     <% end %>
     </ul>
