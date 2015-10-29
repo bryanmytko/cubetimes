@@ -92,8 +92,18 @@ var ready = function(){
     var avgDisplay = $('.avg-12 span');
     updateSessionAvg();
     updateTotalAvg();
+
+    if(total_cubes == AVG_AMT) postSessionAvg();
+
     $('.fastest').children('span').html(all_times.min());
     $('.slowest').children('span').html(all_times.max());
+  }
+
+  function postSessionAvg(){
+    // @TODO
+    // Make POST request to save times.
+    // POST /cube_times or something.
+    alert("Session complete. Your times have been recorded. Feel free to continue cubing!");
   }
 
   function updateSessionAvg(){
