@@ -1,6 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe Profile, type: :model do
+  it "has a valid factory" do
+    valid_profile = FactoryGirl.create(:profile)
+    expect(valid_profile).to be_valid
+  end
+
   it "is invalid without a first name" do
     invalid_profile = FactoryGirl.build(:profile, first_name: nil)
     expect(invalid_profile).to_not be_valid
