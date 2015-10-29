@@ -8,5 +8,4 @@ FactoryGirl.define do
     favorite_puzzles { %w(3x3 4x4 5x5 pyraminx square-1 magic).sample }
     fastest_3x3 { Faker::Commerce.price }
   end
-
 end
