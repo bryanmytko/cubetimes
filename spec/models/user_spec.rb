@@ -1,23 +1,22 @@
 require "rails_helper"
 
 describe User do
-  let(:user) { FactoryGirl.create(:user) }
-  specify { expect(user).to be_valid }
-
-  it "should have an email" do
-    user.email = ""
-    expect(user).to_not be_valid
+  it "is invalid without an email" do
+    invalid_user = FactoryGirl.build(:user, email: nil)
+    expect(invalid_user).to_not be_valid
   end
 
-  it "should have a password" do
-    user.password = ""
-    expect(user).to_not be_valid
+  it "is invalid without a password" do
+    invalid_user = FactoryGirl.build(:user, email: nil)
+    expect(invalid_user).to_not be_valid
   end
 
-  describe "when email is already taken" do
-    it "should not allow duplicate emails" do
-      duplicate_user = user.dup
-      expect(duplicate_user).to_not be_valid
+  context "when email is already taken" do
+    it "is invalid" do
+      valid_user = FactoryGirl.create(:user, email: Faker::Internet.email)
+      invalid_user = FactoryGirl.build(:user, email: valid_user.email)
+
+      expect(invalid_user).to_not be_valid
     end
   end
 end
