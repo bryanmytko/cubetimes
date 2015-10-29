@@ -4,6 +4,10 @@ RSpec.describe CubingSession, :type => :model do
   describe "a valid cubing session" do
     let(:cubing_session) { FactoryGirl.create(:cubing_session) }
 
+    it "has a valid factory" do
+      expect(cubing_session).to be_valid
+    end
+
     it "initializes a cubing session" do
       expect(cubing_session).to_not be_nil
     end
@@ -23,8 +27,7 @@ RSpec.describe CubingSession, :type => :model do
   end
 
   describe "a jnet imported session" do
-
-    before(:all) do
+    before(:each) do
       @file_factory = FactoryGirl.create(:jnet_file)
       @cubing_session = CubingSession.jnet_import(@file_factory.file)
     end
