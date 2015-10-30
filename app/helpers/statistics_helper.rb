@@ -1,11 +1,18 @@
 module StatisticsHelper
   def display_row(cubing_session)
     string =  "<td>#{date_format(cubing_session.created_at)}</td>"
-    string += "<td>#{session_average(cubing_session.times)}</td>"
+    string += "<td class=\"average\">" \
+      "#{session_average(cubing_session.times)}</td>"
+
     cubing_session.times.each do |time|
-      string += "<td>#{time}</td>"
+      if time == cubing_session.times.min
+        string += "<td class=\"best\">#{time}</td>"
+      else
+        string += "<td>#{time}</td>"
+      end
     end
-    raw(string)
+
+    raw string
   end
 
   def best_time(cubing_sessions)
@@ -31,6 +38,6 @@ module StatisticsHelper
   end
 
   def date_format(date)
-    date.strftime("%d\/%m\/%Y")
+    date.strftime("%m\/%d\/%Y")
   end
 end
