@@ -3,7 +3,7 @@ Cubetimes::Application.routes.draw do
 
   root 'timer#index'
 
-  resources :timer,           only: [:index]
+  resources :timer,           only: [:index, :create]
   resources :statistics,      only: [:index]
   resources :profile,         only: [:index]
   resources :cubing_sessions, only: [:create]
