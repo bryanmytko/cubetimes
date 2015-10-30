@@ -3,4 +3,13 @@ class TimerController < ApplicationController
 
   def index
   end
+
+  def create
+    CubingSession.create(
+      user_id: current_user.id,
+      origin: "web",
+      times: params[:times],
+      puzzle_type: params[:puzzle_type]
+    )
+  end
 end

@@ -100,9 +100,16 @@ var ready = function(){
   }
 
   function postSessionAvg(){
-    // @TODO
-    // Make POST request to save times.
-    // POST /cube_times or something.
+    var session_times = $('#timerTimes ul li').map(function(){
+      return $(this).text().trim();
+    }).get();
+
+    session_params = {
+      puzzle_type: "3x3",
+      times: session_times
+    }
+
+    $.post( "/timer", session_params);
     alert("Session complete. Your times have been recorded. Feel free to continue cubing!");
   }
 
