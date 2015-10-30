@@ -7,6 +7,7 @@ class CubingSession < ActiveRecord::Base
 
   def self.jnet_import(params)
     CubingSession.create(
+      user_id: current_user.id,
       times: JnetImport::extract_times(params),
       puzzle_type: "3x3"
     )
