@@ -12,6 +12,7 @@ gem "bootstrap-sass", "~> 3.2.0"
 gem "sass-rails", "~> 4.0.2" #, github: "rails/sass-rails"
 gem "font-awesome-rails"
 gem "uglifier"
+gem "awesome_print"
 
 group :production do
   gem "heroku-deflater"
