@@ -16,6 +16,11 @@ test:
   password:
   host:
 
+production:
+  adapter: postgresql
+  encoding: utf8
+  pool: 5
+
 default: &default
   adapter: postgresql
   encoding: utf8
