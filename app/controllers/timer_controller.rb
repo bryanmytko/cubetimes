@@ -11,5 +11,7 @@ class TimerController < ApplicationController
       times: params[:times],
       puzzle_type: params[:puzzle_type]
     )
+
+    head :ok, content_type: "text/html"
   end
 end
