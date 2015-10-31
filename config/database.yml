@@ -16,11 +16,7 @@ test:
   password:
   host:
 
-production:
-  adapter: sqlite3
+default: &default
+  adapter: postgresql
   encoding: utf8
-  database: cubetimes
   pool: 5
-  timeout: 5000
-  password:
-  host:
