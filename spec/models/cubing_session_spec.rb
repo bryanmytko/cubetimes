@@ -39,9 +39,5 @@ RSpec.describe CubingSession, :type => :model do
     it "should contain 12 times" do
       expect(@cubing_session.times.size).to eq(12)
     end
-
-    it "should contain 12 times" do
-      expect(@cubing_session.times.size).to eq(12)
-    end
   end
 end
