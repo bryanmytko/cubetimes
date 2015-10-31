@@ -14,6 +14,10 @@ gem "font-awesome-rails"
 gem "uglifier"
 gem "awesome_print"
 
+group :assets do
+  gem "coffee-rails"
+end
+
 group :production do
   gem "heroku-deflater"
   gem "rails_12factor"
