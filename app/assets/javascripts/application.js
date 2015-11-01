@@ -1,4 +1,5 @@
 //= require jquery
+//= require jquery-ui
 //= require jquery_ujs
 //= require_tree .
 
@@ -20,8 +21,6 @@ $(document).ready(function(){
   var all_times = new Array();
   var running = false;
 
-  var Timer = {};
-
   /* DOM */
   var body = $("body");
   var timer_button = $("#timer_button");
@@ -37,94 +36,100 @@ $(document).ready(function(){
   var delete_button = "<a href=\"#\" class=\"delete\">[x]</a>";
   var session_complete_message = "Session complete. Your times have been recorded. Feel free to continue cubing!"
 
-  Timer.generateScramble = function(n){
-    s = new scramble;
-    result = s.get_random_moves(n);
-    scramble_container.html(result);
-  }
+  var Timer = {
 
-  Timer.run = function(){
-    running = (running) ? false : true;
-    start = new Date().getTime();
-    if(running){
-      interval = setInterval(timer,10);
-    } else {
-      clearInterval(interval);
-      if(confirm("Would you like to accept this time?")){
-        Timer.increment();
-        Timer.addTime();
-        Timer.updateStats();
+    generateScramble : function(n){
+      s = new scramble;
+      result = s.get_random_moves(n);
+      scramble_container.html(result);
+    },
+
+    run : function(){
+      running = (running) ? false : true;
+      start = new Date().getTime();
+      if(running){
+        interval = setInterval(timer,10);
+      } else {
+        clearInterval(interval);
+        if($.confirm("Would you like to accept this time?")){
+        }
       }
-    }
-  }
+    },
 
-  Timer.increment = function(){
-    total_cubes += 1;
-    cube_count = (cube_count < AVG_AMT) ? cube_count + 1 : 1;
-    total_cubes_container.html(total_cubes);
-  }
+    ok : function(){
+      this.increment();
+      this.addTime();
+      this.updateStats();
+    },
 
-  Timer.addTime = function(){
-    current_time = timer_container.html();
-    current_time_container = list.children("li.time-" + cube_count).children("span");
+    increment : function(){
+      total_cubes += 1;
+      cube_count = (cube_count < AVG_AMT) ? cube_count + 1 : 1;
+      total_cubes_container.html(total_cubes);
+    },
 
-    current_time_container.html(current_time);
-    all_times.push(parseFloat(current_time));
+    addTime : function(){
+      current_time = timer_container.html();
+      current_time_container = list.children("li.time-" + cube_count).children("span");
 
-    Timer.generateScramble(SCRAMBLE_MOVES);
-  }
+      current_time_container.html(current_time);
+      all_times.push(parseFloat(current_time));
 
-  Timer.updateStats = function(){
-    var times = $("#timerTimes ul li");
-    var avgDisplay = $(".avg-12 span");
-    updateSessionAvg();
-    updateTotalAvg();
+      this.generateScramble(SCRAMBLE_MOVES);
+    },
 
-    if(total_cubes == AVG_AMT) Timer.postSessionAvg();
+    updateStats : function(){
+      var times = $("#timerTimes ul li");
+      var avgDisplay = $(".avg-12 span");
+      this.updateSessionAvg();
+      this.updateTotalAvg();
 
-    $(".fastest").children("span").html(all_times.min());
-    $(".slowest").children("span").html(all_times.max());
-  }
+      if(total_cubes == AVG_AMT) Timer.postSessionAvg();
 
-  Timer.postSessionAvg = function(){
-    var session_times = $("#timerTimes ul li").map(function(){
-      return $(this).text().trim();
-    }).get();
+      $(".fastest").children("span").html(all_times.min());
+      $(".slowest").children("span").html(all_times.max());
+    },
 
-    session_params = {
-      puzzle_type: "3x3",
-      times: session_times
-    }
+    postSessionAvg : function(){
+      var session_times = $("#timerTimes ul li").map(function(){
+        return $(this).text().trim();
+      }).get();
 
-    $.post( "/timer", session_params);
-    alert(session_complete_message);
-  }
-
-  function updateSessionAvg(){
-    var times = $("#timerTimes ul li");
-    var session_times = new Array();
-    var times_total = 0;
-    if(total_cubes >= AVG_AMT){
-      $.each(times,function(){
-        session_times.push(parseFloat($(this).children("span").html()));
-      });
-      session_times.remove(session_times.min());
-      session_times.remove(session_times.max());
-      for(var i=0;i<session_times.length;i++){
-        times_total += session_times[i]
+      session_params = {
+        puzzle_type: "3x3",
+        times: session_times
       }
-      $(".avg-session").children("span").html((times_total/(AVG_AMT-2)).toFixed(2));
+
+      $.post( "/timer", session_params);
+      alert(session_complete_message);
+    },
+
+    updateSessionAvg : function(){
+      var times = $("#timerTimes ul li");
+      var session_times = new Array();
+      var times_total = 0;
+
+      if(total_cubes >= AVG_AMT){
+        $.each(times,function(){
+          session_times.push(parseFloat($(this).children("span").html()));
+        });
+        session_times.remove(session_times.min());
+        session_times.remove(session_times.max());
+        for(var i=0;i<session_times.length;i++){
+          times_total += session_times[i]
+        }
+        $(".avg-session").children("span").html((times_total/(AVG_AMT-2)).toFixed(2));
+      }
+    },
+
+    updateTotalAvg : function(){
+      var tmp_total = 0;
+      for(var i=0;i<all_times.length;i++){
+        tmp_total += all_times[i];
+      }
+      $(".avg-all").children("span").html((tmp_total/total_cubes).toFixed(2));
     }
   }
-
-  function updateTotalAvg(){
-    var tmp_total = 0;
-    for(var i=0;i<all_times.length;i++){
-      tmp_total += all_times[i];
-    }
-    $(".avg-all").children("span").html((tmp_total/total_cubes).toFixed(2));
-  }
-
 
   /* ? */
   var timer = function(){
@@ -195,6 +200,39 @@ $(document).ready(function(){
     Timer.run();
     $(this).blur();
   })
+
+
+  /* jQuery-UI alert */
+
+  $.extend({
+    alert: function (message, title) {
+      $("<div></div>").dialog({
+        buttons: { "Ok": function () { $(this).dialog("close"); } },
+        close: function (event, ui) { $(this).remove(); },
+        resizable: false,
+        title: title,
+        modal: true
+      }).text(message);
+    },
+    confirm: function(message, title) {
+      $("<div class=\"confirm\"></div>").dialog({
+        open: function(event, ui) { $(".ui-dialog-titlebar-close").hide(); },
+        buttons: {
+          "Ok": function() {
+            $(this).dialog("close");
+            Timer.ok();
+          },
+          "Cancel": function() {
+            $(this).dialog("close");
+          }
+        },
+        close: function(event, ui) { $(this).remove(); },
+        resizable: false,
+        title: "",
+        modal: true
+      }).text(message);
+    }
+  });
 
   function init(){
     Timer.generateScramble(SCRAMBLE_MOVES);
