@@ -27,7 +27,10 @@ RSpec.describe CubingSession, :type => :model do
   end
 
   describe "a jnet imported session" do
+    let(:user) { FactoryGirl.create(:user) }
+
     before(:each) do
+      allow(described_class).to receive(:current_user) { user }
       @file_factory = FactoryGirl.create(:jnet_file)
       @cubing_session = CubingSession.jnet_import(@file_factory.file)
     end
