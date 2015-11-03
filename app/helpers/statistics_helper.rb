@@ -12,7 +12,18 @@ module StatisticsHelper
       end
     end
 
+    string += destroy_row(cubing_session.id)
+
     raw string
+  end
+
+  def destroy_row(id)
+    string = "<td>"
+    string += link_to "[x]",
+      statistic_path(id),
+      method: :delete,
+      data: { confirm: "Really delete this session?" }
+    string += "</td>"
   end
 
   def best_time(cubing_sessions)
