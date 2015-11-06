@@ -1,12 +1,15 @@
 module StatisticsHelper
   def display_row(cubing_session)
+    best_found = false
+
     string =  "<td>#{date_format(cubing_session.created_at)}</td>"
     string += "<td class=\"average\">" \
       "#{session_average(cubing_session.times)}</td>"
 
     cubing_session.times.each do |time|
-      if time == cubing_session.times.min
+      if time == cubing_session.times.min && !best_found
         string += "<td class=\"best\">#{time}</td>"
+        best_found = true
       else
         string += "<td>#{time}</td>"
       end
