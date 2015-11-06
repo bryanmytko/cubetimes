@@ -1,56 +1,66 @@
-var scramble = function (requested_moves) {
+var Scramble = {
+  ALLOWED_MOVES_LENGTH : 12,
+  ALLOWED_TURNS_LENGTH : 3,
 
-  var moveArray = [
-    'U','U\'',
-    'F','F\'',
-    'D','D\'',
-    'L','L\'',
-    'R','R\'',
-    'B','B\''
-  ];
+  faces : ['u','f','d','l','r','b'],
 
-  var nextAllowedMove={
-  'U':['F','F\'','B','B\'','L','L\'','R','R\''],
-  'U\'':['F','F\'','B','B\'','L','L\'','R','R\''],
-  'F':['L','L\'','R','R\'','U','U\'','D','D\''],
-  'F\'':['L','L\'','R','R\'','U','U\'','D','D\''],
-  'D':['F','F\'','B','B\'','L','L\'','R','R\''],
-  'D\'':['F','F\'','B','B\'','L','L\'','R','R\''],
-  'L':['F','F\'','B','B\'','U','U\'','D','D\''],
-  'L\'':['F','F\'','B','B\'','U','U\'','D','D\''],
-  'R':['F','F\'','B','B\'','U','U\'','D','D\''],
-  'R\'':['F','F\'','B','B\'','U','U\'','D','D\''],
-  'B':['L','L\'','R','R\'','U','U\'','D','D\''],
-  'B\'':['L','L\'','R','R\'','U','U\'','D','D\'']
-  }
+  moveArray : {
+    'u': ['U','U\'','U2'],
+    'f': ['F','F\'','F2'],
+    'd': ['D','D\'','D2'],
+    'l': ['L','L\'','L2'],
+    'r': ['R','R\'','R2'],
+    'b': ['B','B\'','B2']
+  },
 
-  var randint = function (a, b) {
+  /* I think this can be more clearly defined using an inverse pattern on the
+   * moveArray. I.e, 'u' face inverse is 'd', so allow all values from
+   * moveArray except self & inverse. This would make expanding to larger cubes
+   * much easier by not requiring nextAllowedMove to be stricly defined. */
+  nextAllowedMove : {
+    'u': ['F','F\'','F2','B','B\'','B2','L','L\'','L2','R','R\'','R2'],
+    'f': ['L','L\'','L2','R','R\'','R2','U','U\'','U2','D','D\'','D2'],
+    'd': ['F','F\'','F2','B','B\'','B2','L','L\'','L2','R','R\'','R2'],
+    'l': ['F','F\'','F2','B','B\'','B2','U','U\'','U2','D','D\'','D2'],
+    'r': ['F','F\'','F2','B','B\'','B2','U','U\'','U2','D','D\'','D2'],
+    'b': ['L','L\'','L2','R','R\'','R2','U','U\'','U2','D','D\'','D2'],
+  },
+
+  randint : function(a, b) {
     var lower = Math.min(a, b);
     var upper = Math.max(a, b);
     var diff = upper - lower;
     return Math.floor((Math.random() * (diff + 1)) + lower);
-  }
+  },
 
-  var random_move = function () {
-    var random_number = randint(0, 11);
-    return moveArray[random_number];
-  }
+  random_move : function() {
+    var random_number = this.randint(0, this.ALLOWED_TURNS_LENGTH - 1);
+    var random_face = this.faces[this.randint(0, this.faces.length - 1)];
+    return this.moveArray[random_face][random_number];
+  },
 
-  var random_nextAllowedMove = function (move_type) {
-    var random_number = randint(0, 7)
-    return nextAllowedMove[move_type][random_number];
-  }
+  random_nextAllowedMove : function(current_move) {
+    var random_number = this.randint(0, this.ALLOWED_MOVES_LENGTH - 1)
+    var move_type;
 
-  this.get_random_moves = function (j) {
-    var move_count = j;
-    var current_move = random_move();
+    for(var key in this.moveArray){
+      if(this.moveArray[key].indexOf(current_move) != -1){
+        move_type = key;
+      }
+    }
+
+    return this.nextAllowedMove[move_type][random_number];
+  },
+
+  get_random_moves : function (requested_moves) {
+    var move_count = requested_moves;
+    var current_move = this.random_move();
     var moves = [];
-    var i;
-    for (i = 0; i < move_count; i++) {
+
+    for (var i = 0; i < move_count; i++) {
        moves.push(current_move + ' ');
-       current_move = random_nextAllowedMove(current_move);
+       current_move = this.random_nextAllowedMove(current_move);
     }
     return moves;
   }
-
 }

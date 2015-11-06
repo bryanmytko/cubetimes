@@ -39,8 +39,7 @@ $(document).ready(function(){
   var Timer = {
 
     generateScramble : function(n){
-      s = new scramble;
-      result = s.get_random_moves(n);
+      result = Scramble.get_random_moves(n);
       scramble_container.html(result);
     },
 
@@ -131,7 +130,7 @@ $(document).ready(function(){
     }
   }
 
-  /* ? */
+  /* Timer */
   var timer = function(){
     var t = new Date().getTime() - start;
     var elapsed = Math.floor(t / 10) / 100;
@@ -139,7 +138,6 @@ $(document).ready(function(){
   }
 
   /* Prototype Methods */
-
   Array.prototype.max = function() {
     var max = this[0];
     var len = this.length;
@@ -201,9 +199,7 @@ $(document).ready(function(){
     $(this).blur();
   })
 
-
   /* jQuery-UI alert */
-
   $.extend({
     alert: function (message, title) {
       $("<div></div>").dialog({
