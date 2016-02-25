@@ -5,9 +5,9 @@ class CubingSession < ActiveRecord::Base
 
   validates :times, length: { is: 12 }
 
-  def self.jnet_import(params)
-    CubingSession.create(
-      user_id: current_user.id,
+  def self.jnet_import(user, params)
+    create(
+      user: user,
       times: JnetImport::extract_times(params),
       puzzle_type: "3x3",
       created_at: JnetImport::extract_date(params)
