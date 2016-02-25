@@ -9,6 +9,16 @@ module JnetImport
     @times if parse_times(file.path)
   end
 
+  def self.extract_date(file)
+    line = File.open(file.path).first
+    if line =~ /----- JNetCube Session Statistics for /
+      line = line.split("for")
+      date = line[1].split(" --")[0].strip!
+    else
+      Date.today
+    end
+  end
+
   private
 
   def self.parse_times(file)
