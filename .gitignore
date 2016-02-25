@@ -21,3 +21,5 @@
 
 # Mac OSX
 *.DS_Store
+
+.byebug_history
