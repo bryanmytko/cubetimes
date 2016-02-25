@@ -37,7 +37,7 @@ class CubingSessionsController < ApplicationController
   end
 
   def cubing_session
-    current_user_cubing_session.jnet_import(session_file)
+    current_user_cubing_session.jnet_import(current_user, session_file)
   end
 
   def upload_success
