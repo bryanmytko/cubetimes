@@ -42,5 +42,11 @@ RSpec.describe CubingSession, :type => :model do
     it "should contain 12 times" do
       expect(@cubing_session.times.size).to eq(12)
     end
+
+    it "should use sesssion's date, not today's" do
+      date = "Wed Feb 05 19:30:14 EST 2014"
+      expect(@cubing_session.created_at.utc)
+        .to eq(date.to_time.utc)
+    end
   end
 end
