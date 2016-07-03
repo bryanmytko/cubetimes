@@ -1,7 +1,7 @@
 class StatisticsController < ApplicationController
   include Parser
 
-  before_filter :authenticate_user!
+  before_action :authenticate_user!
 
   def index
     @cubing_sessions = CubingSession.where(user_id: current_user.id)
