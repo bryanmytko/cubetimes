@@ -32,7 +32,7 @@ RSpec.describe CubingSession, :type => :model do
     before(:each) do
       allow(described_class).to receive(:current_user) { user }
       @file_factory = FactoryGirl.create(:jnet_file)
-      @cubing_session = CubingSession.jnet_import(@file_factory.file)
+      @cubing_session = CubingSession.jnet_import(user, @file_factory.file)
     end
 
     it "should create a cubing session from jnet data" do
