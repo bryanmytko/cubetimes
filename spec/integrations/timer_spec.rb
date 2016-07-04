@@ -1,10 +1,12 @@
 require "rails_helper"
 
-RSpec.describe TimerController, type: :controller do
+describe "Timer page", type: :request do
   describe "#index" do
-    it "renders :index view" do
-      get :index
-      expect(response).to render_template(:index)
+    it "has a 200 status code" do
+      sign_in_as_a_valid_user
+
+      get "/"
+      expect(response.status).to eq(200)
     end
   end
 end
