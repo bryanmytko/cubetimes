@@ -2,15 +2,15 @@ source "https://rubygems.org"
 
 ruby "2.2.3"
 
-gem "rails", "4.1.4"
+gem "rails", "5.0.0"
 gem "pg"
 gem "devise"
 gem "httparty"
 gem "jquery-rails"
 gem 'jquery-ui-rails'
 gem "sass"
-gem "bootstrap-sass", "~> 3.2.0"
-gem "sass-rails", "~> 4.0.2" #, github: "rails/sass-rails"
+gem "bootstrap-sass"
+gem "sass-rails"
 gem "font-awesome-rails"
 gem "uglifier"
 gem "awesome_print"
