@@ -7755,6 +7755,10 @@ p.timer { line-height: 1.2em; font-size: 140px; font-weight: 900; color: #1a1a1a
 #statistics-container #statistics-left { float: left }
 #statistics-container #statistics-right { float: right }
 
+.puzzle-type {
+  float: right;
+}
+
 /* User sign in and sign forms. */
 .border-form-div {
   max-width: 500px;
