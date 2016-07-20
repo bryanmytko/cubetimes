@@ -41,6 +41,7 @@ $(document).ready(function(){
         "Feel free to continue cubing!";
 
   var current_puzzle = current_puzzle_selector.val();
+  var cube = new Cube(current_puzzle);
 
   var Timer = {
 
@@ -102,7 +103,7 @@ $(document).ready(function(){
       current_time_container.html(current_time);
       all_times.push(parseFloat(current_time));
 
-      this.generateScramble(this.cube, SCRAMBLE_MOVES);
+      this.generateScramble(cube, SCRAMBLE_MOVES);
     },
 
     updateStats: function(){
@@ -294,8 +295,7 @@ $(document).ready(function(){
   });
 
   function init(){
-    this.cube = new Cube(current_puzzle);
-    Timer.generateScramble(this.cube, SCRAMBLE_MOVES);
+    Timer.generateScramble(cube, SCRAMBLE_MOVES);
   }
 
   init();
