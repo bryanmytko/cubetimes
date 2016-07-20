@@ -52,7 +52,7 @@ var Scramble = {
     return this.nextAllowedMove[move_type][random_number];
   },
 
-  get_random_moves: function(requested_moves){
+  get_random_moves: function(puzzle, requested_moves){
     var move_count = requested_moves;
     var current_move = this.random_move();
     var moves = [];
