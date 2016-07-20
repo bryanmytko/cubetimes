@@ -7743,6 +7743,17 @@ p.timer { line-height: 1.2em; font-size: 140px; font-weight: 900; color: #1a1a1a
   background: #f5fb02;
 }
 
+
+#timer_button.keydown {
+  background: #2a9fd6;
+  border-color: #fff;
+}
+
+#timer_button.active {
+  background: #ff8800;
+  border-color: #ff8800;
+}
+
 #timerSection { }
 #timerTimes { }
 #timerTimes ul { list-style-type: none; margin: 0; padding: 0 }
@@ -7754,6 +7765,10 @@ p.timer { line-height: 1.2em; font-size: 140px; font-weight: 900; color: #1a1a1a
 #statistics-container { font-size: 16px; color: #fff; margin: 24px 0 12px 0 }
 #statistics-container #statistics-left { float: left }
 #statistics-container #statistics-right { float: right }
+
+.puzzle-type {
+  float: right;
+}
 
 /* User sign in and sign forms. */
 .border-form-div {

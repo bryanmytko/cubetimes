@@ -25,8 +25,6 @@ $(document).ready(function(){
   var body = $("body");
   var timer_button = $("#timer_button");
 
-  var button_down_background_color = "#2a9fd6";
-  var button_down_border_color = "#ffffff";
   var scramble_container = $("div.scrambleContainer>span.scramble");
 
   var timer_container = $(".timer");
@@ -38,36 +36,37 @@ $(document).ready(function(){
 
   var Timer = {
 
-    generateScramble : function(n){
+    modal_open: false,
+
+    generateScramble: function(n){
       result = Scramble.get_random_moves(n);
       scramble_container.html(result);
     },
 
-    run : function(){
+    run: function(){
       running = (running) ? false : true;
       start = new Date().getTime();
       if(running){
         interval = setInterval(timer,10);
       } else {
         clearInterval(interval);
-        if($.confirm("Would you like to accept this time?")){
-        }
+        $.confirm("Would you like to accept this time?");
       }
     },
 
-    ok : function(){
+    ok: function(){
       this.increment();
       this.addTime();
       this.updateStats();
     },
 
-    increment : function(){
+    increment: function(){
       total_cubes += 1;
       cube_count = (cube_count < AVG_AMT) ? cube_count + 1 : 1;
       total_cubes_container.html(total_cubes);
     },
 
-    addTime : function(){
+    addTime: function(){
       current_time = timer_container.html();
       current_time_container = list.children("li.time-" + cube_count).children("span");
 
@@ -77,7 +76,7 @@ $(document).ready(function(){
       this.generateScramble(SCRAMBLE_MOVES);
     },
 
-    updateStats : function(){
+    updateStats: function(){
       var times = $("#timerTimes ul li");
       var avgDisplay = $(".avg-12 span");
       this.updateSessionAvg();
@@ -89,7 +88,7 @@ $(document).ready(function(){
       $(".slowest").children("span").html(all_times.max());
     },
 
-    postSessionAvg : function(){
+    postSessionAvg: function(){
       var session_times = $("#timerTimes ul li").map(function(){
         return $(this).text().trim();
       }).get();
@@ -103,7 +102,7 @@ $(document).ready(function(){
       alert(session_complete_message);
     },
 
-    updateSessionAvg : function(){
+    updateSessionAvg: function(){
       var times = $("#timerTimes ul li");
       var session_times = new Array();
       var times_total = 0;
@@ -121,7 +120,7 @@ $(document).ready(function(){
       }
     },
 
-    updateTotalAvg : function(){
+    updateTotalAvg: function(){
       var tmp_total = 0;
       for(var i=0;i<all_times.length;i++){
         tmp_total += all_times[i];
@@ -172,25 +171,30 @@ $(document).ready(function(){
   });
 
   body.keydown(function(e){
-    if(e.keyCode == 32){
+    if(e.keyCode == 32 && !Timer.modal_open){
       e.preventDefault();
-      if(!running){
-        timer_button.css({
-          "background-color" : button_down_background_color,
-          "border-color" : button_down_border_color
-        });
-      }
+      if(!running)
+        timer_button.addClass("keydown");
+      else
+        timer_button.removeClass("active");
+
     }
   });
 
   body.keyup(function(e){
-    if(e.keyCode == 32){
+    if(e.keyCode == 32 && !Timer.modal_open){
       e.preventDefault();
+
+      if(!running){
+        $("#timer_button")
+          .removeClass("keydown")
+          .addClass("active");
+      } else {
+        $("#timer_button")
+          .removeClass("active")
+      }
+
       Timer.run();
-      $("#timer_button").css({
-        "background-color" : "#ff8800",
-        "border-color" : "#ff8800"
-      });
     }
   });
 
@@ -212,7 +216,10 @@ $(document).ready(function(){
     },
     confirm: function(message, title) {
       $("<div class=\"confirm\"></div>").dialog({
-        open: function(event, ui) { $(".ui-dialog-titlebar-close").hide(); },
+        open: function(event, ui){
+          $(".ui-dialog-titlebar-close").hide();
+          Timer.modal_open = true;
+        },
         buttons: {
           "Ok": function() {
             $(this).dialog("close");
@@ -222,7 +229,10 @@ $(document).ready(function(){
             $(this).dialog("close");
           }
         },
-        close: function(event, ui) { $(this).remove(); },
+        close: function(event, ui) {
+          Timer.modal_open = false;
+          $(this).remove();
+        },
         resizable: false,
         title: "",
         modal: true
