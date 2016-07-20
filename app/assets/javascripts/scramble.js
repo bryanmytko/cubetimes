@@ -1,58 +1,68 @@
-var Scramble = {
-  ALLOWED_MOVES_LENGTH: 12,
-  ALLOWED_TURNS_LENGTH: 3,
+var Cube = function(puzzle){
+  this.faces = ['u','f','d','l','r','b'];
 
-  faces: ['u','f','d','l','r','b'],
-
-  moveArray: {
+  this.moveArray = {
     'u': ['U','U\'','U2'],
     'f': ['F','F\'','F2'],
     'd': ['D','D\'','D2'],
     'l': ['L','L\'','L2'],
     'r': ['R','R\'','R2'],
     'b': ['B','B\'','B2']
-  },
+  };
 
   /* I think this can be more clearly defined using an inverse pattern on the
    * moveArray. I.e, 'u' face inverse is 'd', so allow all values from
    * moveArray except self & inverse. This would make expanding to larger cubes
    * much easier by not requiring nextAllowedMove to be stricly defined. */
-  nextAllowedMove: {
+  this.nextAllowedMove = {
     'u': ['F','F\'','F2','B','B\'','B2','L','L\'','L2','R','R\'','R2'],
     'f': ['L','L\'','L2','R','R\'','R2','U','U\'','U2','D','D\'','D2'],
     'd': ['F','F\'','F2','B','B\'','B2','L','L\'','L2','R','R\'','R2'],
     'l': ['F','F\'','F2','B','B\'','B2','U','U\'','U2','D','D\'','D2'],
     'r': ['F','F\'','F2','B','B\'','B2','U','U\'','U2','D','D\'','D2'],
     'b': ['L','L\'','L2','R','R\'','R2','U','U\'','U2','D','D\'','D2'],
-  },
+  };
+
+  return this;
+}
+
+var Scramble = {
+  ALLOWED_MOVES_LENGTH: 12,
+  ALLOWED_TURNS_LENGTH: 3,
+
+  cube: {},
 
   randint: function(a, b){
     var lower = Math.min(a, b);
     var upper = Math.max(a, b);
     var diff = upper - lower;
+
     return Math.floor((Math.random() * (diff + 1)) + lower);
   },
 
   random_move: function(){
     var random_number = this.randint(0, this.ALLOWED_TURNS_LENGTH - 1);
-    var random_face = this.faces[this.randint(0, this.faces.length - 1)];
-    return this.moveArray[random_face][random_number];
+    var random_face = this.cube.faces[this.randint(0, this.cube.faces.length - 1)];
+
+    return this.cube.moveArray[random_face][random_number];
   },
 
   random_nextAllowedMove: function(current_move){
     var random_number = this.randint(0, this.ALLOWED_MOVES_LENGTH - 1)
     var move_type;
 
-    for(var key in this.moveArray){
-      if(this.moveArray[key].indexOf(current_move) != -1){
+    for(var key in cube.moveArray){
+      if(cube.moveArray[key].indexOf(current_move) != -1){
         move_type = key;
       }
     }
 
-    return this.nextAllowedMove[move_type][random_number];
+    return cube.nextAllowedMove[move_type][random_number];
   },
 
-  get_random_moves: function(puzzle, requested_moves){
+  get_random_moves: function(cube, requested_moves){
+    this.cube = cube;
+
     var move_count = requested_moves;
     var current_move = this.random_move();
     var moves = [];
