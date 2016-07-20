@@ -21,16 +21,16 @@ $(document).ready(function(){
   var start = null, control = null,
       total_cubes = 0, cube_count = 0,
       all_times = new Array(),
-      running = false,
+      running = false;
 
   /* DOM */
   var body = $("body"),
-      current_puzzle = $("#current_puzzle"),
+      current_puzzle_selector = $("#current_puzzle"),
       timer_button = $("#timer_button"),
       scramble_container = $("div.scrambleContainer>span.scramble"),
       timer_container = $(".timer"),
-      list = $("#timerTimes ul"),
-      list_items = $("#timerTimes ul li"),
+      timer_list = $("#timerTimes ul"),
+      timer_list_items = $("#timerTimes ul li"),
       total_cubes_container = $(".cubes-amt").children("span");
 
   var delete_button = "<a href=\"#\" class=\"delete\">[x]</a>";
@@ -39,14 +39,14 @@ $(document).ready(function(){
         "Your times have been recorded. " +
         "Feel free to continue cubing!";
 
-  var current_puzzle = current_puzzle.val();
+  var current_puzzle = current_puzzle_selector.val();
 
   var Timer = {
 
     modal_open: false,
 
-    generateScramble: function(n){
-      result = Scramble.get_random_moves(n);
+    generateScramble: function(puzzle, move_count){
+      result = Scramble.get_random_moves(current_puzzle, move_count);
       scramble_container.html(result);
     },
 
@@ -67,6 +67,22 @@ $(document).ready(function(){
       this.updateStats();
     },
 
+    reset: function(){
+      total_cubes = 0;
+      all_times = [];
+      cube_count = 0;
+
+      timer_container.html('0:00');
+
+      timer_list_items.each(function(){
+        var _this = $(this);
+        var pos = _this.data('position');
+        _this.children('span').html(pos);
+      });
+
+      this.updateStats();
+    },
+
     increment: function(){
       total_cubes += 1;
       cube_count = (cube_count < AVG_AMT) ? cube_count + 1 : 1;
@@ -75,7 +91,9 @@ $(document).ready(function(){
 
     addTime: function(){
       current_time = timer_container.html();
-      current_time_container = list.children("li.time-" + cube_count).children("span");
+      current_time_container = timer_list
+        .children("li.time-" + cube_count)
+        .children("span");
 
       current_time_container.html(current_time);
       all_times.push(parseFloat(current_time));
@@ -84,7 +102,6 @@ $(document).ready(function(){
     },
 
     updateStats: function(){
-      var times = $("#timerTimes ul li");
       var avgDisplay = $(".avg-12 span");
       this.updateSessionAvg();
       this.updateTotalAvg();
@@ -96,12 +113,12 @@ $(document).ready(function(){
     },
 
     postSessionAvg: function(){
-      var session_times = $("#timerTimes ul li").map(function(){
+      var session_times = timer_list_items.map(function(){
         return $(this).text().trim();
       }).get();
 
       session_params = {
-        puzzle_type: "3x3",
+        puzzle_type: current_puzzle,
         times: session_times
       }
 
@@ -110,29 +127,39 @@ $(document).ready(function(){
     },
 
     updateSessionAvg: function(){
-      var times = $("#timerTimes ul li");
       var session_times = new Array();
       var times_total = 0;
 
       if(total_cubes >= AVG_AMT){
-        $.each(times,function(){
+        $.each(timer_list_items ,function(){
           session_times.push(parseFloat($(this).children("span").html()));
         });
+
         session_times.remove(session_times.min());
         session_times.remove(session_times.max());
+
         for(var i=0;i<session_times.length;i++){
           times_total += session_times[i]
         }
-        $(".avg-session").children("span").html((times_total/(AVG_AMT-2)).toFixed(2));
+
+        $(".avg-session")
+          .children("span")
+          .html((times_total/(AVG_AMT-2))
+          .toFixed(2));
       }
     },
 
     updateTotalAvg: function(){
       var tmp_total = 0;
+
       for(var i=0;i<all_times.length;i++){
         tmp_total += all_times[i];
       }
-      $(".avg-all").children("span").html((tmp_total/total_cubes).toFixed(2));
+
+      $(".avg-all")
+        .children("span")
+        .html((tmp_total/total_cubes)
+        .toFixed(2));
     }
   }
 
@@ -140,7 +167,7 @@ $(document).ready(function(){
   var timer = function(){
     var t = new Date().getTime() - start;
     var elapsed = Math.floor(t / 10) / 100;
-    $(".timer").html(elapsed.toFixed(2));
+    timer_container.html(elapsed.toFixed(2));
   }
 
   /* Prototype Methods */
@@ -171,13 +198,13 @@ $(document).ready(function(){
   };
 
   /* Events */
-  body.on("click","a.delete",function(e){
+  body.on("click", "a.delete",function(e){
     e.preventDefault();
     $(this).parent().remove();
     Timer.checkTimes();
   });
 
-  body.keydown(function(e){
+  body.on("keydown", function(e){
     if(e.keyCode == 32 && !Timer.modal_open){
       e.preventDefault();
       if(!running)
@@ -188,16 +215,16 @@ $(document).ready(function(){
     }
   });
 
-  body.keyup(function(e){
+  body.on("keyup", function(e){
     if(e.keyCode == 32 && !Timer.modal_open){
       e.preventDefault();
 
       if(!running){
-        $("#timer_button")
+        timer_button
           .removeClass("keydown")
           .addClass("active");
       } else {
-        $("#timer_button")
+        timer_button
           .removeClass("active")
       }
 
@@ -205,10 +232,15 @@ $(document).ready(function(){
     }
   });
 
-  $("#timer_button").click(function(){
+  timer_button.on("click", function(){
     Timer.run();
     $(this).blur();
   })
+
+  current_puzzle_selector.on("change", function(){
+    current_puzzle = $(this).val();
+    Timer.reset();
+  });
 
   /* jQuery-UI alert */
   $.extend({
