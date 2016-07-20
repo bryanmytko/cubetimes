@@ -51,13 +51,13 @@ var Scramble = {
     var random_number = this.randint(0, this.ALLOWED_MOVES_LENGTH - 1)
     var move_type;
 
-    for(var key in cube.moveArray){
-      if(cube.moveArray[key].indexOf(current_move) != -1){
+    for(var key in this.cube.moveArray){
+      if(this.cube.moveArray[key].indexOf(current_move) != -1){
         move_type = key;
       }
     }
 
-    return cube.nextAllowedMove[move_type][random_number];
+    return this.cube.nextAllowedMove[move_type][random_number];
   },
 
   get_random_moves: function(cube, requested_moves){
