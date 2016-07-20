@@ -25,8 +25,6 @@ $(document).ready(function(){
   var body = $("body");
   var timer_button = $("#timer_button");
 
-  var button_down_background_color = "#2a9fd6";
-  var button_down_border_color = "#ffffff";
   var scramble_container = $("div.scrambleContainer>span.scramble");
 
   var timer_container = $(".timer");
@@ -175,10 +173,7 @@ $(document).ready(function(){
     if(e.keyCode == 32){
       e.preventDefault();
       if(!running){
-        timer_button.css({
-          "background-color" : button_down_background_color,
-          "border-color" : button_down_border_color
-        });
+        timer_button.addClass("keydown");
       }
     }
   });
@@ -187,10 +182,7 @@ $(document).ready(function(){
     if(e.keyCode == 32){
       e.preventDefault();
       Timer.run();
-      $("#timer_button").css({
-        "background-color" : "#ff8800",
-        "border-color" : "#ff8800"
-      });
+      $("#timer_button").removeClass("keydown");
     }
   });
 
