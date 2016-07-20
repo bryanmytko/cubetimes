@@ -7746,7 +7746,12 @@ p.timer { line-height: 1.2em; font-size: 140px; font-weight: 900; color: #1a1a1a
 
 #timer_button.keydown {
   background: #2a9fd6;
-  border-color = #fff;
+  border-color: #fff;
+}
+
+#timer_button.active {
+  background: #ff8800;
+  border-color: #ff8800;
 }
 
 #timerSection { }

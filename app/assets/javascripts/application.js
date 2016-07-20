@@ -172,17 +172,28 @@ $(document).ready(function(){
   body.keydown(function(e){
     if(e.keyCode == 32){
       e.preventDefault();
-      if(!running){
+      if(!running)
         timer_button.addClass("keydown");
-      }
+      else
+        timer_button.removeClass("active");
+
     }
   });
 
   body.keyup(function(e){
     if(e.keyCode == 32){
       e.preventDefault();
+
+      if(!running){
+        $("#timer_button")
+          .removeClass("keydown")
+          .addClass("active");
+      } else {
+        $("#timer_button")
+          .removeClass("active")
+      }
+
       Timer.run();
-      $("#timer_button").removeClass("keydown");
     }
   });
 
