@@ -7,32 +7,39 @@
 
 $(document).ready(function(){
   /* Tab controls */
-  $(".notice,.alert").delay(500).fadeIn("normal", function() {
-    $(this).delay(1500).fadeOut();
-    $(".notice,.alert").hover().fadeOut();
-  });
+  $(".notice, .alert")
+    .delay(500)
+    .fadeIn("normal", function() {
+      $(this).delay(1500).fadeOut();
+      $(".notice,.alert").hover().fadeOut();
+    });
 
   /* Timer */
-  var AVG_AMT = 12;
-  var SCRAMBLE_MOVES = 25;
+  var AVG_AMT = 12,
+      SCRAMBLE_MOVES = 25;
 
-  var start = null, control = null;
-  var total_cubes = 0, cube_count = 0;
-  var all_times = new Array();
-  var running = false;
+  var start = null, control = null,
+      total_cubes = 0, cube_count = 0,
+      all_times = new Array(),
+      running = false,
 
   /* DOM */
-  var body = $("body");
-  var timer_button = $("#timer_button");
+  var body = $("body"),
+      current_puzzle = $("#current_puzzle"),
+      timer_button = $("#timer_button"),
+      scramble_container = $("div.scrambleContainer>span.scramble"),
+      timer_container = $(".timer"),
+      list = $("#timerTimes ul"),
+      list_items = $("#timerTimes ul li"),
+      total_cubes_container = $(".cubes-amt").children("span");
 
-  var scramble_container = $("div.scrambleContainer>span.scramble");
-
-  var timer_container = $(".timer");
-  var list = $("#timerTimes ul");
-  var list_items = $("#timerTimes ul li");
-  var total_cubes_container = $(".cubes-amt").children("span");
   var delete_button = "<a href=\"#\" class=\"delete\">[x]</a>";
-  var session_complete_message = "Session complete. Your times have been recorded. Feel free to continue cubing!"
+
+  var session_complete_message = "Session complete. " +
+        "Your times have been recorded. " +
+        "Feel free to continue cubing!";
+
+  var current_puzzle = current_puzzle.val();
 
   var Timer = {
 
