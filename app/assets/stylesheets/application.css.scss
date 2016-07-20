@@ -7743,6 +7743,12 @@ p.timer { line-height: 1.2em; font-size: 140px; font-weight: 900; color: #1a1a1a
   background: #f5fb02;
 }
 
+
+#timer_button.keydown {
+  background: #2a9fd6;
+  border-color = #fff;
+}
+
 #timerSection { }
 #timerTimes { }
 #timerTimes ul { list-style-type: none; margin: 0; padding: 0 }
