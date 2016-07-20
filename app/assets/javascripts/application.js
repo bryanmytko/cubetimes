@@ -31,7 +31,8 @@ $(document).ready(function(){
       timer_container = $(".timer"),
       timer_list = $("#timerTimes ul"),
       timer_list_items = $("#timerTimes ul li"),
-      total_cubes_container = $(".cubes-amt").children("span");
+      total_cubes_container = $(".cubes-amt").children("span"),
+      avg_session = $('.avg-session');
 
   var delete_button = "<a href=\"#\" class=\"delete\">[x]</a>";
 
@@ -53,6 +54,7 @@ $(document).ready(function(){
     run: function(){
       running = (running) ? false : true;
       start = new Date().getTime();
+
       if(running){
         interval = setInterval(timer,10);
       } else {
@@ -80,6 +82,7 @@ $(document).ready(function(){
         _this.children('span').html(pos);
       });
 
+      total_cubes_container.html(total_cubes);
       this.updateStats();
     },
 
@@ -98,7 +101,7 @@ $(document).ready(function(){
       current_time_container.html(current_time);
       all_times.push(parseFloat(current_time));
 
-      this.generateScramble(SCRAMBLE_MOVES);
+      this.generateScramble(current_puzzle, SCRAMBLE_MOVES);
     },
 
     updateStats: function(){
@@ -108,8 +111,8 @@ $(document).ready(function(){
 
       if(total_cubes == AVG_AMT) Timer.postSessionAvg();
 
-      $(".fastest").children("span").html(all_times.min());
-      $(".slowest").children("span").html(all_times.max());
+      $(".fastest").children("span").html(all_times.min() || '--');
+      $(".slowest").children("span").html(all_times.max() || '--');
     },
 
     postSessionAvg: function(){
@@ -142,24 +145,34 @@ $(document).ready(function(){
           times_total += session_times[i]
         }
 
-        $(".avg-session")
+        avg_session
           .children("span")
-          .html((times_total/(AVG_AMT-2))
-          .toFixed(2));
+          .html((times_total/(AVG_AMT-2)).toFixed(2));
+      } else {
+        avg_session
+          .children("span")
+          .html("--");
       }
     },
 
     updateTotalAvg: function(){
-      var tmp_total = 0;
+      var avg;
 
-      for(var i=0;i<all_times.length;i++){
-        tmp_total += all_times[i];
+      if(!total_cubes){
+        avg = '--';
+      } else {
+        var tmp_total = 0;
+
+        for(var i=0;i<all_times.length;i++){
+          tmp_total += all_times[i];
+        }
+
+        avg = (tmp_total/total_cubes).toFixed(2);
       }
 
       $(".avg-all")
         .children("span")
-        .html((tmp_total/total_cubes)
-        .toFixed(2));
+        .html(avg);
     }
   }
 
@@ -280,7 +293,7 @@ $(document).ready(function(){
   });
 
   function init(){
-    Timer.generateScramble(SCRAMBLE_MOVES);
+    Timer.generateScramble(current_puzzle, SCRAMBLE_MOVES);
   }
 
   init();
