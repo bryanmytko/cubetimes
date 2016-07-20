@@ -18,7 +18,7 @@ $(document).ready(function(){
   var AVG_AMT = 12,
       SCRAMBLE_MOVES = 25;
 
-  var start = null, control = null,
+  var start = null, control = null, cube = null,
       total_cubes = 0, cube_count = 0,
       all_times = new Array(),
       running = false;
@@ -46,8 +46,8 @@ $(document).ready(function(){
 
     modal_open: false,
 
-    generateScramble: function(puzzle, move_count){
-      result = Scramble.get_random_moves(current_puzzle, move_count);
+    generateScramble: function(cube, move_count){
+      result = Scramble.get_random_moves(cube, move_count);
       scramble_container.html(result);
     },
 
@@ -82,6 +82,7 @@ $(document).ready(function(){
         _this.children('span').html(pos);
       });
 
+      cube = new Cube(current_puzzle);
       total_cubes_container.html(total_cubes);
       this.updateStats();
     },
@@ -101,7 +102,7 @@ $(document).ready(function(){
       current_time_container.html(current_time);
       all_times.push(parseFloat(current_time));
 
-      this.generateScramble(current_puzzle, SCRAMBLE_MOVES);
+      this.generateScramble(this.cube, SCRAMBLE_MOVES);
     },
 
     updateStats: function(){
@@ -293,7 +294,8 @@ $(document).ready(function(){
   });
 
   function init(){
-    Timer.generateScramble(current_puzzle, SCRAMBLE_MOVES);
+    this.cube = new Cube(current_puzzle);
+    Timer.generateScramble(this.cube, SCRAMBLE_MOVES);
   }
 
   init();
