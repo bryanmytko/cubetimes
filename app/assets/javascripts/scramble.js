@@ -1,4 +1,4 @@
-var Cube = function(puzzle){
+var Cube_3x3 = function(puzzle){
   this.faces = ['u','f','d','l','r','b'];
 
   this.moveArray = {
@@ -10,10 +10,37 @@ var Cube = function(puzzle){
     'b': ['B','B\'','B2']
   };
 
-  /* I think this can be more clearly defined using an inverse pattern on the
-   * moveArray. I.e, 'u' face inverse is 'd', so allow all values from
-   * moveArray except self & inverse. This would make expanding to larger cubes
-   * much easier by not requiring nextAllowedMove to be stricly defined. */
+  this.nextAllowedMove = {
+    'u': ['F','F\'','F2','B','B\'','B2','L','L\'','L2','R','R\'','R2'],
+    'f': ['L','L\'','L2','R','R\'','R2','U','U\'','U2','D','D\'','D2'],
+    'd': ['F','F\'','F2','B','B\'','B2','L','L\'','L2','R','R\'','R2'],
+    'l': ['F','F\'','F2','B','B\'','B2','U','U\'','U2','D','D\'','D2'],
+    'r': ['F','F\'','F2','B','B\'','B2','U','U\'','U2','D','D\'','D2'],
+    'b': ['L','L\'','L2','R','R\'','R2','U','U\'','U2','D','D\'','D2'],
+  };
+
+  return this;
+}
+
+var Cube_4x4 = function(puzzle){
+  this.faces = ['U','F','D','L','R','B','u','f','d','l','r','b'];
+
+  this.moveArray = {
+    'u': ['U','U\'','U2'],
+    'f': ['F','F\'','F2'],
+    'd': ['D','D\'','D2'],
+    'l': ['L','L\'','L2'],
+    'r': ['R','R\'','R2'],
+    'b': ['B','B\'','B2'],
+
+    'uu': ['u','u\'','u2'],
+    'ff': ['f','f\'','f2'],
+    'dd': ['d','d\'','d2'],
+    'll': ['l','l\'','l2'],
+    'rr': ['r','r\'','r2'],
+    'bb': ['b','b\'','b2']
+  };
+
   this.nextAllowedMove = {
     'u': ['F','F\'','F2','B','B\'','B2','L','L\'','L2','R','R\'','R2'],
     'f': ['L','L\'','L2','R','R\'','R2','U','U\'','U2','D','D\'','D2'],
