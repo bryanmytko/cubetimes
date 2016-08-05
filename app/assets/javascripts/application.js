@@ -294,7 +294,9 @@ $(document).ready(function(){
     }
   });
 
+  /* @TODO rewrite this to be a Timer object */
   function init(){
+    var cube = new Cube_3x3;
     Timer.generateScramble(cube, SCRAMBLE_MOVES);
   }
 
