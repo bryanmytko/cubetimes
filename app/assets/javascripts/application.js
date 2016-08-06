@@ -32,7 +32,8 @@ $(document).ready(function(){
       timer_list = $("#timerTimes ul"),
       timer_list_items = $("#timerTimes ul li"),
       total_cubes_container = $(".cubes-amt").children("span"),
-      avg_session = $('.avg-session');
+      avg_session = $('.avg-session'),
+      current_puzzle = current_puzzle_selector.val();
 
   var delete_button = "<a href=\"#\" class=\"delete\">[x]</a>";
 
@@ -40,15 +41,12 @@ $(document).ready(function(){
         "Your times have been recorded. " +
         "Feel free to continue cubing!";
 
-  var current_puzzle = current_puzzle_selector.val();
-  var cube = new Cube(current_puzzle);
-
   var Timer = {
 
     modal_open: false,
 
-    generateScramble: function(cube, move_count){
-      result = Scramble.get_random_moves(cube, move_count);
+    generateScramble: function(cube){
+      result = cube.scramble();
       scramble_container.html(result);
     },
 
@@ -294,10 +292,13 @@ $(document).ready(function(){
     }
   });
 
-  /* @TODO rewrite this to be a Timer object */
   function init(){
-    var cube = new Cube_3x3;
-    Timer.generateScramble(cube, SCRAMBLE_MOVES);
+    /* @TODO determine what cube to instantiate */
+    var cube = new Cube(SCRAMBLE_COUNT);
+
+    var initial_scramble = cube.scramble();
+
+    scramble_container.html(initial_scramble);
   }
 
   init();
