@@ -16,7 +16,7 @@ $(document).ready(function(){
 
   /* Timer */
   var AVG_AMT = 12,
-      SCRAMBLE_MOVES = 25;
+      SCRAMBLE_COUNT = 25;
 
   var start = null, control = null, cube = null,
       total_cubes = 0, cube_count = 0,
@@ -41,11 +41,13 @@ $(document).ready(function(){
         "Your times have been recorded. " +
         "Feel free to continue cubing!";
 
+  var cube = new Cube(SCRAMBLE_COUNT);
+
   var Timer = {
 
     modal_open: false,
 
-    generateScramble: function(cube){
+    generateScramble: function(){
       result = cube.scramble();
       scramble_container.html(result);
     },
@@ -101,7 +103,7 @@ $(document).ready(function(){
       current_time_container.html(current_time);
       all_times.push(parseFloat(current_time));
 
-      this.generateScramble(cube, SCRAMBLE_MOVES);
+      this.generateScramble();
     },
 
     updateStats: function(){
@@ -224,7 +226,6 @@ $(document).ready(function(){
         timer_button.addClass("keydown");
       else
         timer_button.removeClass("active");
-
     }
   });
 
@@ -293,11 +294,9 @@ $(document).ready(function(){
   });
 
   function init(){
-    /* @TODO determine what cube to instantiate */
-    var cube = new Cube(SCRAMBLE_COUNT);
+  /* @TODO determine what cube to instantiate */
 
     var initial_scramble = cube.scramble();
-
     scramble_container.html(initial_scramble);
   }
 
