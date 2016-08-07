@@ -25,7 +25,7 @@ var Cube = function(scramble_count = null){
       prev_face = curr_face;
     }
 
-    return moves.join(', ');
+    return moves.join(' ');
   };
 
   this.randint = function(a, b){
@@ -57,10 +57,12 @@ var Cube = function(scramble_count = null){
   }
 };
 
-var Cube_3x3 = function(){
-  var name = "3x3 Rubik's Cube";
+/* @TODO Inheritance */
 
-  var moves = [
+var Cube_3x3 = function(){
+  this.name = "3x3 Rubik's Cube";
+
+  this.moves = [
     { 'name': 'R', 'moves': ['R','R\'','R2'], 'restricted': ['L'] },
     { 'name': 'L', 'moves': ['L','L\'','L2'], 'restricted': ['R'] },
     { 'name': 'U', 'moves': ['U','U\'','U2'], 'restricted': ['D'] },
@@ -71,9 +73,9 @@ var Cube_3x3 = function(){
 };
 
 var Cube_4x4 = function(){
-  var name = "4x4 Rubik's Cube";
+  this.name = "4x4 Rubik's Cube";
 
-  var moves = [
+  this.moves = [
     { 'name': 'R', 'moves': ['R','R\'','R2'], 'restricted': ['L', 'l'] },
     { 'name': 'L', 'moves': ['L','L\'','L2'], 'restricted': ['R', 'r'] },
     { 'name': 'U', 'moves': ['U','U\'','U2'], 'restricted': ['D', 'd'] },
