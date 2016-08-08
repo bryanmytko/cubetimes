@@ -1,8 +1,9 @@
-var Cube = function(scramble_count = null){
-  this.scramble_count = scramble_count || 6;
-  this.name = "Generic 3-D Puzzle";
+var Cube = function(cube, scramble_count = null){
+  this.cube = window[cube];
 
-  this.faces = [
+  this.name = this.cube.name || "Generic 3-D Puzzle";
+
+  this.faces = this.cube.faces || [
     { 'name': 'R', 'turns': ['R','R\'','R2'], 'restricted': ['L'] },
     { 'name': 'L', 'turns': ['L','L\'','L2'], 'restricted': ['R'] },
     { 'name': 'U', 'turns': ['U','U\'','U2'], 'restricted': ['D'] },
@@ -10,6 +11,8 @@ var Cube = function(scramble_count = null){
     { 'name': 'F', 'turns': ['F','F\'','F2'], 'restricted': ['B'] },
     { 'name': 'B', 'turns': ['B','B\'','B2'], 'restricted': ['F'] }
   ];
+
+  this.scramble_count = scramble_count || 6;
 
   this.scramble = function(){
     var moves = [],
@@ -57,37 +60,35 @@ var Cube = function(scramble_count = null){
   }
 };
 
-/* @TODO Inheritance */
+var cube_3x3 = {
+  "name": "3x3 Rubik's Cube",
 
-var Cube_3x3 = function(){
-  this.name = "3x3 Rubik's Cube";
+  "faces": [
+    { 'name': 'R', 'turns': ['R','R\'','R2'], 'restricted': ['L'] },
+    { 'name': 'L', 'turns': ['L','L\'','L2'], 'restricted': ['R'] },
+    { 'name': 'U', 'turns': ['U','U\'','U2'], 'restricted': ['D'] },
+    { 'name': 'D', 'turns': ['D','D\'','D2'], 'restricted': ['U'] },
+    { 'name': 'F', 'turns': ['F','F\'','F2'], 'restricted': ['B'] },
+    { 'name': 'B', 'turns': ['B','B\'','B2'], 'restricted': ['F'] }
+  ]
+}
 
-  this.moves = [
-    { 'name': 'R', 'moves': ['R','R\'','R2'], 'restricted': ['L'] },
-    { 'name': 'L', 'moves': ['L','L\'','L2'], 'restricted': ['R'] },
-    { 'name': 'U', 'moves': ['U','U\'','U2'], 'restricted': ['D'] },
-    { 'name': 'D', 'moves': ['D','D\'','D2'], 'restricted': ['U'] },
-    { 'name': 'F', 'moves': ['F','F\'','F2'], 'restricted': ['B'] },
-    { 'name': 'B', 'moves': ['B','B\'','B2'], 'restricted': ['F'] }
-  ];
-};
+var cube_4x4 = {
+  "name": "4x4 Rubik's Cube",
 
-var Cube_4x4 = function(){
-  this.name = "4x4 Rubik's Cube";
+  "faces": [
+    { 'name': 'R', 'turns': ['R','R\'','R2'], 'restricted': ['L', 'l'] },
+    { 'name': 'L', 'turns': ['L','L\'','L2'], 'restricted': ['R', 'r'] },
+    { 'name': 'U', 'turns': ['U','U\'','U2'], 'restricted': ['D', 'd'] },
+    { 'name': 'D', 'turns': ['D','D\'','D2'], 'restricted': ['U', 'u'] },
+    { 'name': 'F', 'turns': ['F','F\'','F2'], 'restricted': ['B', 'b'] },
+    { 'name': 'B', 'turns': ['B','B\'','B2'], 'restricted': ['F', 'f'] },
 
-  this.moves = [
-    { 'name': 'R', 'moves': ['R','R\'','R2'], 'restricted': ['L', 'l'] },
-    { 'name': 'L', 'moves': ['L','L\'','L2'], 'restricted': ['R', 'r'] },
-    { 'name': 'U', 'moves': ['U','U\'','U2'], 'restricted': ['D', 'd'] },
-    { 'name': 'D', 'moves': ['D','D\'','D2'], 'restricted': ['U', 'u'] },
-    { 'name': 'F', 'moves': ['F','F\'','F2'], 'restricted': ['B', 'b'] },
-    { 'name': 'B', 'moves': ['B','B\'','B2'], 'restricted': ['F', 'f'] },
-
-    { 'name': 'r', 'moves': ['r','r\'','r2'], 'restricted': ['L', 'l'] },
-    { 'name': 'l', 'moves': ['l','l\'','l2'], 'restricted': ['R', 'r'] },
-    { 'name': 'u', 'moves': ['u','u\'','u2'], 'restricted': ['D', 'd'] },
-    { 'name': 'd', 'moves': ['d','d\'','d2'], 'restricted': ['U', 'u'] },
-    { 'name': 'f', 'moves': ['f','f\'','f2'], 'restricted': ['B', 'b'] },
-    { 'name': 'b', 'moves': ['b','b\'','b2'], 'restricted': ['F', 'f'] }
-  ];
+    { 'name': 'r', 'turns': ['r','r\'','r2'], 'restricted': ['L', 'l'] },
+    { 'name': 'l', 'turns': ['l','l\'','l2'], 'restricted': ['R', 'r'] },
+    { 'name': 'u', 'turns': ['u','u\'','u2'], 'restricted': ['D', 'd'] },
+    { 'name': 'd', 'turns': ['d','d\'','d2'], 'restricted': ['U', 'u'] },
+    { 'name': 'f', 'turns': ['f','f\'','f2'], 'restricted': ['B', 'b'] },
+    { 'name': 'b', 'turns': ['b','b\'','b2'], 'restricted': ['F', 'f'] }
+  ]
 };
