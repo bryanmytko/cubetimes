@@ -3,7 +3,7 @@
     <ul class="clearfix">
     <% (1..TimerController::SESSION_SIZE).each do |n| %>
       <%=
-        "<li class=\"time-#{n}\">
+        "<li class=\"time-#{n}\" data-position=\"#{n.ordinalize}\">
           <span>#{n.ordinalize}</span>
         </li>".html_safe
       %>
@@ -21,21 +21,21 @@
   </div>
 </div>
 <div id="statistics-container" class="clearfix">
-  <!-- <div class="puzzle&#45;type clearfix">Puzzle: -->
-  <!--   <select name=puzzle&#45;type"> -->
-  <!--     <option value="2x2">2x2</option> -->
-  <!--     <option value="3x3">3x3</option> -->
-  <!--     <option value="4x4">4x4</option> -->
-  <!--     <option value="5x5">5x5</option> -->
-  <!--   </select> -->
-  <!-- </div> -->
   <div id="statistics-left">
-  <p class="cubes-amt">Cubes Solved: <span>--</span></p>
-  <p class="avg-session">Session Average: <span>--</span></p>
-  <p class="avg-all">Current Average: <span>--</span></p>
+    <p class="cubes-amt">Cubes Solved: <span>--</span></p>
+    <p class="avg-session">Session Average: <span>--</span></p>
+    <p class="avg-all">Current Average: <span>--</span></p>
   </div>
   <div id="statistics-right">
-  <p class="fastest">Fastest Time: <span>--</span></p>
-  <p class="slowest">Slowest Time: <span>--</span></p>
+    <div class="puzzle-type clearfix">Puzzle: &nbsp;
+      <select name="puzzle-type" id="current_puzzle">
+        <option value="cube_2x2">2x2</option>
+        <option value="cube_3x3" selected="selected">3x3</option>
+        <option value="cube_4x4">4x4</option>
+        <option value="cube_5x5">5x5</option>
+      </select>
+    </div>
+    <p class="fastest">Fastest Time: <span>--</span></p>
+    <p class="slowest">Slowest Time: <span>--</span></p>
   </div>
 </div>
