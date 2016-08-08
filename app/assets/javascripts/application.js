@@ -41,7 +41,7 @@ $(document).ready(function(){
         "Your times have been recorded. " +
         "Feel free to continue cubing!";
 
-  var cube = new Cube(SCRAMBLE_COUNT);
+  var cube = new Cube('cube_3x3', SCRAMBLE_COUNT);
 
   var Timer = {
 
@@ -83,7 +83,9 @@ $(document).ready(function(){
         _this.children('span').html(pos);
       });
 
-      cube = new Cube(current_puzzle);
+      cube = new Cube(current_puzzle, SCRAMBLE_COUNT);
+      scramble_container.html(cube.scramble());
+
       total_cubes_container.html(total_cubes);
       this.updateStats();
     },
@@ -294,8 +296,6 @@ $(document).ready(function(){
   });
 
   function init(){
-  /* @TODO determine what cube to instantiate */
-
     var initial_scramble = cube.scramble();
     scramble_container.html(initial_scramble);
   }
