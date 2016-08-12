@@ -248,7 +248,16 @@ $(document).ready(function(){
     }
   });
 
-  timer_button.on("click", function(){
+  timer_button.on("touchstart", function(){
+    if(!running){
+      timer_button
+        .removeClass("keydown")
+        .addClass("active");
+    } else {
+      timer_button
+        .removeClass("active")
+    }
+
     Timer.run();
     $(this).blur();
   })
