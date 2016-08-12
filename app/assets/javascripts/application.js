@@ -14,10 +14,6 @@ $(document).ready(function(){
       $(".notice,.alert").hover().fadeOut();
     });
 
-  /* Timer */
-  var AVG_AMT = 12,
-      SCRAMBLE_COUNT = 25;
-
   var start = null, control = null, cube = null,
       total_cubes = 0, cube_count = 0,
       all_times = new Array(),
@@ -37,11 +33,15 @@ $(document).ready(function(){
 
   var delete_button = "<a href=\"#\" class=\"delete\">[x]</a>";
 
+  var AVG_AMT = 12,
+      SCRAMBLE_COUNT = 25,
+      DEFAULT_CUBE = current_puzzle_selector.val() || "cube_3x3";
+
   var session_complete_message = "Session complete. " +
         "Your times have been recorded. " +
         "Feel free to continue cubing!";
 
-  var cube = new Cube('cube_3x3', SCRAMBLE_COUNT);
+  var cube = new Cube(DEFAULT_CUBE, SCRAMBLE_COUNT);
 
   var Timer = {
 
