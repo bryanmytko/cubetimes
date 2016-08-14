@@ -130,6 +130,8 @@ var cube_megaminx = {
   'name': 'Megaminx',
 
   'faces': [
-    { 'name': '', 'turns': [], 'restricted': [] },
+    { 'name': 'R', 'turns': ['R', 'R++', 'R--'], 'restricted': [] },
+    { 'name': 'D', 'turns': ['D', 'D++', 'D--'], 'restricted': [] },
+    { 'name': 'U', 'turns': ['U', 'U\''], 'restricted': [] },
   ]
 }
