@@ -1,7 +1,7 @@
 var Cube = function(cube, scramble_count = null){
   this.cube = window[cube];
 
-  this.name = this.cube.name || "Generic 3-D Puzzle";
+  this.name = this.cube.name || 'Generic 3-D Puzzle';
 
   this.faces = this.cube.faces || [
     { 'name': 'R', 'turns': ['R','R\'','R2'], 'restricted': ['L'] },
@@ -61,9 +61,9 @@ var Cube = function(cube, scramble_count = null){
 };
 
 var cube_2x2 = {
-  "name": "2x2 Rubik's Cube",
+  'name': '2x2 Rubik\'s Cube',
 
-  "faces": [
+  'faces': [
     { 'name': 'R', 'turns': ['R','R\'','R2'], 'restricted': ['L'] },
     { 'name': 'L', 'turns': ['L','L\'','L2'], 'restricted': ['R'] },
     { 'name': 'U', 'turns': ['U','U\'','U2'], 'restricted': ['D'] },
@@ -74,9 +74,9 @@ var cube_2x2 = {
 }
 
 var cube_3x3 = {
-  "name": "3x3 Rubik's Cube",
+  'name': '3x3 Rubik\'s Cube',
 
-  "faces": [
+  'faces': [
     { 'name': 'R', 'turns': ['R','R\'','R2'], 'restricted': ['L'] },
     { 'name': 'L', 'turns': ['L','L\'','L2'], 'restricted': ['R'] },
     { 'name': 'U', 'turns': ['U','U\'','U2'], 'restricted': ['D'] },
@@ -87,9 +87,9 @@ var cube_3x3 = {
 }
 
 var cube_4x4 = {
-  "name": "4x4 Rubik's Cube",
+  'name': '4x4 Rubik\'s Cube',
 
-  "faces": [
+  'faces': [
     { 'name': 'R', 'turns': ['R','R\'','R2'], 'restricted': ['L', 'l'] },
     { 'name': 'L', 'turns': ['L','L\'','L2'], 'restricted': ['R', 'r'] },
     { 'name': 'U', 'turns': ['U','U\'','U2'], 'restricted': ['D', 'd'] },
@@ -107,9 +107,9 @@ var cube_4x4 = {
 };
 
 var cube_5x5 = {
-  "name": "5x5 Rubik's Cube",
+  'name': '5x5 Rubik\'s Cube',
 
-  "faces": [
+  'faces': [
     { 'name': 'R', 'turns': ['R','R\'','R2'], 'restricted': ['L', 'l'] },
     { 'name': 'L', 'turns': ['L','L\'','L2'], 'restricted': ['R', 'r'] },
     { 'name': 'U', 'turns': ['U','U\'','U2'], 'restricted': ['D', 'd'] },
@@ -125,3 +125,11 @@ var cube_5x5 = {
     { 'name': 'b', 'turns': ['b','b\'','b2'], 'restricted': ['F', 'f'] }
   ]
 };
+
+var cube_megaminx = {
+  'name': 'Megaminx',
+
+  'faces': [
+    { 'name': '', 'turns': [], 'restricted': [] },
+  ]
+}
