@@ -28,6 +28,9 @@ var Cube = function(cube, scramble_count = null){
       prev_face = curr_face;
     }
 
+    /* This should probably be generalized in the data set */
+    if(this.name === 'Megaminx') moves.push(['U', 'U\''][this.randint(0,1)]);
+
     return moves.join(' ');
   };
 
@@ -132,6 +135,5 @@ var cube_megaminx = {
   'faces': [
     { 'name': 'R', 'turns': ['R', 'R++', 'R--'], 'restricted': [] },
     { 'name': 'D', 'turns': ['D', 'D++', 'D--'], 'restricted': [] },
-    { 'name': 'U', 'turns': ['U', 'U\''], 'restricted': [] },
   ]
-}
+};
