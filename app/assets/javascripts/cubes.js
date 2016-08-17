@@ -132,6 +132,22 @@ var cube_5x5 = {
   ]
 };
 
+var cube_pyraminx = {
+  "name": "Pyraminx",
+
+  "faces": [
+    { 'name': 'U', 'turns': ['R','R\''], 'restricted': [] },
+    { 'name': 'R', 'turns': ['L','L\''], 'restricted': [] },
+    { 'name': 'L', 'turns': ['U','U\''], 'restricted': [] },
+    { 'name': 'B', 'turns': ['D','D\''], 'restricted': [] },
+
+    { 'name': 'u', 'turns': ['r','r\''], 'restricted': ['r', 'l', 'b'] },
+    { 'name': 'r', 'turns': ['l','l\''], 'restricted': ['u', 'l', 'b'] },
+    { 'name': 'l', 'turns': ['u','u\''], 'restricted': ['r', 'u', 'b'] },
+    { 'name': 'b', 'turns': ['d','d\''], 'restricted': ['r', 'l', 'u'] }
+  ]
+};
+
 var cube_megaminx = {
   'name': 'Megaminx',
 
