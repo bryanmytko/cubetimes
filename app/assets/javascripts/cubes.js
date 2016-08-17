@@ -1,7 +1,9 @@
 var Cube = function(cube, scramble_count = null){
   this.cube = window[cube];
 
-  this.name = this.cube.name || "Generic 3-D Puzzle";
+  this.name = this.cube.name || 'Generic 3-D Puzzle';
+
+  this.final = this.cube.final;
 
   this.faces = this.cube.faces || [
     { 'name': 'R', 'turns': ['R','R\'','R2'], 'restricted': ['L'] },
@@ -26,6 +28,10 @@ var Cube = function(cube, scramble_count = null){
 
       moves.push(curr_move);
       prev_face = curr_face;
+    }
+
+    if(this.final){
+      moves.push(this.final[this.randint(0,this.final.length - 1)]);
     }
 
     return moves.join(' ');
@@ -61,9 +67,9 @@ var Cube = function(cube, scramble_count = null){
 };
 
 var cube_2x2 = {
-  "name": "2x2 Rubik's Cube",
+  'name': '2x2 Rubik\'s Cube',
 
-  "faces": [
+  'faces': [
     { 'name': 'R', 'turns': ['R','R\'','R2'], 'restricted': ['L'] },
     { 'name': 'L', 'turns': ['L','L\'','L2'], 'restricted': ['R'] },
     { 'name': 'U', 'turns': ['U','U\'','U2'], 'restricted': ['D'] },
@@ -74,9 +80,9 @@ var cube_2x2 = {
 }
 
 var cube_3x3 = {
-  "name": "3x3 Rubik's Cube",
+  'name': '3x3 Rubik\'s Cube',
 
-  "faces": [
+  'faces': [
     { 'name': 'R', 'turns': ['R','R\'','R2'], 'restricted': ['L'] },
     { 'name': 'L', 'turns': ['L','L\'','L2'], 'restricted': ['R'] },
     { 'name': 'U', 'turns': ['U','U\'','U2'], 'restricted': ['D'] },
@@ -87,9 +93,9 @@ var cube_3x3 = {
 }
 
 var cube_4x4 = {
-  "name": "4x4 Rubik's Cube",
+  'name': '4x4 Rubik\'s Cube',
 
-  "faces": [
+  'faces': [
     { 'name': 'R', 'turns': ['R','R\'','R2'], 'restricted': ['L', 'l'] },
     { 'name': 'L', 'turns': ['L','L\'','L2'], 'restricted': ['R', 'r'] },
     { 'name': 'U', 'turns': ['U','U\'','U2'], 'restricted': ['D', 'd'] },
@@ -107,9 +113,9 @@ var cube_4x4 = {
 };
 
 var cube_5x5 = {
-  "name": "5x5 Rubik's Cube",
+  'name': '5x5 Rubik\'s Cube',
 
-  "faces": [
+  'faces': [
     { 'name': 'R', 'turns': ['R','R\'','R2'], 'restricted': ['L', 'l'] },
     { 'name': 'L', 'turns': ['L','L\'','L2'], 'restricted': ['R', 'r'] },
     { 'name': 'U', 'turns': ['U','U\'','U2'], 'restricted': ['D', 'd'] },
@@ -140,4 +146,15 @@ var cube_pyraminx = {
     { 'name': 'l', 'turns': ['u','u\''], 'restricted': ['r', 'u', 'b'] },
     { 'name': 'b', 'turns': ['d','d\''], 'restricted': ['r', 'l', 'u'] }
   ]
+};
+
+var cube_megaminx = {
+  'name': 'Megaminx',
+
+  'faces': [
+    { 'name': 'R', 'turns': ['R', 'R++', 'R--'], 'restricted': [] },
+    { 'name': 'D', 'turns': ['D', 'D++', 'D--'], 'restricted': [] }
+  ],
+
+  'final': ['U', 'U\'']
 };
