@@ -250,7 +250,10 @@ $(document).ready(function(){
     }
   });
 
-  timer_button.on("click", function(event){
+  $(document).on("click", "#timer_button", function(event){
+    event.preventDefault();
+    event.stopPropagation()
+
     if(!running){
       timer_button
         .removeClass("keydown")

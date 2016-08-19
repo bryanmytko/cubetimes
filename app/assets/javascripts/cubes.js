@@ -1,4 +1,5 @@
-var Cube = function(cube, scramble_count = null){
+var Cube = function(cube, scramble_count){
+
   this.cube = window[cube];
 
   this.name = this.cube.name || 'Generic 3-D Puzzle';
