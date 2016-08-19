@@ -1,11 +1,13 @@
 //= require jquery
 //= require jquery-ui
-//= require jquery_ujs
+//= require fastclick
 //= require_tree .
 
-/* @TODO isMobile, fullscreen touch, remove mobile 300ms touch lag, etc. */
-
 $(document).ready(function(){
+
+  /* Avoid mobile delays */
+  FastClick.attach(document.body);
+
   /* Tab controls */
   $(".notice, .alert")
     .delay(500)
@@ -248,7 +250,7 @@ $(document).ready(function(){
     }
   });
 
-  timer_button.on("touchstart", function(){
+  timer_button.on("click", function(event){
     if(!running){
       timer_button
         .removeClass("keydown")
