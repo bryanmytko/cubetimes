@@ -14,6 +14,7 @@ gem "sass-rails"
 gem "font-awesome-rails"
 gem "uglifier"
 gem "awesome_print"
+gem "fastclick-rails"
 
 group :production do
   gem "heroku-deflater"
