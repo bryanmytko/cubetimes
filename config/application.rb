@@ -10,6 +10,7 @@ Bundler.require(:default, Rails.env)
 module Cubetimes
   class Application < Rails::Application
     config.serve_static_assets = true
+    config.public_file_server.headers = { 'Cache-Control' => 'public, max-age=604800' }
 
     #config.autoload_paths += %W(#{Rails.root}/app/controllers/concerns) # in Rails4 this is automatic
     # Settings in config/environments/* take precedence over those specified here.
