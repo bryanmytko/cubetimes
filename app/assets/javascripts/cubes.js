@@ -133,6 +133,26 @@ var cube_5x5 = {
   ]
 };
 
+var cube_6x6 = {
+  'name': '6x6 Rubik\'s Cube',
+
+  'faces': [
+    { 'name': 'R', 'turns': ['R','R\'','R2'], 'restricted': ['L', 'l'] },
+    { 'name': 'L', 'turns': ['L','L\'','L2'], 'restricted': ['R', 'r'] },
+    { 'name': 'U', 'turns': ['U','U\'','U2'], 'restricted': ['D', 'd'] },
+    { 'name': 'D', 'turns': ['D','D\'','D2'], 'restricted': ['U', 'u'] },
+    { 'name': 'F', 'turns': ['F','F\'','F2'], 'restricted': ['B', 'b'] },
+    { 'name': 'B', 'turns': ['B','B\'','B2'], 'restricted': ['F', 'f'] },
+
+    { 'name': 'r', 'turns': ['r','r\'','r2'], 'restricted': ['L', 'l'] },
+    { 'name': 'l', 'turns': ['l','l\'','l2'], 'restricted': ['R', 'r'] },
+    { 'name': 'u', 'turns': ['u','u\'','u2'], 'restricted': ['D', 'd'] },
+    { 'name': 'd', 'turns': ['d','d\'','d2'], 'restricted': ['U', 'u'] },
+    { 'name': 'f', 'turns': ['f','f\'','f2'], 'restricted': ['B', 'b'] },
+    { 'name': 'b', 'turns': ['b','b\'','b2'], 'restricted': ['F', 'f'] }
+  ]
+};
+
 var cube_pyraminx = {
   "name": "Pyraminx",
 
