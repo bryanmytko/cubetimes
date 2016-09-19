@@ -131,6 +131,12 @@ $(document).ready(function(){
         times: session_times
       }
 
+      $.ajaxSetup({
+        headers: {
+          'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+        }
+      });
+
       $.post( "/timer", session_params);
       alert(session_complete_message);
     },
