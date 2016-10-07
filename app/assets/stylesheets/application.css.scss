@@ -5657,6 +5657,10 @@ a.thumbnail.active {
   margin-bottom: 0;
 }
 
+.alert li {
+  list-style-type: none;
+}
+
 .alert > p + p {
   margin-top: 5px;
 }
@@ -7828,24 +7832,3 @@ input:focus {outline: none;}
 
 /* Devise */
 
-#error_explanation h2 {
-  display: none;
-}
-
-#error_explanation ul {
-  list-style-type: none;
-  margin: 0 0 20px 0;
-  padding: 0;
-}
-
-#error_explanation ul li {
-  color: #ff0000;
-}
-
-.border-form-div .field_with_errors input {
-  border: 1px solid #f00;
-}
-
-.field br {
-  display: none;
-}
