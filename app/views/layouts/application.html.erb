@@ -17,6 +17,7 @@
 <% flash.each do |name, msg| %>
   <%= content_tag :div, msg, class: name %>
 <% end %>
+<%= devise_error_messages! %>
 <header class="well">
 <% if user_signed_in? %>
   <p>
