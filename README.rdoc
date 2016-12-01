@@ -2,7 +2,7 @@ Formats exported data from JNetCube for Rubik's cube times.
 
 Simply export files from JNetCube to public/times directory.
 
-Demo: http://cubetimes.herokuapp.com
+Demo: http://rubikscubetimer.com/
 
   ______.........--=T=--.........______                     
        .             |:|                                      
@@ -13,4 +13,4 @@ Demo: http://cubetimes.herokuapp.com
            ::          '--=:____:.___....-"                          
                                O"       O"                          
 
-Copyright (C) 2014 Bryan Mytko
+Copyright (C) 2014-2016 Bryan Mytko
