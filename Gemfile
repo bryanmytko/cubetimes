@@ -2,7 +2,7 @@ source "https://rubygems.org"
 
 ruby "2.4"
 
-gem "rails", "5.0.0"
+gem "rails", "5.0.1"
 gem "pg"
 gem "devise"
 gem "httparty"
