@@ -2,9 +2,10 @@
 //= require jquery-ui
 //= require jquery_ujs
 //= require fastclick
+//= require jquery-readyselector
 //= require_tree .
 
-$(document).ready(function(){
+$(".timer.index").ready(function(){
 
   /* Avoid mobile delays */
   FastClick.attach(document.body);
@@ -27,7 +28,7 @@ $(document).ready(function(){
       current_puzzle_selector = $("#current_puzzle"),
       timer_button = $("#timer_button"),
       scramble_container = $("div.scrambleContainer>span.scramble"),
-      timer_container = $(".timer"),
+      timer_container = $(".timer_val"),
       timer_list = $("#timerTimes ul"),
       timer_list_items = $("#timerTimes ul li"),
       total_cubes_container = $(".cubes-amt").children("span"),
