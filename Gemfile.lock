@@ -204,5 +204,8 @@ DEPENDENCIES
   sass-rails
   uglifier
 
+RUBY VERSION
+   ruby 2.4.0p0
+
 BUNDLED WITH
-   1.12.5
+   1.13.7
