@@ -2,6 +2,7 @@
 //= require jquery-ui
 //= require jquery_ujs
 //= require fastclick
+//= require jquery-readyselector
 //= require_tree .
 
 $(document).ready(function(){
