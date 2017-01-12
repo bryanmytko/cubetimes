@@ -13,7 +13,7 @@
 
   <%= csrf_meta_tags %>
 </head>
-<body>
+<body class="<%= controller_name %> <%= action_name %>">
 <% flash.each do |name, msg| %>
   <%= content_tag :div, msg, class: name %>
 <% end %>
