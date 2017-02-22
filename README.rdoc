@@ -13,4 +13,4 @@ Demo: http://rubikscubetimer.com/
            ::          '--=:____:.___....-"                          
                                O"       O"                          
 
-Copyright (C) 2014-2016 Bryan Mytko
+Copyright (C) 2014-2017 Bryan Mytko
