@@ -4,7 +4,9 @@ class StatisticsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @cubing_sessions = CubingSession.where(user_id: current_user.id)
+    @cubing_sessions = CubingSession
+      .where(user_id: current_user.id)
+      .includes(:solves)
   end
 
   def destroy
