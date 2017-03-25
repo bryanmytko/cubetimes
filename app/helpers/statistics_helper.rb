@@ -6,7 +6,8 @@ module StatisticsHelper
     string += "<td class=\"average\">" \
       "#{session_average(cubing_session.times)}</td>"
 
-    cubing_session.times.each do |time|
+    # @TODO Change this and all other loops to use the CubingSession.solves times instead
+    cubing_session.solves.each do |time|
       if time == cubing_session.times.min && !best_found
         string += "<td class=\"best\">#{time}</td>"
         best_found = true
