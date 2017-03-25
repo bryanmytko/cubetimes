@@ -10,14 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170325211826) do
+ActiveRecord::Schema.define(version: 20170325232947) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "cubing_sessions", force: :cascade do |t|
     t.integer  "user_id"
-    t.text     "times",                   default: [], array: true
     t.string   "origin",      limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
