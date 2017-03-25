@@ -12,13 +12,11 @@ class TimerController < ApplicationController
         puzzle_type: params[:puzzle_type]
       )
 
-     # @TODO Finish this. The array is being converted to some kind of object,
-     #  which must use ActiveParameter methods to parse.
       session_data_params[:session_array].each_pair do |index, value|
         Solve.create(
-          time: solve.time,
-          scramble: value[:scramble},
-          cubing_session: value[:cubing_session]
+          time: value[:time],
+          scramble: value[:scramble],
+          cubing_session: cubing_session
         )
       end
     end
