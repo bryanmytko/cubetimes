@@ -2,6 +2,7 @@ class CubingSession < ActiveRecord::Base
   include JnetImport
 
   belongs_to :user
+  has_many :solves
 
   validates :times, length: { is: 12 }
 
