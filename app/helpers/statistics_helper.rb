@@ -1,20 +1,29 @@
 module StatisticsHelper
   def display_row(cubing_session)
-    string =  "<td>#{date_format(cubing_session.created_at)}</td>"
-    string += "<td class=\"average\">" \
-      "#{session_average(cubing_session.times)}</td>"
+    row =  "<td>#{date_format(cubing_session.created_at)}</td>"
+    row += "<td class=\"average\">" \
+      "#{session_average(cubing_session)}</td>"
 
-    times = cubing_session.solves.pluck(:time).collect(&:to_i)
-    times.each do |time|
-      if(time == times.min)
-        string += "<td class=\"best\">#{time}</td>"
+    solves = cubing_session.solves
+    times = solves.pluck(:time).collect(&:to_f)
+
+    solves.each do |solve|
+      best_found = false
+      time = solve.time.to_f
+      td = "<td data-scramble=\"#{solve.scramble}\""
+
+      if(time == times.min && best_found == false)
+        td += " class=\"best\">#{time}</td>"
+        best_found = true
       else
-        string += "<td>#{time}</td>"
+        td += ">#{time}</td>"
       end
+
+      row += td
     end
 
-    string += destroy_row(cubing_session.id)
-    raw string
+    row += destroy_row(cubing_session.id)
+    raw row
   end
 
   def destroy_row(id)
@@ -35,17 +44,17 @@ module StatisticsHelper
   end
 
   def best_average(cubing_sessions)
-    debugger
     avgs = cubing_sessions
       .includes(:solves)
-      .map { |session| session_average(session.solves.pluck(:time)) }
+      .map { |session| session_average(session) }
       .min
   end
 
   private
 
-  def session_average(times)
-    (times.map(&:to_f).reduce(:+).to_f / times.size).round(2)
+  def session_average(session)
+    times = session.solves.pluck(:time)
+    (times.map(&:to_f).reduce(:+) / times.size).round(2)
   end
 
   def date_format(date)
