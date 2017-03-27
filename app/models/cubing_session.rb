@@ -11,14 +11,19 @@ class CubingSession < ActiveRecord::Base
       created_at: JnetImport::extract_date(params)
     )
 
-    # Check params here
-    debugger
-    # session_data_params[:session_array].each_pair do |index, value|
-    #   Solve.create(
-    #     time: params[:time],
-    #     scramble: params[:scramble],
-    #     cubing_session: cubing_session
-    #   )
-    # end
+    times = JnetImport::extract_times(params)
+    scrambles = JnetImport::extract_scrambles(params)
+
+    times
+      .zip(scrambles)
+      .each do |solve|
+        Solve.create(
+          time: solve[0],
+          scramble: solve[1],
+          cubing_session: cubing_session
+        )
+      end
+
+    return cubing_session
   end
 end
