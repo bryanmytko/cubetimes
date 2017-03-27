@@ -38,7 +38,7 @@ $(".timer.index").ready(function(){
 
   var delete_button = "<a href=\"#\" class=\"delete\">[x]</a>";
 
-  var AVG_AMT = 2,
+  var AVG_AMT = 12,
       SCRAMBLE_COUNT = 25,
       DEFAULT_CUBE = current_puzzle_selector.val() || "cube_3x3";
 
