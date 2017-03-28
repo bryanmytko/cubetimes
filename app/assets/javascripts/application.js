@@ -5,6 +5,22 @@
 //= require jquery-readyselector
 //= require_tree .
 
+$(document).ready(function(){
+  /* Balloons for scramble */
+  $('td.individual-solve')
+    .balloon({
+      tipSize: 24,
+       css: {
+         border: 'solid 4px #1A4F5A',
+         padding: '10px',
+         fontSize: '110%',
+         lineHeight: '3',
+         backgroundColor: '#000',
+         color: '#fff'
+       }
+     });
+});
+
 $(".timer.index").ready(function(){
 
   /* Avoid mobile delays */
@@ -21,6 +37,7 @@ $(".timer.index").ready(function(){
   var start = null, control = null, cube = null,
       total_cubes = 0, cube_count = 0,
       all_times = new Array(),
+      session_data = new Array(),
       running = false;
 
   /* DOM */
@@ -101,13 +118,20 @@ $(".timer.index").ready(function(){
     },
 
     addTime: function(){
-      current_time = timer_container.html();
-      current_time_container = timer_list
+      let current_session_time = {};
+      let current_time = timer_container.html();
+      let current_time_container = timer_list
         .children("li.time-" + cube_count)
         .children("span");
 
+      /* @TODO Collect data for display purposes.
+       * Eventually, this can be refactored to use session data */
       current_time_container.html(current_time);
       all_times.push(parseFloat(current_time));
+
+      current_session_time.time = parseFloat(current_time);
+      current_session_time.scramble = scramble_container.text();
+      session_data.push(current_session_time);
 
       this.generateScramble();
     },
@@ -117,21 +141,21 @@ $(".timer.index").ready(function(){
       this.updateSessionAvg();
       this.updateTotalAvg();
 
-      if(total_cubes == AVG_AMT) Timer.postSessionAvg();
+        if(total_cubes == AVG_AMT) Timer.postSessionAvg();
 
-      $(".fastest").children("span").html(all_times.min() || '--');
-      $(".slowest").children("span").html(all_times.max() || '--');
-    },
+        $(".fastest").children("span").html(all_times.min() || '--');
+        $(".slowest").children("span").html(all_times.max() || '--');
+      },
 
     postSessionAvg: function(){
-      var session_times = timer_list_items.map(function(){
+      let session_times = timer_list_items.map(function(){
         return $(this).text().trim();
       }).get();
 
-      session_params = {
+      let session_params = {
         puzzle_type: current_puzzle,
-        times: session_times
-      }
+        session_data: { session_array: session_data }
+      };
 
       $.ajaxSetup({
         headers: {

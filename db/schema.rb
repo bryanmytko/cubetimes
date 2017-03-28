@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -11,12 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150104060709) do
+ActiveRecord::Schema.define(version: 20170325211826) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "cubing_sessions", force: true do |t|
+  create_table "cubing_sessions", force: :cascade do |t|
     t.integer  "user_id"
     t.text     "times",       default: [], array: true
     t.string   "origin"
@@ -25,7 +24,7 @@ ActiveRecord::Schema.define(version: 20150104060709) do
     t.string   "puzzle_type"
   end
 
-  create_table "profiles", force: true do |t|
+  create_table "profiles", force: :cascade do |t|
     t.string   "first_name"
     t.string   "last_name"
     t.string   "gender"
@@ -36,11 +35,19 @@ ActiveRecord::Schema.define(version: 20150104060709) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
+    t.index ["user_id"], name: "index_profiles_on_user_id", using: :btree
   end
 
-  add_index "profiles", ["user_id"], name: "index_profiles_on_user_id", using: :btree
+  create_table "solves", force: :cascade do |t|
+    t.string   "time"
+    t.string   "scramble"
+    t.integer  "cubing_session_id"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.index ["cubing_session_id"], name: "index_solves_on_cubing_session_id", using: :btree
+  end
 
-  create_table "users", force: true do |t|
+  create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
@@ -53,9 +60,9 @@ ActiveRecord::Schema.define(version: 20150104060709) do
     t.inet     "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
-
+  add_foreign_key "solves", "cubing_sessions"
 end
