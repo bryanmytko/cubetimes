@@ -40,7 +40,7 @@ RSpec.describe CubingSession, :type => :model do
     end
 
     it "should contain 12 times" do
-      expect(@cubing_session.times.size).to eq(12)
+      expect(@cubing_session.solves.size).to eq(12)
     end
 
     it "should use sesssion's date, not today's" do
