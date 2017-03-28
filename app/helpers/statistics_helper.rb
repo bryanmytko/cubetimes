@@ -10,13 +10,14 @@ module StatisticsHelper
     solves.each do |solve|
       best_found = false
       time = solve.time.to_f
-      td = "<td data-scramble=\"#{solve.scramble}\""
+      td = "<td title=\"#{scramble_title(solve)}\""
+      td += " class=\"individual-solve"
 
       if(time == times.min && best_found == false)
-        td += " class=\"best\">#{time}</td>"
+        td += " best\">#{time}</td>"
         best_found = true
       else
-        td += ">#{time}</td>"
+        td += "\">#{time}</td>"
       end
 
       row += td
@@ -59,5 +60,9 @@ module StatisticsHelper
 
   def date_format(date)
     date.strftime("%m\/%d\/%Y")
+  end
+
+  def scramble_title(solve)
+    solve.scramble || "Sorry, scramble not available."
   end
 end
