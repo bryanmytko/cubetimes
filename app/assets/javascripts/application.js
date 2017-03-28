@@ -5,6 +5,22 @@
 //= require jquery-readyselector
 //= require_tree .
 
+$(document).ready(function(){
+  /* Balloons for scramble */
+  $('td.individual-solve')
+    .balloon({
+      tipSize: 24,
+       css: {
+         border: 'solid 4px #1A4F5A',
+         padding: '10px',
+         fontSize: '110%',
+         lineHeight: '3',
+         backgroundColor: '#000',
+         color: '#fff'
+       }
+     });
+});
+
 $(".timer.index").ready(function(){
 
   /* Avoid mobile delays */
