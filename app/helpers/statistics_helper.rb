@@ -6,9 +6,9 @@ module StatisticsHelper
 
     solves = cubing_session.solves
     times = solves.pluck(:time).collect(&:to_f)
+    best_found = false
 
     solves.each do |solve|
-      best_found = false
       time = solve.time.to_f
       td = "<td title=\"#{scramble_title(solve)}\""
       td += " class=\"individual-solve"
