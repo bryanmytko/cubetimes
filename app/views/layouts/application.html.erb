@@ -2,8 +2,10 @@
 <html>
 <head>
   <title>Rubik's Cube Timer</title>
-  <meta name="description" content="A simple online timer for
-  speedsolving Rubik's cubes and other mechanical puzzles.">
+  <meta name="description" content="An online timer for
+  speedsolving Rubik's cubes and other mechanical puzzles.
+  Sign up and save your past sessions and scrambles!
+  Supports: 2x2, 3x3, 4x4, 5x5, 6x6, 7x7, Pyraminx, Megaminx.">
 
   <%= stylesheet_link_tag "application",
     media: "all", "data-turbolinks-track" => true %>
@@ -22,30 +24,12 @@
     ga('send', 'pageview');
 
   </script>
-  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-  <script>
-    (adsbygoogle = window.adsbygoogle || []).push({
-      google_ad_client: "ca-pub-8225396803360141",
-      enable_page_level_ads: true
-    });
-  </script>
 </head>
 <body class="<%= controller_name %> <%= action_name %>">
 <% flash.each do |name, msg| %>
   <%= content_tag :div, msg, class: name %>
 <% end %>
 <%= devise_error_messages! %>
-<div id="ads">
-  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-  <!-- rubikscubetimer.com -->
-  <ins class="adsbygoogle"
-       style="display:inline-block;width:728px;height:90px"
-       data-ad-client="ca-pub-8225396803360141"
-       data-ad-slot="9272880910"></ins>
-  <script>
-  (adsbygoogle = window.adsbygoogle || []).push({});
-  </script>
-</div>
 <header class="well">
 <% if user_signed_in? %>
   <p>
