@@ -28,25 +28,23 @@ RSpec.describe CubingSession, :type => :model do
 
   describe "a jnet imported session" do
     let(:user) { FactoryGirl.create(:user) }
+    let(:cubing_session) { FactoryGirl.create(:cubing_session) }
 
-    before(:each) do
-      allow(described_class).to receive(:current_user) { user }
-      @file_factory = FactoryGirl.create(:jnet_file)
-      @cubing_session = CubingSession.jnet_import(user, @file_factory.file)
-    end
+    context "specs with valid data" do
+      before(:each) do
+        # @TODO check
+        allow(described_class).to receive(:current_user) { user }
+        @file_factory = FactoryGirl.create(:jnet_file)
+        CubingSession.import(cubing_session, @file_factory.file)
+      end
 
-    it "should create a cubing session from jnet data" do
-      expect(@cubing_session).to_not be_nil
-    end
+      it "should create a cubing session from jnet data" do
+        expect(cubing_session.solves).to_not be_nil
+      end
 
-    it "should contain 12 times" do
-      expect(@cubing_session.solves.size).to eq(12)
-    end
-
-    it "should use sesssion's date, not today's" do
-      date = "Wed Feb 05 19:30:14 EST 2014"
-      expect(@cubing_session.created_at.utc)
-        .to eq(date.to_time.utc)
+      it "should contain 12 times" do
+        expect(cubing_session.solves.size).to eq(12)
+      end
     end
   end
 end
