@@ -6,16 +6,6 @@ class CubingSession < ActiveRecord::Base
 
   def self.import(cubing_session, file)
     solves = JnetImport::extract_solves(file)
-    solves.each { |solve| SolveCreator.new(solve, cubing_session) }
-  end
-end
-
-class SolveCreator
-  def initialize(solve, cubing_session)
-    Solve.create(
-      time: solve[:time],
-      scramble: solve[:scramble],
-      cubing_session: cubing_session
-    )
+    solves.each { |solve| JnetImport::SolveCreator.new(solve, cubing_session) }
   end
 end
