@@ -5,17 +5,17 @@ RSpec.describe JnetImport, type: :model do
   let(:image_file_factory) { FactoryGirl.create(:image_file) }
   let(:user) { FactoryGirl.create(:user) }
 
-  describe "extracting times from uploaded file" do
-    it "should parse twelve times from a Jnet upload" do
-      expect(JnetImport::extract_times(jnet_file_factory.file).size)
+  describe "extracting solves from uploaded file" do
+    it "collect twelve solves" do
+      expect(JnetImport::extract_solves(jnet_file_factory.file).size)
         .to eq(12)
     end
   end
 
-  describe "extracting scrambles from uploaded file" do
-    it "should parse twelve scrambles from a Jnet upload" do
-      expect(JnetImport::extract_scrambles(jnet_file_factory.file).size)
-        .to eq(12)
+  describe "extracting date from uploaded file" do
+    it "return the date of the session" do
+      expect(JnetImport::extract_date(jnet_file_factory.file))
+        .to eq("Wed Feb 05 19:30:14 EST 2014")
     end
   end
 end

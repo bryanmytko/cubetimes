@@ -5,22 +5,16 @@ module JnetImport
 
   attr_reader :file
 
-  def self.extract_times(file)
-    File.open(file.path).map do |line|
-      if line =~ /\A[0-9]/
-        line = line.split(" ")
-        "%.2f" % line[1]
+  def self.extract_solves(file)
+    File
+      .open(file.path)
+      .select { |line| line[/\A[0-9]+\)/] }
+      .map do |line|
+        {
+          time: self.extract_time(line),
+          scramble: self.extract_scramble(line)
+        }
       end
-    end.compact
-  end
-
-  def self.extract_scrambles(file)
-    File.open(file.path).map do |line|
-      line
-        .split(" ")
-        .select { |l| l =~ /[A-Z]/ }
-        .join(" ") if line =~ /\A[0-9]/
-    end.compact
   end
 
   def self.extract_date(file)
@@ -31,6 +25,20 @@ module JnetImport
     else
       Date.today
     end
+  end
+
+  private
+
+  def self.extract_time(line)
+    line = line.split(" ")
+    "%.2f" % line[1]
+  end
+
+  def self.extract_scramble(line)
+    line
+      .split(" ")
+      .select { |l| l =~ /[A-Z]/ }
+      .join(" ")
   end
 end
 
