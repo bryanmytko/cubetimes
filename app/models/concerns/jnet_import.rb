@@ -27,6 +27,7 @@ module JnetImport
     end
   end
 
+
   private
 
   def self.extract_time(line)
@@ -37,8 +38,18 @@ module JnetImport
   def self.extract_scramble(line)
     line
       .split(" ")
-      .select { |l| l =~ /[A-Z]/ }
+      .select { |l| l[/[A-Z]/] }
       .join(" ")
+  end
+
+  class SolveCreator
+    def initialize(solve, cubing_session)
+      Solve.create(
+        time: solve[:time],
+        scramble: solve[:scramble],
+        cubing_session: cubing_session
+      )
+    end
   end
 end
 
