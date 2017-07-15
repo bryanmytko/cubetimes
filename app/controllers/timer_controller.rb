@@ -12,10 +12,9 @@ class TimerController < ApplicationController
         puzzle_type: params[:puzzle_type]
       )
 
-      session_data_params[:session_array].each_pair do |index, value|
-        Solve.create(
-          time: value[:time],
-          scramble: value[:scramble],
+      session_data_params[:session_array].each_pair do |index, solve|
+        JnetImport::SolveCreator.new(
+          solve: solve,
           cubing_session: cubing_session
         )
       end
