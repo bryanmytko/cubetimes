@@ -1,6 +1,4 @@
 class StatisticsController < ApplicationController
-  include Parser
-
   before_action :authenticate_user!
 
   def index
