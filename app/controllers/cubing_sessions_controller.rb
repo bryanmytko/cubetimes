@@ -1,34 +1,27 @@
 class CubingSessionsController < ApplicationController
-  # before_action :validate_file_format, only: [:create]
+  rescue_from SessionParser::FileTypeError, with: :invalid_file_uploaded
 
   def create
-    if valid_file_format?
-      cubing_session = CubingSession.create(
-        user: current_user,
-        puzzle_type: "3x3",
-        created_at: JnetImport::extract_date(session_file)
-      )
+    cubing_session = CubingSession.new(
+      user: current_user,
+      puzzle_type: "3x3"
+    )
 
-      CubingSession.import(cubing_session, session_file)
-      flash[:alert] = "Thank you, your session has been uploaded!"
-    else
-      flash[:notice] = "Sorry, that file could not be uploaded"
-    end
+    cubing_session.import_solves(file)
+    cubing_session.save
 
+    flash[:alert] = "Thank you, your session has been imported!"
     redirect_to statistics_path
   end
 
   private
 
-  def whitelist
-    %w(text/plain)
-  end
-
-  def session_file
+  def file
     params[:cubing_session][:session_file]
   end
 
-  def valid_file_format?
-    whitelist.include? session_file.content_type
+  def invalid_file_uploaded
+    flash[:notice] = "Sorry, something went wrong."
+    redirect_to statistics_path
   end
 end

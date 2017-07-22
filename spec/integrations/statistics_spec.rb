@@ -30,7 +30,7 @@ describe "Statistics page", type: :request do
       it "displays the correct flash alert" do
         post "/cubing_sessions",
           params: { cubing_session: { session_file: file } }
-        expect(flash[:alert]).to match(/Thank you, your session.*/)
+        expect(flash[:alert]).to match(/Thank you.*/)
       end
     end
   end
@@ -44,7 +44,7 @@ describe "Statistics page", type: :request do
       it "displays the correct flash alert" do
         post "/cubing_sessions",
           params: { cubing_session: { session_file: file } }
-        expect(flash[:notice]).to match(/Sorry, that file.*/)
+        expect(flash[:notice]).to match(/Sorry.*/)
       end
     end
   end
