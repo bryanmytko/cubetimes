@@ -1,18 +1,20 @@
 source "https://rubygems.org"
 
-gem "rails", "5.0.2"
-gem "pg"
+gem "awesome_print"
+gem "bootstrap-sass"
+gem "capybara"
 gem "devise"
+gem "fastclick-rails"
+gem "font-awesome-rails"
 gem "httparty"
 gem "jquery-rails"
-gem 'jquery-ui-rails'
+gem "pg"
+gem "rails", "5.0.2"
 gem "sass"
-gem "bootstrap-sass"
 gem "sass-rails"
-gem "font-awesome-rails"
+gem "selenium-webdriver"
 gem "uglifier"
-gem "awesome_print"
-gem "fastclick-rails"
+gem 'jquery-ui-rails'
 
 group :production do
   gem "heroku-deflater"
