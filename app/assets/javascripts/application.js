@@ -127,7 +127,7 @@ $(".timer.index").ready(function(){
       /* @TODO Collect data for display purposes.
        * Eventually, this can be refactored to use session data */
       current_time_container.html(current_time);
-      all_times.push(parseFloat(current_time));
+      all_times.push(parseFloat(current_time).toFixed(2));
 
       current_session_time.time = parseFloat(current_time);
       current_session_time.scramble = scramble_container.text();
