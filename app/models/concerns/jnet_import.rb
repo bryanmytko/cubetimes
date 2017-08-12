@@ -43,7 +43,7 @@ module JnetImport
   end
 
   class SolveCreator
-    def initialize(solve, cubing_session)
+    def initialize(solve:, cubing_session:)
       Solve.create(
         time: solve[:time],
         scramble: solve[:scramble],
