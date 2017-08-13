@@ -1,6 +1,8 @@
 require "rails_helper"
 
 describe "User times their solves" do
+  let(:user) { FactoryGirl.create(:user) }
+
   scenario "by navigating directly" do
     visit root_path
 
@@ -49,36 +51,36 @@ describe "User times their solves" do
   end
 
   scenario "and completes a 12 cube session", js: true do
-    visit root_path
+    # visit root_path(as: user)
+    #
+    # solves = []
+    #
+    # 12.times do
+    #   time_a_solve
+    #   solves << page.first(".timer_val").text
+    # end
+    #
+    # fastest = solves.max
+    # slowest = solves.min
+    # session_total = solves.dup
+    # session_total.delete_at(solves.find_index(fastest))
+    # session_total.delete_at(solves.find_index(slowest))
+    # current_avg =
+    #   (solves.map(&:to_f).inject(&:+) / solves.length).round(2)
+    # session_avg =
+    #   (session_total.map(&:to_f).inject(&:+) / session_total.length).round(2)
+    #
+    # expect(page).to have_css(".cubes-amt", text: "12")
+    # expect(page).to have_css(".avg-session", text: session_avg)
+    # expect(page).to have_css(".avg-all", text: current_avg)
+    # expect(page).to have_css(".fastest", text: solves.min)
+    # expect(page).to have_css(".slowest", text: solves.max)
+    User.destroy_all
+    visit statistics_path(as: user)
 
-    solves = []
-
-    12.times do
-      time_a_solve
-      solves << page.first(".timer_val").text
-    end
-
-    fastest = solves.max
-    slowest = solves.min
-    session_total = solves.dup
-    session_total.delete_at(solves.find_index(fastest))
-    session_total.delete_at(solves.find_index(slowest))
-    current_avg =
-      (solves.map(&:to_f).inject(&:+) / solves.length).round(2)
-    session_avg =
-      (session_total.map(&:to_f).inject(&:+) / session_total.length).round(2)
-
-    expect(page).to have_css(".cubes-amt", text: "12")
-    expect(page).to have_css(".avg-session", text: session_avg)
-    expect(page).to have_css(".avg-all", text: current_avg)
-    expect(page).to have_css(".fastest", text: solves.min)
-    expect(page).to have_css(".slowest", text: solves.max)
-
-    # visit statistics_path
-
-    # expect(page).to have_css(".average", text: session_avg)
-    # expect(page).to have_css(".individual-solve", text: [solves.first, solves.last])
-    # expect(page).to have_css(".best", text: solves.min)
+    expect(page).to have_css(".average", text: session_avg)
+    expect(page).to have_css(".individual-solve", text: [solves.first, solves.last])
+    expect(page).to have_css(".best", text: solves.min)
   end
 
   def time_a_solve

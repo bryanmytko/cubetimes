@@ -14,7 +14,7 @@ gem "sass"
 gem "sass-rails"
 gem "selenium-webdriver"
 gem "uglifier"
-gem 'jquery-ui-rails'
+gem "jquery-ui-rails"
 
 group :production do
   gem "heroku-deflater"

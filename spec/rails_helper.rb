@@ -16,8 +16,10 @@ RSpec.configure do |config|
 
   config.include ModelHelpers::ObjectHelpers, type: :model
   config.include ValidUserRequestHelper, type: :request
+  config.include Devise::Test::IntegrationHelpers
 
-  config.use_transactional_fixtures = true
+
+  config.use_transactional_fixtures = false
   config.infer_spec_type_from_file_location!
 
   Capybara.javascript_driver = :selenium
