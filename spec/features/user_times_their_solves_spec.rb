@@ -69,10 +69,16 @@ describe "User times their solves" do
       (session_total.map(&:to_f).inject(&:+) / session_total.length).round(2)
 
     expect(page).to have_css(".cubes-amt", text: "12")
-    expect(page).to have_css(".avg-session", text: "#{session_avg}")
-    expect(page).to have_css(".avg-all", text: "#{current_avg}")
-    expect(page).to have_css(".fastest", text: "#{solves.min}")
-    expect(page).to have_css(".slowest", text: "#{solves.max}")
+    expect(page).to have_css(".avg-session", text: session_avg)
+    expect(page).to have_css(".avg-all", text: current_avg)
+    expect(page).to have_css(".fastest", text: solves.min)
+    expect(page).to have_css(".slowest", text: solves.max)
+
+    # visit statistics_path
+
+    # expect(page).to have_css(".average", text: session_avg)
+    # expect(page).to have_css(".individual-solve", text: [solves.first, solves.last])
+    # expect(page).to have_css(".best", text: solves.min)
   end
 
   def time_a_solve
