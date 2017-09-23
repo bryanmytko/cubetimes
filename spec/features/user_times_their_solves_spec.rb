@@ -4,7 +4,7 @@ describe "User times their solves" do
   scenario "by navigating directly" do
     visit root_path
 
-    expect(page).to have_css(".time-1", "")
+    expect(page).to have_css(".time-1", text: "")
     expect(page).to have_css(".cubes-amt", text: "Cubes Solved: --")
     expect(page).to have_css(".avg-session", text: "Session Average: --")
     expect(page).to have_css(".avg-all", text: "Current Average: --")
