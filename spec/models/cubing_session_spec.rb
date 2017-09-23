@@ -29,13 +29,12 @@ RSpec.describe CubingSession, :type => :model do
   describe "a jnet imported session" do
     let(:user) { FactoryGirl.create(:user) }
     let(:cubing_session) { FactoryGirl.create(:cubing_session) }
+    let(:file_factory) { FactoryGirl.create(:jnet_file) }
 
     context "specs with valid data" do
       before(:each) do
-        # @TODO check
         allow(described_class).to receive(:current_user) { user }
-        @file_factory = FactoryGirl.create(:jnet_file)
-        CubingSession.import(cubing_session, @file_factory.file)
+        CubingSession.import(cubing_session, file_factory.file)
       end
 
       it "should create a cubing session from jnet data" do
