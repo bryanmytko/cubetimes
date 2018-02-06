@@ -30,37 +30,16 @@
   <%= content_tag :div, msg, class: name %>
 <% end %>
 <%= devise_error_messages! %>
-<header class="well">
-<% if user_signed_in? %>
-  <p>
-    <%= link_to "Logout", destroy_user_session_path, method: :delete %>
-  </p>
-<% else %>
-  <p>
-    <%= link_to "Login",  new_user_session_path %> |
-    <%= link_to "Signup", new_user_registration_path %>
-  </p>
-<% end %>
-</header>
+<%= render "layouts/top_navigation" %>
 <div id="mainContainer">
   <div class="clearfix">
     <h1><%= link_to "Rubik's Cube Timer", root_path %></h1>
   </div>
   <div class="content">
-    <ul class="nav nav-tabs">
-      <li <%= is_active "/" %>>
-        <a href="/" data-toggle="tab">Timer</a>
-      </li>
-      <li <%= is_active "statistics" %>>
-        <a href="/statistics" data-toggle="tab">Statistics</a>
-      </li>
-      <li <%= is_active "profile" %>>
-        <a href="/profile" data-toggle="tab">Profile</a>
-      </li>
-    </ul>
+    <%= render "layouts/navigation" %>
     <%= yield %>
   </div>
 </div>
-<%= render 'layouts/footer' %>
+<%= render "layouts/footer" %>
 </body>
 </html>
