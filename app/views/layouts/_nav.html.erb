@@ -1,0 +1,21 @@
+<nav class="main-nav">
+  <section class="session__container">
+    <% if user_signed_in? %>
+      <%= link_to "Logout", destroy_user_session_path, method: :delete %>
+    <% else %>
+      <%= link_to "Login",  new_user_session_path %> |
+      <%= link_to "Signup", new_user_registration_path %>
+    <% end %>
+  </section>
+  <ul class="main-nav__list">
+    <li>
+      <%= link_to "Timer", timer_index_path %>
+    </li>
+    <li>
+      <%= link_to "Statistics", statistics_path %>
+    </li>
+    <li>
+      <%= link_to "Profile", profile_index_path %>
+    </li>
+  </ul>
+</nav>

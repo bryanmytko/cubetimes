@@ -1,66 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Rubik's Cube Timer</title>
-  <meta name="description" content="An online timer for
-  speedsolving Rubik's cubes and other mechanical puzzles.
-  Sign up and save your past sessions and scrambles!
-  Supports: 2x2, 3x3, 4x4, 5x5, 6x6, 7x7, Pyraminx, Megaminx.">
-
-  <%= stylesheet_link_tag "application",
-    media: "all", "data-turbolinks-track" => true %>
-
-  <%= javascript_include_tag "application",
-    "data-turbolinks-track" => true %>
-
+  <title><%= t("application.title") %></title>
+  <meta name="description" content="<%= t("application.meta.description") %>">
+  <%= stylesheet_link_tag "application", media: "all" %>
+  <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
-  <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-48436108-1', 'auto');
-    ga('send', 'pageview');
-
-  </script>
+  <%= render "analytics" %>
 </head>
 <body class="<%= controller_name %> <%= action_name %>">
-<% flash.each do |name, msg| %>
-  <%= content_tag :div, msg, class: name %>
-<% end %>
-<%= devise_error_messages! %>
-<header class="well">
-<% if user_signed_in? %>
-  <p>
-    <%= link_to "Logout", destroy_user_session_path, method: :delete %>
-  </p>
-<% else %>
-  <p>
-    <%= link_to "Login",  new_user_session_path %> |
-    <%= link_to "Signup", new_user_registration_path %>
-  </p>
-<% end %>
-</header>
-<div id="mainContainer">
-  <div class="clearfix">
-    <h1><%= link_to "Rubik's Cube Timer", root_path %></h1>
-  </div>
-  <div class="content">
-    <ul class="nav nav-tabs">
-      <li <%= is_active "/" %>>
-        <a href="/" data-toggle="tab">Timer</a>
-      </li>
-      <li <%= is_active "statistics" %>>
-        <a href="/statistics" data-toggle="tab">Statistics</a>
-      </li>
-      <li <%= is_active "profile" %>>
-        <a href="/profile" data-toggle="tab">Profile</a>
-      </li>
-    </ul>
-    <%= yield %>
-  </div>
-</div>
-<%= render 'layouts/footer' %>
+  <% flash.each do |name, msg| %>
+    <%= content_tag :div, msg, class: name %>
+  <% end %>
+  <%= devise_error_messages! %>
+  <%= render "layouts/header" %>
+  <%= yield %>
+  <%= render "layouts/footer" %>
 </body>
 </html>

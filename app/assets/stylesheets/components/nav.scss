@@ -1,0 +1,19 @@
+.main-nav {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.main-nav__list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.main-nav__list li a {
+  color: $white;
+  text-decoration: none;
+}
