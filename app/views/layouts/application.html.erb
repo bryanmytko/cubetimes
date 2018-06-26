@@ -9,12 +9,16 @@
   <%= render "analytics" %>
 </head>
 <body class="<%= controller_name %> <%= action_name %>">
-  <% flash.each do |name, msg| %>
-    <%= content_tag :div, msg, class: name %>
-  <% end %>
-  <%= devise_error_messages! %>
-  <%= render "layouts/header" %>
-  <%= yield %>
-  <%= render "layouts/footer" %>
+  <div class="main-wrapper">
+    <%= render "layouts/header" %>
+    <div class="main-container">
+      <% flash.each do |name, msg| %>
+        <%= content_tag :div, msg, class: name %>
+      <% end %>
+      <%= devise_error_messages! %>
+      <%= yield %>
+      <%= render "layouts/footer" %>
+    </div>
+  </div>
 </body>
 </html>

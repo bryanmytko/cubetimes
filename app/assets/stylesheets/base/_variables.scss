@@ -1,7 +1,19 @@
 // Colors
-$blue: #2A86E1;
+$black: #222222;;
+$blue: #2a86e1;
+$gray: #cccccc;
+$grey: $gray;
+$light-gray: #888888;
+$light-grey: $light-gray;
 $white: #ffffff;
+
+// Shadows
+$box-shadow-bottom: 0px 6px 2px 0px rgba($black, 0.08);
 
 // Fonts
 $default-font: "Rubik", "Helvetica", "Arial", sans-serif;
+
+// Sizes
+$heading-size: 1.6em;
+$layout-width: 1280px;
 

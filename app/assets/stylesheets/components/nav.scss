@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  line-height: $heading-size;
 }
 
 .main-nav__list {
@@ -9,11 +10,23 @@
   flex-direction: row;
   flex-wrap: wrap;
   list-style-type: none;
-  margin: 0;
-  padding: 0;
+  margin: 2px 0 0 0;
+
+  li {
+    padding: 0 0.5em;
+  }
+
+  li a {
+    color: $white;
+    text-decoration: none;
+  }
+
+  li a:hover {
+    color: $grey;
+  }
 }
 
-.main-nav__list li a {
-  color: $white;
-  text-decoration: none;
+.main-nav__divider {
+  color: $light-grey;
 }
+

@@ -1,6 +1,28 @@
 header {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-between;
+  background: $black;
+  box-shadow: $box-shadow-bottom;
+  padding: 0.5em 0;
+
+  > section {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 0 auto;
+    width: $layout-width;
+  }
+}
+
+h1 {
+  background: url(header-cube.png) 0 0 no-repeat;
+  letter-spacing: -0.01em;
+  font-size: $heading-size;
+  font-weight: 200;
+  margin: 0;
+  padding-left: 28px;
+
+  a {
+    color: $white;
+    text-decoration: none;
+  }
 }
