@@ -1,15 +1,17 @@
-<div id="footer">
-  <ul>
-    <li>
-    <a class="facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://rubikscubetimer.com/"></a></li>
-    <li><a class="twitter" href="https://twitter.com/home?status=Need%20an%20online%20Rubik's%20Cube%20timer?%20http://rubikscubetimer.com"></a></li>
-    <li><a class="googleplus" href="https://plus.google.com/share?url=http://rubikscubetimer.com"></a></li>
-    <li><a class="pinterest" href="https://pinterest.com/pin/create/button/?url=http://rubikscubetimer.com&media=&description="></a></li>
-  </ul>
-  <div class="copy-info">
-    &copy;2014-<%= Date.today.year %>
-    <%= link_to "Bryan Mytko", "https://github.com/bryanmytko" %>
-    &hearts; 
-    <%= link_to "Github", "https://github.com/bryanmytko/cubetimes" %>
-  </div>
-</div>
+<footer>
+  <section>
+    <ul>
+      <li><a class="facebook" href="https://www.facebook.com/sharer/sharer.php?u=<%= root_url %>"></a></li>
+      <li><a class="pinterest" href="https://pinterest.com/pin/create/button/?url=<%= root_url %>&media=&description="></a></li>
+      <li><a class="twitter" href="https://twitter.com/home?status=Need%20an%20online%20Rubik's%20Cube%20timer?%20<%= root_url %>"></a></li>
+      <li><a class="googleplus" href="https://plus.google.com/share?url=<%= root_url %>"></a></li>
+    </ul>
+    <div class="copy-info">
+      &copy;2014-<%= Date.today.year %>
+      &nbsp;
+      <%= link_to "Bryan Mytko", "https://github.com/bryanmytko" %>
+      &nbsp;&hearts;&nbsp;
+      <%= link_to "Github", "https://github.com/bryanmytko/cubetimes" %>
+    </div>
+  </section>
+</footer>

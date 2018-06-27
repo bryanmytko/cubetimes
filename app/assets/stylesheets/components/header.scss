@@ -1,7 +1,12 @@
 header {
   background: $black;
   box-shadow: $box-shadow-bottom;
+  font-size: 0.9em;
   padding: 0.5em 0;
+
+  @media (max-width: 1000px) {
+    font-size: calc(12px + .4vw);
+  }
 
   > section {
     display: flex;
@@ -9,17 +14,21 @@ header {
     flex-wrap: wrap;
     justify-content: space-between;
     margin: 0 auto;
-    width: $layout-width;
+    max-width: $layout-width;
   }
 }
 
 h1 {
-  background: url(header-cube.png) 0 0 no-repeat;
+  // background: url(header-cube.png) 0 0 no-repeat;
   letter-spacing: -0.01em;
-  font-size: $heading-size;
+  font-size: 2rem;//$heading-size;
   font-weight: 200;
   margin: 0;
   padding-left: 28px;
+
+  @media (max-width: 1000px) {
+    font-size: calc(44px + .4vw);
+  }
 
   a {
     color: $white;

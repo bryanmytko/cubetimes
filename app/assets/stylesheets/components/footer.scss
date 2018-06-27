@@ -1,0 +1,57 @@
+footer {
+  background: $black;
+  flex-shrink: 0;
+  font-size: 0.8em;
+  font-weight: 100;
+  padding: 1em 0;
+
+  a {
+    color: $grey;
+  }
+
+  div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  > section {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 0 auto;
+    max-width: $layout-width;
+  }
+}
+
+footer ul {
+  margin: 3px 0 0 0;
+  padding: 0;
+
+  li {
+    display: inline;
+    list-style-type: none;
+    padding: 0 0.2em;
+  }
+
+  li a {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    background-image: url(social.png);
+    background-position: 0 0;
+  }
+
+  li + li a {
+    background-position: -24px 0;
+  }
+
+  li + li + li a {
+    background-position: -48px 0;
+  }
+
+  li + li + li + li a {
+    background-position: -72px 0;
+  }
+}

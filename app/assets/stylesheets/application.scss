@@ -2,12 +2,20 @@
 @import "base/**/*";
 @import "components/**/*";
 
-.main-wrapper {}
+html, body {
+  height: 100%;
+}
 
-.main-container {
-  margin: 0 auto;
+.main-wrapper {
+  height: 100%;
   display: flex;
   flex-direction: column;
-  min-width: $layout-width;
+}
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 auto;
+  margin: 0 auto;
   max-width: $layout-width;
 }

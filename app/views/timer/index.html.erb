@@ -1,6 +1,6 @@
-<div class="well mat clearfix">
-  <div id="timerTimes">
-    <ul class="clearfix">
+<section class="timer__wrapper">
+  <section id="timerTimes" class="timer">
+    <ul>
     <% (1..TimerController::SESSION_SIZE).each do |n| %>
       <%=
         "<li class=\"time-#{n}\" data-position=\"#{n.ordinalize}\">
@@ -9,37 +9,37 @@
       %>
     <% end %>
     </ul>
-  </div>
-  <div id="timerSection">
-    <p class="timer_val">0:00</p>
-    <div class="scrambleContainer">
-      <span class="scramble"></span>
-    </div>
-    <button id="timer_button" type="button" class="btn btn-warning">
-      Press spacebar or tap hold the screen to start!
-    </button>
-  </div>
-</div>
-<div id="statistics-container" class="clearfix">
-  <div id="statistics-left">
-    <p class="cubes-amt">Cubes Solved: <span>--</span></p>
-    <p class="avg-session">Session Average: <span>--</span></p>
-    <p class="avg-all">Current Average: <span>--</span></p>
-  </div>
-  <div id="statistics-right">
-    <div class="puzzle-type clearfix">Puzzle: &nbsp;
-      <select name="puzzle-type" id="current_puzzle">
-        <option value="cube_2x2">2x2</option>
-        <option value="cube_3x3" selected="selected">3x3</option>
-        <option value="cube_4x4">4x4</option>
-        <option value="cube_5x5">5x5</option>
-        <option value="cube_6x6">6x6</option>
-        <option value="cube_7x7">7x7</option>
-        <option value="cube_pyraminx">Pyraminx</option>
-        <option value="cube_megaminx">Megaminx</option>
-      </select>
-    </div>
-    <p class="fastest">Fastest Time: <span>--</span></p>
-    <p class="slowest">Slowest Time: <span>--</span></p>
-  </div>
-</div>
+    <section id="timerSection" class="timer__dashboard">
+      <p class="timer_val">0:00</p>
+      <div class="scrambleContainer">
+        <span class="scramble"></span>
+      </div>
+      <button id="timer_button" type="button" class="btn btn-warning">
+        Start timer!
+      </button>
+    </section>
+  </section>
+  <section id="statistics-container">
+    <section id="statistics-left">
+      <p class="cubes-amt">Cubes Solved: <span>--</span></p>
+      <p class="avg-session">Session Average: <span>--</span></p>
+      <p class="avg-all">Current Average: <span>--</span></p>
+    </section>
+    <section id="statistics-right">
+      <div class="puzzle-type">Puzzle: &nbsp;
+        <select name="puzzle-type" id="current_puzzle">
+          <option value="cube_2x2">2x2</option>
+          <option value="cube_3x3" selected="selected">3x3</option>
+          <option value="cube_4x4">4x4</option>
+          <option value="cube_5x5">5x5</option>
+          <option value="cube_6x6">6x6</option>
+          <option value="cube_7x7">7x7</option>
+          <option value="cube_pyraminx">Pyraminx</option>
+          <option value="cube_megaminx">Megaminx</option>
+        </select>
+      </div>
+      <p class="fastest">Fastest Time: <span>--</span></p>
+      <p class="slowest">Slowest Time: <span>--</span></p>
+    </section>
+  </section>
+</section>
