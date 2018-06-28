@@ -1,5 +1,5 @@
 header {
-  background: $black;
+  background: $dark-blue;
   box-shadow: $box-shadow-bottom;
   font-size: 0.9em;
   padding: 0.5em 0;
@@ -19,12 +19,12 @@ header {
 }
 
 h1 {
-  // background: url(header-cube.png) 0 0 no-repeat;
+  background: url(header-cube.png) 0 2px no-repeat;
   letter-spacing: -0.01em;
-  font-size: 2rem;//$heading-size;
+  font-size: 28px;
   font-weight: 200;
   margin: 0;
-  padding-left: 28px;
+  padding-left: 30px;
 
   @media (max-width: 1000px) {
     font-size: calc(44px + .4vw);

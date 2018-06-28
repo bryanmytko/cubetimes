@@ -1,9 +1,10 @@
-@import url("//fonts.googleapis.com/css?family=Rubik:400,700");
+@import url("//fonts.googleapis.com/css?family=Rubik:300,400,500,700,900");
 @import "base/**/*";
 @import "components/**/*";
 
 html, body {
   height: 100%;
+  letter-spacing: 0.015em;
 }
 
 .main-wrapper {
@@ -18,4 +19,40 @@ html, body {
   flex: 1 0 auto;
   margin: 0 auto;
   max-width: $layout-width;
+}
+
+p {
+  @include fontSmoothing();
+  font-weight: 200;
+  letter-spacing: -0.009em;
+  margin-bottom: 1.66em;
+  text-indent: 0em;
+}
+
+.btn {
+  background: $blue;
+  color: $white;
+  border: 0;
+  width: 25%;
+  height: 40px;
+  border-radius: 2px;
+  cursor: pointer;
+  padding: 6px 10px;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+}
+
+.btn-alert {
+  background: $green;
+
+  &:hover {
+    background: $green-highlight;
+  }
+}
+
+.btn-highlight {
+  background: $aqua;
+
+  &:hover {
+    background: $aqua-highlight;
+  }
 }

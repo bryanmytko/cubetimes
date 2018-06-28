@@ -1,27 +1,24 @@
 <nav class="main-nav">
   <ul class="main-nav__list">
     <li>
-      <%= link_to "Timer", timer_index_path %>
+      <%= active_link_to "Timer", timer_index_path %>
     </li>
     <li>
-      <%= link_to "Statistics", statistics_path %>
+      <%= active_link_to "Statistics", statistics_path %>
     </li>
     <li>
-      <%= link_to "Profile", profile_index_path %>
-    </li>
-    <li class="main-nav__divider">
-      |
+      <%= active_link_to "Profile", profile_index_path %>
     </li>
     <% if user_signed_in? %>
     <li>
-      <%= link_to "Logout", destroy_user_session_path, method: :delete %>
+      <%= link_to "Logout", destroy_user_session_path, class: "btn", method: :delete %>
     </li>
     <% else %>
     <li>
-      <%= link_to "Login",  new_user_session_path %>
+      <%= link_to "Login",  new_user_session_path, class: "btn btn-alert" %>
     </li>
     <li>
-      <%= link_to "Signup", new_user_registration_path %>
+      <%= link_to "Signup", new_user_registration_path, class: "btn btn-highlight" %>
     </li>
     <% end %>
   </ul>
