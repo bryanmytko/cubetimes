@@ -3,6 +3,7 @@ class StatisticsController < ApplicationController
 
   def index
     @cubing_sessions = CubingSession
+      .order(created_at: :desc)
       .where(user_id: current_user.id)
       .includes(:solves)
   end
