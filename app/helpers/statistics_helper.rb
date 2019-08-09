@@ -5,11 +5,13 @@ module StatisticsHelper
       "#{session_average(cubing_session)}</td>"
 
     solves = cubing_session.solves
-    times = solves.pluck(:time).collect(&:to_f)
+    times = solves
+      .pluck(:time)
+      .collect(&:to_f)
     best_found = false
 
     solves.each do |solve|
-      time = solve.time.to_f
+      time = number_with_precision(solve.time, precision: 2)
       td = "<td title=\"#{scramble_title(solve)}\""
       td += " class=\"individual-solve"
 
@@ -37,11 +39,13 @@ module StatisticsHelper
   end
 
   def best_time(cubing_sessions)
-    cubing_sessions
+    best = cubing_sessions
       .includes(:solves)
       .pluck(:time)
       .map(&:to_f)
       .min
+
+    number_with_precision(best, precision: 2)
   end
 
   def best_average(cubing_sessions)
@@ -59,7 +63,8 @@ module StatisticsHelper
       time.pop
     end
 
-    (times.map(&:to_f).reduce(:+) / times.size).round(2)
+    average = (times.map(&:to_f).reduce(:+) / times.size).round(2)
+    number_with_precision(average, precision: 2)
   end
 
   def date_format(date)
