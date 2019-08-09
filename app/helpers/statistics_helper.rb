@@ -13,7 +13,7 @@ module StatisticsHelper
       td = "<td title=\"#{scramble_title(solve)}\""
       td += " class=\"individual-solve"
 
-      if(time == times.min && best_found == false)
+      if time == times.min && best_found == false
         td += " best\">#{time}</td>"
         best_found = true
       else
@@ -32,7 +32,7 @@ module StatisticsHelper
     string += link_to "[x]",
       statistic_path(id),
       method: :delete,
-      data: { confirm: "Really delete this session?" }
+      data: { confirm: t(".delete_time") }
     string += "</td>"
   end
 
@@ -45,7 +45,7 @@ module StatisticsHelper
   end
 
   def best_average(cubing_sessions)
-    avgs = cubing_sessions
+    cubing_sessions
       .includes(:solves)
       .map { |session| session_average(session) }
       .min
@@ -54,7 +54,11 @@ module StatisticsHelper
   private
 
   def session_average(session)
-    times = session.solves.pluck(:time)
+    times = session.solves.pluck(:time).tap do |time|
+      time.shift
+      time.pop
+    end
+
     (times.map(&:to_f).reduce(:+) / times.size).round(2)
   end
 
@@ -63,6 +67,6 @@ module StatisticsHelper
   end
 
   def scramble_title(solve)
-    solve.scramble || "Sorry, scramble not available."
+    solve.scramble || t(".scramble_missing")
   end
 end
