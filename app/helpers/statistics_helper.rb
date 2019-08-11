@@ -12,10 +12,12 @@ module StatisticsHelper
 
     solves.each do |solve|
       time = number_with_precision(solve.time, precision: 2)
+      min_time = number_with_precision(times.min, precision: 2)
+
       td = "<td title=\"#{scramble_title(solve)}\""
       td += " class=\"individual-solve"
 
-      if time == times.min && best_found == false
+      if time == min_time && best_found == false
         td += " best\">#{time}</td>"
         best_found = true
       else
