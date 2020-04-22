@@ -1,5 +1,5 @@
 source "https://rubygems.org"
-ruby "3.1.2"
+ruby "2.7.1"
 
 gem "awesome_print"
 gem "bootstrap-sass"
