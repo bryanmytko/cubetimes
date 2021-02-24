@@ -2,7 +2,7 @@ require "rails_helper"
 
 RSpec.describe CubingSession, :type => :model do
   describe "a valid cubing session" do
-    let(:cubing_session) { FactoryGirl.create(:cubing_session) }
+    let(:cubing_session) { FactoryBot.create(:cubing_session) }
 
     it "has a valid factory" do
       expect(cubing_session).to be_valid
@@ -27,9 +27,9 @@ RSpec.describe CubingSession, :type => :model do
   end
 
   describe "a jnet imported session" do
-    let(:user) { FactoryGirl.create(:user) }
-    let(:cubing_session) { FactoryGirl.create(:cubing_session) }
-    let(:file_factory) { FactoryGirl.create(:jnet_file) }
+    let(:user) { FactoryBot.create(:user) }
+    let(:cubing_session) { FactoryBot.create(:cubing_session) }
+    let(:file_factory) { FactoryBot.create(:jnet_file) }
 
     context "specs with valid data" do
       before(:each) do

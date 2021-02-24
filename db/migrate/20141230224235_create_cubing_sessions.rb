@@ -1,4 +1,4 @@
-class CreateCubingSessions < ActiveRecord::Migration
+class CreateCubingSessions < ActiveRecord::Migration[5.0]
   def change
     create_table :cubing_sessions do |t|
       t.integer :user_id

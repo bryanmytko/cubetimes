@@ -1,6 +1,6 @@
 module ValidUserRequestHelper
   def sign_in_as_a_valid_user
-    @user ||= FactoryGirl.create :user
+    @user ||= FactoryBot.create :user
     post(
       user_session_path,
       params: {
