@@ -1,9 +1,9 @@
 require "rails_helper"
 
 RSpec.describe JnetImport, type: :model do
-  let(:jnet_file_factory) { FactoryGirl.create(:jnet_file) }
-  let(:image_file_factory) { FactoryGirl.create(:image_file) }
-  let(:user) { FactoryGirl.create(:user) }
+  let(:jnet_file_factory) { FactoryBot.create(:jnet_file) }
+  let(:image_file_factory) { FactoryBot.create(:image_file) }
+  let(:user) { FactoryBot.create(:user) }
 
   describe "extracting solves from uploaded file" do
     it "collect twelve solves" do

@@ -1,5 +1,5 @@
 source "https://rubygems.org"
-ruby "~> 2.7"
+ruby "~> 3.0"
 
 gem "awesome_print"
 gem "bootstrap-sass"
@@ -10,12 +10,13 @@ gem "font-awesome-rails"
 gem "httparty"
 gem "jquery-rails"
 gem "pg"
+gem "puma"
 gem "rails"
 gem "sass"
 gem "sass-rails"
 gem "selenium-webdriver"
 gem "uglifier"
-gem 'jquery-ui-rails'
+gem "jquery-ui-rails"
 
 group :production do
   gem "heroku-deflater"
@@ -23,7 +24,7 @@ group :production do
 end
 
 group :development, :test do
-  gem "factory_girl_rails"
+  gem "factory_bot_rails"
   gem "faker"
 end
 

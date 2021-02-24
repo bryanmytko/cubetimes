@@ -87,11 +87,11 @@ GEM
     diff-lcs (1.4.4)
     erubi (1.9.0)
     execjs (2.7.0)
-    factory_girl (4.9.0)
-      activesupport (>= 3.0.0)
-    factory_girl_rails (4.9.0)
-      factory_girl (~> 4.9.0)
-      railties (>= 3.0.0)
+    factory_bot (6.1.0)
+      activesupport (>= 5.0.0)
+    factory_bot_rails (6.1.0)
+      factory_bot (~> 6.1.0)
+      railties (>= 5.0.0)
     faker (2.14.0)
       i18n (>= 1.6, < 2)
     fastclick-rails (1.0.1)
@@ -135,6 +135,8 @@ GEM
     orm_adapter (0.5.0)
     pg (1.2.3)
     public_suffix (4.0.6)
+    puma (5.2.1)
+      nio4r (~> 2.0)
     rack (2.2.3)
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
@@ -247,7 +249,7 @@ DEPENDENCIES
   byebug
   capybara
   devise (= 4.7.1)
-  factory_girl_rails
+  factory_bot_rails
   faker
   fastclick-rails
   font-awesome-rails
@@ -256,6 +258,7 @@ DEPENDENCIES
   jquery-rails
   jquery-ui-rails
   pg
+  puma
   rails
   rails_12factor
   rspec-collection_matchers
@@ -266,7 +269,7 @@ DEPENDENCIES
   uglifier
 
 RUBY VERSION
-   ruby 2.7.1p83
+   ruby 3.0.0p0
 
 BUNDLED WITH
-   2.1.4
+   2.2.3

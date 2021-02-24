@@ -1,6 +1,6 @@
-FactoryGirl.define do
-  factory :solf, class: 'Solve' do
-    time "MyText"
-    cubing_session nil
+FactoryBot.define do
+  factory :solve, class: 'Solve' do
+    time { "123" }
+    cubing_session { nil }
   end
 end
