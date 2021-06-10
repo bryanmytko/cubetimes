@@ -1,3 +1,14 @@
+// class Cube {
+//   constructor() {
+//     this.foo = 'bar'
+//   }
+//
+//   scramble() {
+//     // do scramble
+//   }
+// }
+
+
 var Cube = function(cube, scramble_count){
 
   this.cube = window[cube];

@@ -199,11 +199,6 @@
 //   }
 //
 //   #<{(| Timer |)}>#
-//   var timer = function(){
-//     var t = new Date().getTime() - start;
-//     var elapsed = Math.floor(t / 10) / 100;
-//     timer_container.html(elapsed.toFixed(2));
-//   }
 //
 //   #<{(| Prototype Methods |)}>#
 //   Array.prototype.max = function() {
@@ -325,33 +320,105 @@
 //     }
 //   });
 //
-  function init(){
-    scramble_container.html(initial_scramble);
-  }
+  // function init(){
+  //   scramble_container.html(initial_scramble);
+  // }
 //
 //   init();
 // });
 
 /* 2021 Update: Pure JS version */
 
-const MSG_SESSION_COMPLETE = "Session complete. " +
-  "Your times have been recorded. " +
-  "Feel free to continue cubing!";
+const MSG_SESSION_COMPLETE = 'Session complete. ' +
+  'Your times have been recorded. ' +
+  'Feel free to continue cubing!';
 
 window.addEventListener('DOMContentLoaded', (event) => {
   const scramble_container = document.querySelector('.scrambleContainer .scramble');
   const current_puzzle_selector = document.getElementById('current_puzzle');
+  const timer_container = document.querySelector('.timer_val');
+  const timer_button = document.getElementById('timer_button');
 
   const AVG_AMT = 12;
   const SCRAMBLE_COUNT = 25;
   const DEFAULT_CUBE = current_puzzle_selector.value || "cube_3x3";
 
   const cube = new Cube(DEFAULT_CUBE, SCRAMBLE_COUNT);
+  const timer = new Timer({ view: timer_container });
+
   const initial_scramble = cube.scramble();
+
   scramble_container.innerText = initial_scramble;
 
-  console.log(initial_scramble);
+  timer_button.onclick = (event) => {
+    event.preventDefault();
+    event.stopPropagation()
+
+    if(!timer.running){
+      timer_button.classList.remove('keydown')
+      timer_button.classList.add('active');
+      timer.run();
+    } else {
+      timer.stop();
+      timer_button.classList.remove('active');
+
+      /* Queue isn't cleared. Is the stopwatch fn too BIG? */
+      /* Can we do this wit a promise? HOW DO PPL USE THIS */
+      /* I dont think its too big. It does this with just toFixed(3) */
+      window.confirm('Would you like to accept this time?');
+    }
+
+    timer_button.blur();
+  }
 });
+
+class Timer {
+  constructor(params) {
+    this.view = params.view;
+    this.running = false;
+    this.start;
+    this.interval;
+  }
+
+  run() {
+    this.running = this.running ? false : true;
+    this.start = new Date().getTime();
+
+    this.interval = setInterval(() => this.stopwatch(this.start, this.view, this.running), 10);
+  }
+
+  stop() {
+    clearInterval(this.interval);
+    this.running = false;
+  }
+
+  stopwatch(start, view) {
+    const t = new Date().getTime() - this.start;
+    const elapsed = Math.floor(t / 10) / 100;
+    view.innerHTML = this.format_time(elapsed);
+  }
+
+  /* BUG: somtimes it random adds a second (or rounds up) */
+  format_time(seconds) {
+    const pad = (num, size) => ('000' + num).slice(size * -1);
+    const t = parseFloat(seconds).toFixed(2);
+    const h = Math.floor(t / 60 / 60);
+    const m = Math.floor(t / 60) % 60;
+    const s = Math.floor(t - m * 60);
+    const ms = t.slice(-2);
+
+    const display_hours = (seconds > 3600) ? pad(h, 2) + ':' : '';
+    const display_minutes = (seconds > 60) ? pad(m, 2) + ':' : '';
+
+    return display_hours + display_minutes + pad(s, 2) + '.' + pad(ms, 2);
+  }
+};
+
+/* things to do
+ *
+ *. 1. interact with start button to start/ stop timer
+ *. 2. add time to time list and reset timer
+ *. */
 
 
 
