@@ -350,10 +350,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
   scramble_container.innerText = initial_scramble;
 
-  timer_button.onclick = (event) => {
-    event.preventDefault();
-    event.stopPropagation()
-
+  const start_stop_timer = (event) => {
     if(!timer.running){
       timer_button.classList.remove('keydown')
       timer_button.classList.add('active');
@@ -365,10 +362,29 @@ window.addEventListener('DOMContentLoaded', (event) => {
       /* Queue isn't cleared. Is the stopwatch fn too BIG? */
       /* Can we do this wit a promise? HOW DO PPL USE THIS */
       /* I dont think its too big. It does this with just toFixed(3) */
-      window.confirm('Would you like to accept this time?');
+      /*** Need modal ? something that doesn't lock the DOM?
+      /* window.confirm('Would you like to accept this time?');*/
     }
 
     timer_button.blur();
+  }
+
+  timer_button.onclick = (event) => {
+    event.preventDefault();
+    event.stopPropagation()
+
+    start_stop_timer(event);
+  }
+
+  document.onkeydown = (event) => {
+    if(event.keyCode == 32) {
+      event.preventDefault();
+      if(!timer.running) timer_button.classList.add('keydown');
+    }
+  }
+
+  document.onkeyup = (event) => {
+    if(event.keyCode == 32) start_stop_timer(event);
   }
 });
 
@@ -383,8 +399,7 @@ class Timer {
   run() {
     this.running = this.running ? false : true;
     this.start = new Date().getTime();
-
-    this.interval = setInterval(() => this.stopwatch(this.start, this.view, this.running), 10);
+    this.interval = setInterval(() => this.stopwatch(this.start, this.view), 10);
   }
 
   stop() {
@@ -398,7 +413,6 @@ class Timer {
     view.innerHTML = this.format_time(elapsed);
   }
 
-  /* BUG: somtimes it random adds a second (or rounds up) */
   format_time(seconds) {
     const pad = (num, size) => ('000' + num).slice(size * -1);
     const t = parseFloat(seconds).toFixed(2);
@@ -416,7 +430,6 @@ class Timer {
 
 /* things to do
  *
- *. 1. interact with start button to start/ stop timer
  *. 2. add time to time list and reset timer
  *. */
 
