@@ -218,7 +218,12 @@ $(".timer.index").ready(function(){
   var timer = function(){
     var t = new Date().getTime() - start;
     var elapsed = Math.floor(t / 10) / 100;
-    timer_container.html(elapsed.toFixed(2));
+    if(elapsed > 60) {
+      elapsed = new Date(elapsed * 1000).toISOString().substr(11, 8)
+      timer_container.html(elapsed);
+    } else {
+      timer_container.html(elapsed.toFixed(2));
+    }
   }
 
   /* Prototype Methods */
