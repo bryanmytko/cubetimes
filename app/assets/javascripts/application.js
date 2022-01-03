@@ -67,6 +67,8 @@ $(".timer.index").ready(function(){
   var Timer = {
 
     modal_open: false,
+    current_time_raw: 0,
+    all_times_raw: [],
 
     generateScramble: function(){
       result = cube.scramble();
@@ -78,7 +80,7 @@ $(".timer.index").ready(function(){
       start = new Date().getTime();
 
       if(running){
-        interval = setInterval(timer,10);
+        interval = setInterval(this.timer.bind(this),10);
       } else {
         clearInterval(interval);
         $.confirm("Would you like to accept this time?");
@@ -128,6 +130,7 @@ $(".timer.index").ready(function(){
        * Eventually, this can be refactored to use session data */
       current_time_container.html(current_time);
       all_times.push(parseFloat(current_time).toFixed(2));
+      this.all_times_raw.push(this.current_time_raw);
 
       current_session_time.time = parseFloat(current_time);
       current_session_time.scramble = scramble_container.text();
@@ -141,11 +144,14 @@ $(".timer.index").ready(function(){
       this.updateSessionAvg();
       this.updateTotalAvg();
 
-        if(total_cubes == AVG_AMT) Timer.postSessionAvg();
+      if(total_cubes == AVG_AMT) Timer.postSessionAvg();
 
-        $(".fastest").children("span").html(all_times.min() || '--');
-        $(".slowest").children("span").html(all_times.max() || '--');
-      },
+      const fastest = (this.all_times_raw.length) ? this.humanReadableTime(this.all_times_raw.min()) : '--';
+      const slowest = (this.all_times_raw.length) ? this.humanReadableTime(this.all_times_raw.max()) : '--';
+
+      $(".fastest").children("span").html(fastest);
+      $(".slowest").children("span").html(slowest);
+    },
 
     postSessionAvg: function(){
       let session_times = timer_list_items.map(function(){
@@ -194,35 +200,35 @@ $(".timer.index").ready(function(){
     },
 
     updateTotalAvg: function(){
-      var avg;
+      let avg = 0;
 
       if(!total_cubes){
         avg = '--';
       } else {
-        var tmp_total = 0;
-
-        for(var i=0;i<all_times.length;i++){
-          tmp_total += all_times[i];
-        }
-
-        avg = (tmp_total/total_cubes).toFixed(2);
+        const total_times = this.all_times_raw.reduce((a,b) => a + b, 0);
+        avg = total_times / this.all_times_raw.length;
       }
 
       $(".avg-all")
         .children("span")
-        .html(avg);
-    }
-  }
+        .html(this.humanReadableTime(avg));
+    },
 
-  /* Timer */
-  var timer = function(){
-    var t = new Date().getTime() - start;
-    var elapsed = Math.floor(t / 10) / 100;
-    if(elapsed > 60) {
-      elapsed = new Date(elapsed * 1000).toISOString().substr(11, 8)
-      timer_container.html(elapsed);
-    } else {
-      timer_container.html(elapsed.toFixed(2));
+    timer: function(){
+      var t = new Date().getTime() - start;
+      var elapsed = Math.floor(t / 10) / 100;
+      this.current_time_raw = elapsed;;
+
+      timer_container.html(this.humanReadableTime(elapsed));
+    },
+
+    humanReadableTime: function(raw_time) {
+      /* @TODO add hours+ case? not sure if we need that */
+      if(raw_time > 60) {
+        return new Date(raw_time * 1000).toISOString().substr(14, 8);
+      }
+
+      return raw_time.toFixed(2);
     }
   }
 
