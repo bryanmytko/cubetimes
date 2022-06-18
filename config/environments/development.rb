@@ -29,4 +29,5 @@ Cubetimes::Application.configure do
 
   config.hosts << "localhost"
   config.hosts << "0.0.0.0"
+  config.hosts << /[a-z0-9-]+\.ngrok\.io/
 end
