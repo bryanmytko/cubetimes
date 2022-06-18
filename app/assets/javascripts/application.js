@@ -5,7 +5,16 @@
 //= require jquery-readyselector
 //= require_tree .
 
-$(document).ready(function(){
+$(document).ready(async function(){
+  let wakeLock = null;
+
+  try {
+    wakeLock = await navigator.wakeLock.request('screen');
+    console.log(wakeLock);
+  } catch (err) {
+    console.log(`${err.name}, ${err.message}`);
+  }
+
   /* Balloons for scramble */
   $('td.individual-solve')
     .balloon({
