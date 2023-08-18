@@ -7725,6 +7725,23 @@ body { background: #202020 }
 header.well { width: 1020px; margin: 0 auto 12px auto; background: #1a1a1a; text-align: right; border-bottom: 2px solid #262626; border-left: 2px solid #262626; border-right: 2px solid #262626; padding: 6px 0 }
 header.well p { margin: 0 12px 0 0; font-size: 12px }
 
+.news-banner {
+  color: #000;
+  width: 1020px;
+  margin: 0 auto;
+  background: #eaffbc;
+  & a {
+    color: red;
+  }
+
+  & a.close {
+    margin-top: -10px;
+    margin-left: 20px;
+    color: #000;
+    opacity: 1;
+  }
+}
+
 h1 { background: image-url("logo.png") 0 0 no-repeat; height: 70px; padding: 15px 0 0 80px; float: right }
 
 h1 a,
@@ -7821,7 +7838,7 @@ p.timer_val { line-height: 1.2em; font-size: 140px; font-weight: 900; color: #1a
 
 input:focus {outline: none;}
 
-#footer { height: 64px; width: 1020px; margin: 0 auto 40px auto; border: 1px solid #262626; background: #1a1a1a }
+#footer { display: flex; align-items: center; justify-content: space-between; width: 1020px; margin: 0 auto 40px auto; border: 1px solid #262626; background: #1a1a1a }
 #footer ul { list-style-type: none; float: left; margin: 0; padding: 0 }
 #footer ul li { margin-right: 12px; display: block; float: left }
 #footer ul li a { display: block; width: 24px; height: 24px; background-image: image-url("social.png"); background-position: 0 0 }
@@ -7829,6 +7846,24 @@ input:focus {outline: none;}
 #footer ul li a.twitter { background-position: -48px 0 }
 #footer ul li a.googleplus { background-position: -72px 0 }
 #footer .copy-info { float: right }
+#footer .footer-copy { margin-left: auto; }
+#footer .coffee {
+  margin-left: 20px;
+  display: inline-flex;
+  border-radius: 6px;
+  background: #00ff74;
+  padding: 6px 8px;
+  text-align: center;
+  & a {
+    padding-top: 2px;
+    padding-left: 8px;
+    color: #000;
+  }
+
+  & svg {
+    width: 16px;
+  }
+}
 
 /* Devise */
 
