@@ -42,6 +42,17 @@
   </p>
 <% end %>
 </header>
+<script>
+  function closeNews() {
+    const el = document.getElementById("news-banner");
+    el.style.display = "none";
+  }
+</script>
+<div class="well news-banner" id="news-banner">
+  <a href="#" class="close" onClick="closeNews()">&#x0078;</a>
+  <strong>Greetings Cuber!</strong> I've been hard at work on updating this site to be a bit more modern in the past few months. Please feel free to check out the beta for version 2.0 here: <a href="https://beta.cubetimer.io/">beta.cubetimer.io</a>
+  It is still very much a work in progress but please feel free to reach out and give me feedback on what you love/hate/would like to see! Email: bryanmytko @ gmail dot com
+</div>
 <div id="mainContainer">
   <div class="clearfix">
     <h1><%= link_to "Rubik's Cube Timer", root_path %></h1>
